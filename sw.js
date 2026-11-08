@@ -1,5 +1,5 @@
 // Lexicalc — service worker
-// © 2026 Rithear – Tous droits réservés
+// © 2026 Lexicalc – Tous droits réservés
 //
 // Ce fichier se dépose à côté de index.html. Il sert uniquement à rendre le jeu installable
 // (écran d'accueil, application Android). Le jeu n'est PAS gardé pour le hors connexion :
