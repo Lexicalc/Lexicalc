@@ -1,1 +1,36 @@
+Lexicalc — crédits des listes de mots / word list credits
+===========================================================
 
+Les fichiers dict-fr.txt et dict-en.txt de ce dossier sont tirés des listes
+« an-array-of-french-words » et « an-array-of-english-words » (npm),
+elles-mêmes dérivées de la liste de mots du jeu Letterpress.
+Le jeu les a filtrées (mots de 2 à 10 lettres, sans accents).
+
+The files dict-fr.txt and dict-en.txt in this folder come from the
+"an-array-of-french-words" and "an-array-of-english-words" lists (npm),
+themselves derived from the Letterpress word list.
+The game filtered them (words of 2 to 10 letters, without accents).
+
+-----------------------------------------------------------------------
+
+MIT License
+
+Copyright (c) Zeke Sikelianos
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
