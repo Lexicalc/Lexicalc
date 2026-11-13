@@ -13,10 +13,10 @@ self.addEventListener("activate", e => e.waitUntil((async () => {
 })()));
 
 const OFF = `<!DOCTYPE html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lexicalc</title><body style="margin:0;background:#14233f;color:#fff;font:18px system-ui,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box">
-<div><div style="font-size:64px">📴</div><h2 style="color:#ffd24a">Lexicalc</h2>
-<p>Lexicalc a besoin d'une connexion internet pour fonctionner.</p><p style="color:#9fb3d9">Lexicalc needs an internet connection to work.</p>
-<button onclick="location.reload()" style="font:inherit;font-weight:700;padding:12px 22px;border:0;border-radius:12px;background:#ffd24a;color:#14233f;margin-top:12px">🔄 Réessayer · Try again</button></div>`;
+<title>Lexicalc</title><body style="margin:0;background:#fbf6ee;color:#1d2433;font:18px system-ui,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box">
+<div><div style="font-size:64px">📴</div><h2 style="color:#0f8b8d">Lexicalc</h2>
+<p>Lexicalc needs an internet connection to work.</p>
+<button onclick="location.reload()" style="font:inherit;font-weight:700;padding:12px 22px;border:0;border-radius:12px;background:#0f8b8d;color:#fff;margin-top:12px">🔄 Try again</button></div>`;
 
 self.addEventListener("fetch", e => {
   const r = e.request;

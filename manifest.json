@@ -1,18 +1,31 @@
 {
   "name": "Lexicalc",
   "short_name": "Lexicalc",
-  "description": "Le jeu de lettres et de chiffres · The letters and numbers game",
+  "description": "The daily letters and numbers game",
   "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#14233f",
-  "theme_color": "#14233f",
-  "lang": "fr",
+  "background_color": "#fbf6ee",
+  "theme_color": "#fbf6ee",
+  "lang": "en",
   "icons": [
-    { "src": "assets/icone-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "assets/icone-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "assets/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "assets/icone-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icone-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icone-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
