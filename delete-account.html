@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lexicalc · Supprimer mon compte · Delete my account</title>
 <meta name="description" content="Supprimer son compte Lexicalc · Delete your Lexicalc account">
 <link rel="icon" href="assets/icone-192.png"><meta name="theme-color" content="#fbf6ee">
@@ -23,35 +23,10 @@ button.go:disabled{opacity:.5}
 .msg{min-height:24px;margin-top:10px;font-weight:700}.msg.ko{color:var(--ko)}.msg.ok{color:var(--ok)}
 .mut{color:var(--mut);font-size:14px}
 .foot{color:var(--mut);font-size:13px;text-align:center;margin-top:36px}
-[lang-block]{display:none}[lang-block].on{display:block}
 </style></head><body><main>
-<div class="top"><a class="logo" href="./">Lexicalc</a><div class="lg"><button data-l="fr">🇫🇷 Français</button> <button data-l="en">🇬🇧 English</button></div></div>
+<div class="top"><a class="logo" href="./">Lexicalc</a></div>
 
-<section lang-block="fr" lang="fr">
-<h1>Supprimer mon compte Lexicalc</h1>
-<p>La suppression est <b>immédiate et définitive</b>. Elle efface ton compte, ton adresse e-mail, ton pseudo, ta liste d'amis et tous tes résultats en ligne (La partie du jour, records, duels, parties multijoueur). Rien n'est conservé, à part d'éventuelles sauvegardes techniques, écrasées automatiquement au bout de quelques jours.</p>
-
-<h2>Option 1 : depuis le jeu</h2>
-<p>Ouvre <a href="./">Lexicalc</a>, puis Menu → <b>Profil</b> → <b>Supprimer le compte</b>, et confirme avec ton mot de passe.</p>
-
-<h2>Option 2 : directement ici</h2>
-<div class="card">
-<input type="email" id="fMail" autocomplete="email" placeholder="Adresse e-mail du compte">
-<input type="password" id="fPw" autocomplete="current-password" placeholder="Mot de passe">
-<label class="ck"><input type="checkbox" id="fCk"><span>Je comprends que mon compte et tous mes résultats seront supprimés définitivement.</span></label>
-<button class="go" id="fGo">Supprimer définitivement mon compte</button>
-<div class="msg" id="fMsg"></div>
-</div>
-
-<h2>Option 3 : par e-mail</h2>
-<p>Mot de passe oublié ou plus d'accès au jeu ? Écris à <a href="mailto:lexicalc.jeu@gmail.com?subject=Suppression%20de%20compte">lexicalc.jeu@gmail.com</a> <b>depuis l'adresse de ton compte</b>, avec l'objet « Suppression de compte ». Ton compte sera supprimé sous 30 jours, et tu recevras une confirmation.</p>
-
-<h2>Sans compte (invité)</h2>
-<p>Les invités n'ont pas de compte : leurs résultats restent uniquement sur leur appareil. Pour les effacer, supprime les données du site dans ton navigateur, ou désinstalle Lexicalc de ton écran d'accueil.</p>
-<p class="mut">Pour en savoir plus : <a href="privacy.html?lang=fr">politique de confidentialité</a>.</p>
-</section>
-
-<section lang-block="en" lang="en">
+<section>
 <h1>Delete my Lexicalc account</h1>
 <p>Deletion is <b>immediate and permanent</b>. It erases your account, email address, nickname, friends list and all your online results (Daily Game, records, duels, multiplayer games). Nothing is kept, apart from any technical backups, which are automatically overwritten after a few days.</p>
 
@@ -72,25 +47,19 @@ button.go:disabled{opacity:.5}
 
 <h2>Without an account (guest)</h2>
 <p>Guests have no account: their results stay only on their device. To erase them, clear the site's data in your browser, or uninstall Lexicalc from your home screen.</p>
-<p class="mut">Learn more: <a href="privacy.html?lang=en">privacy policy</a>.</p>
+<p class="mut">Learn more: <a href="privacy.html">privacy policy</a>.</p>
 </section>
 
 <p class="foot">© 2026 Lexicalc · <a href="./">lexicalc.github.io/Lexicalc</a></p>
 </main>
 <script>
 const SB={url:"https://lcodabmspxwccdcbspsv.supabase.co",key:"sb_publishable_0aRNa2OvMdssaBsBNmA-XQ_d5jqXKlw"};
-const TX={fr:{fill:"Entre ton adresse e-mail et ton mot de passe.",ck:"Coche la case pour confirmer.",wait:"Suppression en cours…",cred:"Adresse e-mail ou mot de passe incorrect.",conf:"Cette adresse n'a jamais été confirmée : utilise l'option 3 (par e-mail).",
-  net:"Connexion impossible. Vérifie ta connexion internet puis réessaie.",ko:"La suppression a échoué. Réessaie, ou utilise l'option 3 (par e-mail).",ok:"✅ Ton compte Lexicalc a été supprimé définitivement.",sure:"Supprimer définitivement ce compte ? Cette action est irréversible."},
+const TX={
  en:{fill:"Enter your email address and password.",ck:"Tick the box to confirm.",wait:"Deleting…",cred:"Incorrect email address or password.",conf:"This address was never confirmed: use option 3 (by email).",
   net:"Can't connect. Check your internet connection and try again.",ko:"Deletion failed. Try again, or use option 3 (by email).",ok:"✅ Your Lexicalc account has been permanently deleted.",sure:"Permanently delete this account? This cannot be undone."}};
-let L="fr",lib=null;
+let L="en",lib=null;
 const $=id=>document.getElementById(id);
-function setL(v){L=v;document.documentElement.lang=v;document.querySelectorAll("[lang-block]").forEach(e=>e.classList.toggle("on",e.getAttribute("lang-block")===v));
- document.querySelectorAll("[data-l]").forEach(b=>b.classList.toggle("on",b.dataset.l===v));document.title=v==="fr"?"Lexicalc · Supprimer mon compte":"Lexicalc · Delete my account"}
-(()=>{let l=new URLSearchParams(location.search).get("lang");if(!/^(fr|en)$/.test(l||"")){try{l=localStorage.getItem("fwlang")}catch(e){}}
- if(!/^(fr|en)$/.test(l||""))l=/^fr/i.test(navigator.language||"")?"fr":"en";setL(l);
- document.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>setL(b.dataset.l))})();
-// la bibliothèque Supabase n'est chargée qu'au moment de supprimer
+document.title="Lexicalc · Delete my account";
 function loadLib(){if(window.supabase)return Promise.resolve(window.supabase);if(lib)return lib;
  lib=new Promise((ok,ko)=>{const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";s.onload=()=>ok(window.supabase);s.onerror=()=>{lib=null;ko(new Error("net"))};document.head.appendChild(s)});return lib}
 function msg(p,k,good){const e=$(p+"Msg");e.textContent=k?TX[L][k]:"";e.className="msg "+(good?"ok":"ko")}
@@ -98,7 +67,6 @@ async function del(p){const b=$(p+"Go");if(b.disabled)return;const em=$(p+"Mail"
  if(!em||!pw)return msg(p,"fill");if(!$(p+"Ck").checked)return msg(p,"ck");if(!confirm(TX[L].sure))return;
  b.disabled=true;msg(p,"wait",true);
  try{let S;try{S=await loadLib()}catch(e){return msg(p,"net")}
-  // session à part, jamais enregistrée : ne touche pas à la connexion du jeu
   const sb=S.createClient(SB.url,SB.key,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false,storageKey:"lxdel"}});
   const r=await sb.auth.signInWithPassword({email:em,password:pw});
   if(r.error){const c=String(r.error.code||""),m=String(r.error.message||"").toLowerCase();
@@ -108,10 +76,9 @@ async function del(p){const b=$(p+"Go");if(b.disabled)return;const em=$(p+"Mail"
   const id=r.data&&r.data.user&&r.data.user.id;
   const d=await sb.rpc("delete_my_account");if(d.error)return msg(p,"ko");
   try{await sb.auth.signOut({scope:"local"})}catch(e){}
-  // si ce compte était connecté au jeu sur cet appareil, on l'en déconnecte
   try{const a=JSON.parse(localStorage.getItem("fwacc")||"null");if(a&&a.id===id){localStorage.removeItem("fwacc");localStorage.removeItem("fwauth")}if(id)localStorage.removeItem("fwdaily:"+id)}catch(e){}
   ["Mail","Pw"].forEach(k=>$(p+k).value="");$(p+"Ck").checked=false;msg(p,"ok",true)}
  catch(e){msg(p,"net")}finally{b.disabled=false}}
-$("fGo").onclick=()=>del("f");$("eGo").onclick=()=>del("e");
+$("eGo").onclick=()=>del("e");
 </script>
 </body></html>
