@@ -569,6 +569,15 @@ input,.fi{color:var(--tx)}
 #suLg a{color:var(--ac)}
 /* une seule langue : pas de choix de langue */
 #recLg,#dcTabs,#setLgR{display:none!important}
+.nfT{display:flex;align-items:center;gap:12px;width:100%;background:var(--card);border:0;border-radius:12px;padding:10px 12px;margin:6px 0;color:var(--tx);font:inherit;text-align:left;cursor:pointer;box-shadow:0 2px 0 var(--sh)}
+.nfT>span{flex:1;min-width:0;font-weight:700}.nfT small{display:block;color:var(--mut);font-size:13px;font-weight:400;margin-top:2px}
+.nfT i{flex:0 0 46px;height:28px;border-radius:14px;background:var(--ln);position:relative;transition:background .2s}
+.nfT i::after{content:"";position:absolute;top:4px;left:4px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s}
+.nfT.on i{background:var(--ok)}.nfT.on i::after{left:22px}.nfT:disabled{opacity:.6}
+.pctB{display:flex;align-items:center;gap:12px;background:var(--card);border:2px solid var(--mu);border-radius:14px;padding:12px 14px;margin:2px 0 14px;box-shadow:0 3px 0 var(--sh);text-align:left}
+.pctB i{font-style:normal;flex:0 0 auto;min-width:58px;text-align:center;font-size:24px;font-weight:900;color:var(--ac)}
+.pctB span{flex:1;min-width:0}.pctB b{display:block;font-size:15px;font-weight:800;line-height:1.3}.pctB small{display:block;font-size:13px;font-weight:700;color:var(--mut);margin-top:2px}
+.rkFrT{margin:4px 0 10px;font-size:15px;color:var(--mut);text-align:left}
 </style></head><body>
 <section id="vidP" class="pg hide"><video id="vid" playsinline preload="auto"></video><button class="btn" id="vskip" data-t="skip"></button></section>
 <button id="homeB" class="hide" aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><button id="topBk" class="hide" aria-label="Retour"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div id="toast" class="hide"></div><div id="mpWarn" class="hide" data-t="mpWarn"></div>
@@ -615,6 +624,7 @@ input,.fi{color:var(--tx)}
 <section id="setP" class="pg hide"><h2 data-t="setT"></h2>
 <h3 data-t="a3LyT"></h3><div class="lyS" id="setLyR"></div>
 <h3 data-t="kbT" style="margin-top:22px"></h3><div class="lyS" id="setKbR"></div>
+<h3 data-t="nfH" style="margin-top:22px"></h3><div id="nfBox"></div>
 <button class="btn mb" data-back data-t="back" style="margin-top:20px"></button></section>
 <section id="origP" class="pg hide"><h2 data-t="pO"></h2>
 <div class="mrow"><button class="btn p mb" data-p="n"><span data-t="pN"></span><small class="sub" data-t="d15"></small></button><button class="info" data-info="N">?</button></div>
@@ -624,7 +634,7 @@ input,.fi{color:var(--tx)}
 <button class="btn mb" data-back data-t="back"></button></section>
 <section id="dailyP" class="pg hide"><h2 data-t="pD"></h2><p id="dInfo" class="dnote"></p><p id="serL" class="serL hide"></p><div id="dList"></div>
 <button class="btn p mb hide" id="dShr" data-t="shrT"></button><button class="btn mb" id="dPs" style="font-size:16px;padding:12px"></button><button class="btn mb" data-back data-t="back"></button></section>
-<section id="rankP" class="pg hide"><h2 data-t="a3RkT"></h2><div class="rkg"><button class="btn" id="rkGP" aria-label="‹">‹</button><div class="rkgt"><b id="rkT"></b><small id="rkD"></small></div><button class="btn" id="rkGN" aria-label="›">›</button></div><div class="seg" id="rkTabs"><button class="btn" data-sc="top" data-t="a3Top"></button><button class="btn" data-sc="friends" data-t="a3Fr"></button></div><div class="row" id="rkNav"><button class="btn rkA" id="rkPrev" aria-label="-1">‹</button><select id="rkSel"></select><button class="btn rkA" id="rkNext" aria-label="+1">›</button></div><div class="row hide" id="wkNav"><button class="btn rkA" id="wkPrev" aria-label="-1">‹</button><select id="wkSel"></select><button class="btn rkA" id="wkNext" aria-label="+1">›</button></div><div id="rkL"></div><div id="rkPlay"></div><div id="rkSer"></div><div id="rkS"></div><button class="btn mb" id="rkBack" data-t="back" style="margin-top:16px"></button></section>
+<section id="rankP" class="pg hide"><h2 data-t="a3RkT"></h2><div class="rkg"><button class="btn" id="rkGP" aria-label="‹">‹</button><div class="rkgt"><b id="rkT"></b><small id="rkD"></small></div><button class="btn" id="rkGN" aria-label="›">›</button></div><div class="row" id="rkNav"><button class="btn rkA" id="rkPrev" aria-label="-1">‹</button><select id="rkSel"></select><button class="btn rkA" id="rkNext" aria-label="+1">›</button></div><div class="row hide" id="wkNav"><button class="btn rkA" id="wkPrev" aria-label="-1">‹</button><select id="wkSel"></select><button class="btn rkA" id="wkNext" aria-label="+1">›</button></div><div id="rkPct"></div><div id="rkL"></div><div id="rkPlay"></div><div id="rkSer"></div><div id="rkS"></div><button class="btn mb" id="rkBack" data-t="back" style="margin-top:16px"></button></section>
 <section id="freeP" class="pg hide"><h2 data-t="pF"></h2>
 <div class="mrow"><button class="btn p mb" data-m="l"><span data-t="mL"></span><small class="sub" data-t="s30"></small></button><button class="info" data-info="L">?</button></div>
 <div class="mrow"><button class="btn p mb" data-m="c"><span data-t="mC"></span><small class="sub" data-t="s45"></small></button><button class="info" data-info="C">?</button></div>
@@ -639,7 +649,7 @@ input,.fi{color:var(--tx)}
 <button class="btn p mb" data-rc="l" data-t="mL"></button><button class="btn p mb" data-rc="c" data-t="mC"></button><button class="btn p mb" data-rc="w" data-t="mW"></button>
 <button class="btn mb" data-back data-t="back"></button></section>
 <section id="recP" class="pg hide"><h2 id="recHd" class="rkH"><button class="rkG" id="rcGP" aria-label="‹">‹</button><span id="recT"></span><button class="rkG" id="rcGN" aria-label="›">›</button></h2>
-<div class="row tabs" id="recSc"><button class="btn" data-rs="me" data-t="rcMe"></button><button class="btn" data-rs="fr" data-t="frTab"></button><button class="btn" data-rs="all" data-t="rcAll"></button></div>
+<div class="row tabs" id="recSc"><button class="btn" data-rs="me" data-t="rcMe"></button><button class="btn" data-rs="fr" data-t="frTab"></button></div>
 <div class="row tabs" id="recLg"><button class="btn" data-rl="fr">🇫🇷 Français</button><button class="btn" data-rl="en">🇬🇧 English</button></div>
 <div id="recL"></div><p class="dnote" id="recH" style="margin-top:12px"></p><button class="btn mb" data-st="recsP" data-t="back"></button></section>
 <section id="dictP" class="pg hide"><h2 data-t="chooseDict"></h2><button class="btn p mb" data-d="fr" data-t="dFr"></button><button class="btn p mb" data-d="en" data-t="dEn"></button><div id="dst" style="min-height:24px;text-align:center;color:var(--mut);margin-bottom:12px"></div><button class="btn mb" id="dback" data-t="back"></button></section>
@@ -672,7 +682,19 @@ input,.fi{color:var(--tx)}
 <button class="btn p mb ic" id="mpNew"><i class="mi"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i><span class="mt"><span data-t="mpNew"></span><small class="sub" data-t="mpNewS"></small></span><i class="chv"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></i></button>
 <div class="mrow"><button class="btn p mb ic" id="mpJoin"><i class="mi"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg></i><span class="mt"><span data-t="mpJoin"></span><small class="sub" data-t="mpJoinS"></small></span><i class="chv"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></i></button><button class="info" id="mpInfo">?</button></div>
 <h3 class="mph" data-t="mpAsyH"></h3><button class="btn bl mb ic" id="chGo"><i class="mi"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></i><span class="mt"><span data-t="chT"></span><span class="bdg hide" id="daB1"></span><small class="sub" data-t="chS"></small></span><i class="chv"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></i></button>
+<div class="mrow"><button class="btn bl mb ic" id="tbGo" data-net><i class="mi"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></i><span class="mt"><span data-t="tbT"></span><span class="bdg hide" id="tbB1"></span><small class="sub" data-t="tbS"></small></span><i class="chv"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></i></button><button class="info" id="tbInfo">?</button></div>
 <p class="dnote" id="mpNote"></p><button class="btn mb" id="mpWho" style="font-size:16px;padding:12px"></button><button class="btn mb" data-back data-t="back"></button></section>
+<section id="tbMenu" class="pg hide"><h2 data-t="tbT"></h2><p class="dnote" data-t="tbH"></p>
+<div class="mrow"><button class="btn p mb" id="tbNew" data-net><span data-t="tbNew"></span><small class="sub" data-t="tbNewS"></small></button><button class="info" id="tbInfo2">?</button></div>
+<div id="tbL"></div><button class="btn mb" id="tbBack" data-t="back" style="margin-top:12px"></button></section>
+<section id="tbNewP" class="pg hide"><h2 data-t="tbNew"></h2>
+<h3 data-t="tbFr"></h3><div id="tbFrL"></div>
+<p class="dnote" data-t="tbNewH" style="margin-top:10px"></p>
+<div class="amsg" id="tbNMsg"></div><button class="btn p mb" id="tbSend" data-t="tbSend" data-net></button><button class="btn mb" id="tbNBack" data-t="back"></button></section>
+<section id="tbP" class="pg hide"><h2 id="tbPT"></h2><div id="tbPB"></div><div id="tbPBtn" style="margin-top:12px"></div></section>
+<section id="tbRP" class="pg hide"><h2 id="tbRT"></h2><div id="tbRB"></div><button class="btn p mb" id="tbRBack" data-t="tbSeeM" style="margin-top:12px"></button></section>
+<section id="tbAnn" class="pg hide"><div class="stg" id="tbAS"></div><h2 data-t="tbAnnT"></h2><div class="win" id="tbAG" style="font-size:30px;margin:4px 0 10px"></div><div id="tbAH" class="rt"></div>
+<button class="btn mb dfrb" id="tbARul"></button><button class="btn p mb" id="tbAGo" data-t="next"></button><button class="btn mb" id="tbABack" data-t="tbLater"></button></section>
 <section id="mpJoinP" class="pg hide"><h2 data-t="mpJoin"></h2><p class="dnote" data-t="mpCodeH"></p>
 <input class="fi" id="mjCode" inputmode="numeric" autocomplete="off" maxlength="7" data-ph="mpCodePh" data-go="mjGo">
 <div class="amsg" id="mjMsg"></div><button class="btn p mb" id="mjGo" data-t="mpJoinGo"></button><button class="btn mb" id="mjBack" data-t="back"></button></section>
@@ -720,7 +742,7 @@ rW:`<p>Huit mots mélangés à retrouver : 5, 6, 7 et 8 lettres, puis encore 5, 
 rL:`<p>Dix lettres sont tirées : à chaque tirage, tu choisis voyelle ou consonne (au moins 2 de chaque).</p><p>Tu as 30 secondes pour former le mot le plus long possible, chaque lettre une seule fois. Touche Valider pour proposer ton mot : la manche s'arrête et ton mot rapporte 1 point par lettre.</p><p>À la fin, le plus long mot possible du dictionnaire est révélé. Dictionnaire français ou anglais au choix.</p>`,
 rC:`<p>Six plaques sont tirées au hasard (de 1 à 10, et 25, 50, 75, 100), ainsi qu'un nombre cible entre 101 et 999.</p><p>Avec + − × ÷ (résultats entiers positifs) et chaque plaque une seule fois, atteins la cible ou approche-t'en au plus près. Touche deux plaques et un opérateur, dans l'ordre que tu veux : pour la soustraction et la division, le plus grand nombre passe automatiquement devant. Chaque résultat intermédiaire s'affiche à droite de sa ligne et peut être sélectionné pour la suite.</p><p>Tu as 45 secondes : la manche va jusqu'au bout du temps, mais tu peux toucher Terminer pour voir le résultat plus tôt. Ton résultat est le meilleur nombre obtenu par tes calculs.</p><p>Barème : 10 points si le compte est exact ; 7 points pour un écart de 1 à 5 ; 5 points pour un écart de 6 à 15 ; 0 point pour un écart de 16 ou plus, ou si aucun calcul n'a été proposé.</p>`},
 en:{login:"Log in",signup:"Create an account",guest:"Guest",other:"Log in with another account",playAs:"Play with this account",gInfo:"You can play without an account, but your results won't be kept if you switch devices. To keep your results, create an account.",mail:"Email address",pw:"Password",pw6:"Password (at least 6 characters)",pwCur:"Current password",psPh:"Nickname (max 12 characters)",liGo:"Log in",forgot:"Forgot your password?",fgT:"Forgotten password",fgH:"Enter your account's email address: you'll get a link to choose a new password.",fgGo:"Send the link",fgOk:"If an account exists with this address, a link has just been sent. Remember to check your spam folder.",suGo:"Create my account",suOkT:"Check your inbox",suOk:"<p>A confirmation link has been sent to <b>{n}</b>.</p><p>Open it to activate your account, then log in. Remember to check your spam folder.</p>",npT:"New password",npH:"Choose your new password.",npOk:"Password changed, you are logged in!",prof:"Profile",guestN:"guest",friends:"Friends",chPs:"Change nickname",chPw:"Change password",chMl:"Change email address",logout:"Log out",delAcc:"Delete account",delGo:"Delete",delH:"<p>Your account, nickname, friends and online results will be permanently deleted.</p><p>Enter your password to confirm.</p>",delOk:"Your account has been deleted.",psOk:"Nickname changed!",pwOk:"Password changed!",pwNew:"New password (at least 6 characters)",mlNew:"New email address",mlH:"<p>Your results, nickname and friends are kept: only the login address changes.</p>",mlOk:"<p>A confirmation link has been sent to <b>{n}</b>. Open it to finish the change.</p><p>If an email also arrives at your old address, open its link too. Until then, your current address stays valid.</p>",mlStep:"First confirmation received! Now open the link sent to the other address to finish the change.",mlDone:"Email address changed: {n}",cfOk:"Address confirmed, welcome {n}!",lnkKo:"This link is no longer valid (already used or expired). Please ask again from the game.",oops:"Oops",useAcc:"▶ Play with the account {n}",logoutQ:"Log out of this account?",frPh:"A player's nickname",add:"Add",frInT:"Requests received",frMine:"My friends",frOutT:"Requests sent",frWait:"pending",frNone:"You don't have any friends yet: add them with their nickname.",frSent:"Request sent to {n}!",frAcc:"You and {n} are now friends!",frAlr:"{n} is already your friend.",frPend:"Request already sent to {n}, waiting for an answer.",frNf:"No player is called {n}.",frSelf:"That's your own nickname 😄",frRm:"Remove {n} from your friends?",frCan:"Cancel the request sent to {n}?",frLoad:"Loading…",top10:"🏆 Top 10",frTab:"👥 Friends",rkFrG:"Create an account to add friends and see your ranking.",rkFr0:"Add friends from your profile to compare your results.",rkGuest:"Your result (guest, not ranked): {n}",dAcc:"👤 You are playing with the account {n}",dGst:"👤 Guest: create an account to enter the leaderboards",dGuest:"You are playing as a guest: your result won't count in the leaderboards.",eFill:"Please fill in all the fields.",eMail:"Invalid email address.",ePw6:"The password must be at least 6 characters long.",ePs:"The nickname must be 1 to 12 characters long.",ePsTaken:"This nickname is already taken, choose another one.",eCred:"Wrong email address or password.",eConf:"Your address isn't confirmed yet: open the link you received by email.",eExists:"An account already exists with this address.",eSame:"The new password must be different from the old one.",eRate:"Too many attempts: wait a little and try again.",eSmtp:"The game's emails aren't set up yet.",eNet:"Can't connect: check your network.",eGen:"Something went wrong.",eOff:"Accounts unavailable right now (check your connection).",ePwCur:"Wrong current password.",eAuth:"Your session has expired: please log in again.",resend:"Send the link again",resOk:"Link sent again! Remember to check your spam folder.",pD:"Daily puzzle",mD:"Daily puzzle",dD:"the same puzzle for everyone, new every day",s30:"30 seconds",s45:"45 seconds",s120:"2 minutes",today:"Today",yday:"Yesterday",seeRank:"🏆 Leaderboard",gfr:"(French)",gen:"(English)",dInfo:"Same draw for everyone, one try per challenge.<br>New draw every day at midnight, your time, in {n}.",psB:"👤 Nickname: {n} (edit)",psNone:"👤 Choose my nickname",psT:"Your nickname",psH:"It will appear in the Daily puzzle leaderboards.",ok:"OK",cancel:"Cancel",dGo:"Let's go!",dConf:"<p>One try only: the draw is the same for everyone, and ties are broken by time.</p><p>Ready?</p>",dPlayed:"✓ Played · see the leaderboard",quitD:"Quit? Today's challenge will count with your current result (one try per day).",dDraw:"Today's draw",rkLoad:"Loading the leaderboard…",rkErr:"Leaderboard unavailable (check your connection).",rkNone:"Nobody has played this challenge yet.",rkNoneP:"Nobody played this challenge that day.",rkLocal:"Online leaderboard not enabled yet: only results from this device are shown.",lock:"🔒 The draw and the solutions are revealed once you have played, or for everyone once the day is over around the world.",lockW:"🔒 Some players around the world are still playing this day: the draw and the solutions will be revealed once it's over everywhere.",noAns:"no answer",noWord:"no word",lets:"{n} letters",exactS:"exact ✓",near:"{n} away",words:"{n}/8 words",solT:"Draw and solutions",longest:"Longest expected word:",examples:"Examples of shorter words:",oneSol:"An example calculation:",wAns:"The answers:",hm:"{n}h {m}m",sent:"Result sent to the leaderboard!",sendKo:"Result kept on this device: it will be sent to the leaderboard later.",
-rD:`<p>Every day at midnight (French time), five new challenges: Word Hunt in French and in English (30 seconds), Target Number (45 seconds), Final Sprint in French and in English (2 minutes).</p><p>The draw is the same for every player and each challenge can be played only once. For Word Hunt, the draw always contains at least one 10-letter word.</p><p>Leaderboards: Word Hunt by the longest word found, Target Number by the result closest to the target, Final Sprint by the number of words found. Ties are broken by time, to the hundredth of a second (time the word was submitted, time of the best calculation, time of the last word found).</p><p>Once you have played, the draw and the solutions appear below the leaderboard. If you haven't played yet, only the leaderboard is shown. Yesterday's draw and solutions are visible to everyone in the Yesterday tab.</p><p>Leaderboards: the top 10 of all players with an account, and the ranking among friends. As a guest, you can play but your result is not ranked.</p>`,
+rD:`<p>Every day at midnight (French time), five new challenges: Word Hunt in French and in English (30 seconds), Target Number (45 seconds), Final Sprint in French and in English (2 minutes).</p><p>The draw is the same for every player and each challenge can be played only once. For Word Hunt, the draw always contains at least one 10-letter word.</p><p>Leaderboards: Word Hunt by the longest word found, Target Number by the result closest to the target, Final Sprint by the number of words found. Ties are broken by time, to the hundredth of a second (time the word was submitted, time of the best calculation, time of the last word found).</p><p>Once you have played, the draw and the solutions appear below the leaderboard. If you haven't played yet, only the leaderboard is shown. Yesterday's draw and solutions are visible to everyone in the Yesterday tab.</p><p>Leaderboards: you are ranked among your friends, and you can see what percentage of players you did better than that day. As a guest, you can play but your result is not ranked.</p>`,
 skip:"Skip ⏭",tagl:"A game of words and numbers",pO:"Classic game",pT:"Training",d15:"about 15 minutes",d5:"about 5 minutes",dF:"30 seconds to 2 minutes",dO:"5 minutes or 15 minutes",nC:"Numbers",nL:"Letters",nW:"Final Sprint",dicfr:"French dictionary",dicen:"English dictionary",dur:"Choose the duration",inf:"Endless",secs:"{n} seconds",resume:"▶ Resume: round {n}/{m} · {p} pts",quitS:"Quit? The current round will be lost, but your game is saved: you can resume it from the Classic game menu.",over:"A saved game already exists. Replace it with a new game?",mW:"Final Sprint",mL:"Word Hunt",mC:"Target Number",pN:"Complete game",pQ:"Short game",pF:"Quick play",rules:"Rules",records:"Records",back:"Back",close:"Close",quit:"✕ Quit",quitQ:"Quit the current game? Your progress will be lost.",yes:"Yes",no:"No",next:"Next round ▶",total:"Total",round:"Round {n}/{m}",partyEnd:"Game over!",ended:"Round finished",chooseDict:"Choose the dictionary",dFr:"🇫🇷 French dictionary",dEn:"🇬🇧 English dictionary",loading:"Loading dictionary…",offline:"Online dictionary unavailable: mini-dictionary used",ph:"Your word",name:"Name",submit:"Submit",shuffle:"Shuffle",clrW:"Clear",skipW:"Skip",pts:"pts",good:"Correct! +{n}",useAll:"Use all {n} letters",noMatch:"These letters don't match",notDict:"Word not in the dictionary",badL:"You don't have these letters",timeUp:"Time is up!",allFound:"All words found!",saved:"Saved to the records!",noScores:"No scores yet. Start a game!",newRec:"New record! Enter your name",save:"Save",again:"Play again",menu:"Menu",nLetters:"{n} letters",pickV:"Vowel",pickC:"Consonant",drawT:"Draw 10 letters",drawH:"At least 2 vowels and 2 consonants",longH:"Find the longest word",yourBest:"Your best word:",bestOf:"Best possible word(s):",none:"none",target:"Target number",undo:"Undo",rst:"Reset all",done:"Finish",opBad:"Impossible operation",exact:"You hit the target!",yourClosest:"Your best result:",solution:"A solution:",
 iN:`<p>A full game in 13 rounds: one numbers round (Target Number), then two letters rounds (Word Hunt), and again, 4 times in all.</p><p>The game ends with Final Sprint. Points from all rounds add up.</p>`,
 iQ:`<p>A short game in 5 rounds: numbers, letters, numbers, letters, then Final Sprint.</p><p>Points from all rounds add up.</p>`,
@@ -754,8 +776,8 @@ Object.assign(T.en,{tagl:"The daily letters and numbers game",whatB:"❓ What is
 <h3>👥 With others</h3>
 <p>Live rooms where everyone plays at the same time, and duels with your friends or by link.</p>
 <h3>💾 With an account</h3>
-<p>Your scores are kept, you appear in the leaderboards and you can add friends. You can also play without an account, as a guest.</p>`,
- rD:`<p>Every day at midnight (French time), three new challenges: Word Hunt (30 seconds), Target Number (45 seconds) and Final Sprint (2 minutes).</p><p>The draw is the same for every player and each challenge can be played only once. For Word Hunt, the draw always contains at least one 10-letter word.</p><p>Leaderboards: Word Hunt by the longest word found, Target Number by the result closest to the target, Final Sprint by the number of words found. Ties are broken by time, to the hundredth of a second (time the word was submitted, time of the best calculation, time of the last word found).</p><p>Once you have played, the draw and the solutions appear below the leaderboard. If you haven't played yet, only the leaderboard is shown. Yesterday's draw and solutions are visible to everyone.</p><p>Leaderboards: the top 10 of all players with an account, and the ranking among friends. As a guest, you can play but your result is not ranked.</p>`});
+<p>Your scores are kept, you can add friends, compare your results with theirs and get notified when it's your turn. You can also play without an account, as a guest.</p>`,
+ rD:`<p>Every day at midnight (French time), three new challenges: Word Hunt (30 seconds), Target Number (45 seconds) and Final Sprint (2 minutes).</p><p>The draw is the same for every player and each challenge can be played only once. For Word Hunt, the draw always contains at least one 10-letter word.</p><p>Leaderboards: Word Hunt by the longest word found, Target Number by the result closest to the target, Final Sprint by the number of words found. Ties are broken by time, to the hundredth of a second (time the word was submitted, time of the best calculation, time of the last word found).</p><p>Once you have played, the draw and the solutions appear below the leaderboard. If you haven't played yet, only the leaderboard is shown. Yesterday's draw and solutions are visible to everyone.</p><p>Leaderboards: you are ranked among your friends, and you can see what percentage of players you did better than that day. As a guest, you can play but your result is not ranked.</p>`});
 Object.assign(T.fr,{tagl:"Le jeu de lettres et de chiffres du jour",whatB:"❓ C'est quoi Lexicalc ?",whatT:"C'est quoi Lexicalc ?"});
 // Lexicalc : jeu en anglais uniquement (le français reste dans le code, caché)
 const ENO=true;let L="en";
@@ -774,7 +796,7 @@ const A={theme:new Audio(),ding:new Audio("assets/son-bonne-reponse.mp3"),chiffr
 const hasS=a=>!!(a&&a.getAttribute("src"));
 let MP=null,mpr=null,mpJoin0=null,frIn0=null,wlk=null,mrTok=0;
 let music=null,musicOn=true,pending=null,timer,tmo,dtm,mode,dl,dict,rounds,queue,cur,score,best,tried="",locked,over=true,ld,nv,nc,rk="W",party=null,rc=null,rs=0;
-const NS0=[].concat(...[0,1,2,3].map(()=>["c","l","l"]),["w"]),QS0=["c","l","c","l","w"],LP=["c","l","l"],DF4=["t","k","u","s"],DF5=["t","k","u","s"],mkNS=()=>{const d=sh(DF5).slice(0,2);return[...LP,...LP,...d,...LP,...LP,"w"]},mkQS=()=>["c","l",DF5[Math.floor(Math.random()*5)],"c","l","w"];
+const NS0=[].concat(...[0,1,2,3].map(()=>["c","l","l"]),["w"]),QS0=["c","l","c","l","w"],LP=["c","l","l"],DF4=["t","k","u","s"],DF5=["t","k","u","s"],mkNS=()=>{const d=sh(DF5).slice(0,2);return[...LP,...LP,...d,...LP,...LP,"w"]},mkQS=()=>["c","l",DF5[Math.floor(Math.random()*DF5.length)],"c","l","w"];
 let AC=null,src=[];const BUF={};
 function initAC(){try{if(!AC){AC=new(window.AudioContext||window.webkitAudioContext)();[["clic",A.clic.src],["cible",A.cible.src]].forEach(([k,u])=>fetch(u).then(r=>r.arrayBuffer()).then(d=>new Promise((ok,ko)=>AC.decodeAudioData(d,ok,ko))).then(x=>BUF[k]=x).catch(()=>{}))}if(AC.state==="suspended")AC.resume()}catch(e){}}
 function sfx(a){if(!musicOn)return;const k=a===A.clic?"clic":a===A.cible?"cible":null;
@@ -807,7 +829,7 @@ all(".lang").forEach(b=>b.onclick=()=>{L=L==="fr"?"en":"fr";try{localStorage.set
 // intro
 function toHome(){$("vid").pause();show("home");renderProfB();if(ME)refreshAcc()}
 function unlockA(){Object.values(A).filter(hasS).forEach(a=>{a.muted=true;a.play().then(()=>{a.pause();a.currentTime=0;a.muted=false}).catch(()=>{a.muted=false})})}
-function launch(acc){setMe(acc?ACC:null);unlockA();if(frIn0&&!chIn0&&!mpJoin0){renderIntro();toHome();acc?frFromLink():frNeedAcc();return}if(chIn0){const o=chIn0;chIn0=null;renderIntro();toHome();chOpenLink(o);return}if(mpJoin0){const c=mpJoin0;mpJoin0=null;renderIntro();toHome();mpOpenJoin(c);return}autoL=false;return toHome();try{$("vid").currentTime=0}catch(e){}$("vid").play().catch(toHome)}
+function launch(acc){setMe(acc?ACC:null);unlockA();if(nfIn0&&!chIn0&&!mpJoin0&&!frIn0){const o=nfIn0;nfIn0=null;renderIntro();toHome();if(acc)nfGo(o);return}if(frIn0&&!chIn0&&!mpJoin0){renderIntro();toHome();acc?frFromLink():frNeedAcc();return}if(chIn0){const o=chIn0;chIn0=null;renderIntro();toHome();chOpenLink(o);return}if(mpJoin0){const c=mpJoin0;mpJoin0=null;renderIntro();toHome();mpOpenJoin(c);return}autoL=false;return toHome();try{$("vid").currentTime=0}catch(e){}$("vid").play().catch(toHome)}
 $("vid").onended=toHome;$("vid").onerror=toHome;$("vskip").onclick=toHome;
 // navigation
 const SOLOK=new Set(["origP","freeP","dailyP"]);let soloBk="soloP";
@@ -972,7 +994,7 @@ function results(why,html){if(over)return;if(mpr)return mpEnd(why,html);if(tbx)r
 // la partie du jour
 // ↓↓↓ Classement en ligne : colle ici l'URL du projet Supabase et sa clé publique (publishable / anon), voir le guide
 const SB={url:"https://lcodabmspxwccdcbspsv.supabase.co",key:"sb_publishable_0aRNa2OvMdssaBsBNmA-XQ_d5jqXKlw"};
-let daily=null,rkG="le",rkO=0,rkTok=0,rkScope="top";const CMN={};
+let daily=null,rkG="le",rkO=0,rkTok=0,rkScope="friends";const CMN={};
 const DG=ENO?["le","c","we"]:["lf","le","c","wf","we"],DGM={lf:"l",le:"l",c:"c",wf:"w",we:"w"},DGL={lf:"fr",le:"en",wf:"fr",we:"en"},DUR={l:"s30",c:"s45",w:"s120",t:"s30",k:"s30",u:"s30",s:"s30"};
 const WORST={l:{r:0,x:"",t:30000},c:{r:9999,x:"",t:45000},w:{r:0,x:"",t:120000},t:{r:0,x:"",t:30000},k:{r:0,x:"",t:30000},u:{r:0,x:"",t:30000},s:{r:0,x:"",t:30000}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -1201,7 +1223,7 @@ $("pMl").onclick=()=>{if(!needSb())return;modal(t("chMl"),t("mlH")+mIn("mA","ema
  const r=await sb.auth.updateUser({email:em},{emailRedirectTo:RED});if(r.error)return am("mMsg",errT(r.error));const u=r.data&&r.data.user;
  if(u&&String(u.email).toLowerCase()===em.toLowerCase()){ME.email=u.email;putAcc();renderProf();modal(t("chMl"),"<p>"+esc(t("mlDone",u.email))+"</p>",[{l:t("ok"),c:"p",f:closeModal}])}
  else modal(t("chMl"),t("mlOk",esc(em)),[{l:t("ok"),c:"p",f:closeModal}])})}])};
-async function doLogout(){bye=true;try{if(sb)await sb.auth.signOut({scope:"local"})}catch(e){}SESS=null;setMe(null);ACC=null;putAcc();try{localStorage.removeItem("fwauth")}catch(e){}bye=false;renderIntro();show("intro")}
+async function doLogout(){bye=true;await nfQuit();try{if(sb)await sb.auth.signOut({scope:"local"})}catch(e){}SESS=null;setMe(null);ACC=null;putAcc();try{localStorage.removeItem("fwauth")}catch(e){}bye=false;renderIntro();show("intro")}
 $("pOut").onclick=()=>modal(t("logout"),"<p>"+t("logoutQ")+"</p>",[{l:t("no"),f:closeModal},{l:t("yes"),c:"p",f:()=>{closeModal();doLogout()}}]);
 $("pDel").onclick=()=>{if(!needSb())return;modal(t("delAcc"),t("delH")+mIn("mA","password",t("pw"))+mMsg,[{l:t("cancel"),f:closeModal},{l:t("delGo"),c:"p",f:mAct(async()=>{
  const pw=$("mA").value;if(!pw)return am("mMsg",t("eFill"));if(!await checkPw(pw))return;const id=ME.id,r=await sb.rpc("delete_my_account");if(r.error)return am("mMsg",errT(r.error));
@@ -1223,7 +1245,7 @@ $("frAdd").onclick=()=>busy("frAdd",async()=>{const v=cleanPs($("frIn").value);i
  const c=v.replace(/\s/g,"");let st,who=v;
  if(/^\d{6}$/.test(c)){const x=await frByCode(c);st=x.st;who=x.who||v;if(st==="notfound"){const r=await sb.rpc("friend_add",{p_pseudo:v});if(!r.error&&r.data!=="notfound"){st=r.data;who=v}else{st="notfound";who=fmtCode(c)}}if(st==="self")who="";}
  else{const r=await sb.rpc("friend_add",{p_pseudo:v});if(r.error)return am("frMsg",errT(r.error));st=r.data}
- const M=FRM[st]||["eGen",0];am("frMsg",t(st==="notfound"&&/^\d{6}$/.test(c)?"frNfC":M[0],who),!!M[1]);if(M[1])$("frIn").value="";loadFr()});
+ const M=FRM[st]||["eGen",0];if(st==="sent"||st==="accepted")nfAskSoon();am("frMsg",t(st==="notfound"&&/^\d{6}$/.test(c)?"frNfC":M[0],who),!!M[1]);if(M[1])$("frIn").value="";loadFr()});
 $("frCopy").onclick=async()=>{if(!ME||!ME.code)return;try{await navigator.clipboard.writeText(ME.code);toast(t("frCopied"))}catch(e){modal(t("frCodeT"),'<p class="qrc">'+fmtCode(ME.code)+"</p>",[{l:t("close"),c:"p",f:closeModal}])}};
 $("frInv").onclick=async()=>{if(!ME||!ME.code)return;const url=RED+"?ami="+ME.code,txt=t("frShareT",ME.pseudo,fmtCode(ME.code));
  if(navigator.share){try{await navigator.share({title:"Lexicalc",text:txt,url});return}catch(e){if(e&&e.name==="AbortError")return}}
@@ -2926,7 +2948,7 @@ async function dcGo(){const raw=$("dcIn").value.trim().replace(/’/g,"'");if(!r
  if(lg==="fr"&&raw.toLowerCase()===norm(raw)&&!D.fr){o.innerHTML='<p class="dnote">'+t("loading")+"</p>";await preDict("fr");if(k!==dcTok)return}
  o.innerHTML='<p class="dnote">'+t("dicLd")+"</p>";const h=await defHTML(raw,lg);if(k===dcTok)o.innerHTML=h}
 // ===== v13 : statistiques (records, mes statistiques, multijoueur) =====
-Object.assign(T.fr,{stats:"Statistiques",stRec:"🏆 Records",stRecS:"le top 10 de chaque jeu",stMine:"📊 Mes statistiques",stMineS:"parties jouées, moyennes, séries…",stMulti:"👥 Multijoueur",stMultiS:"victoires, buzzer, duels, rivalités",
+Object.assign(T.fr,{stats:"Statistiques",stRec:"🏆 Records",stRecS:"tes meilleurs résultats et ceux de tes amis",stMine:"📊 Mes statistiques",stMineS:"parties jouées, moyennes, séries…",stMulti:"👥 Multijoueur",stMultiS:"victoires, buzzer, duels, rivalités",
  rcMe:"👤 Moi",rcAll:"🌍 Tous les joueurs",rcHn:"Total de points d'une partie complète de la Partie classique.",rcHq:"Total de points d'une partie courte de la Partie classique.",
  rcHl:"Classement au mot le plus long, puis au temps de validation. Comptent : Partie classique, La partie du jour et Duel par lien.",
  rcHc:"Classement à l'écart avec la cible (compte exact d'abord), puis au temps du meilleur calcul. Comptent : Partie classique, La partie du jour et Duel par lien.",
@@ -2942,7 +2964,7 @@ Object.assign(T.fr,{stats:"Statistiques",stRec:"🏆 Records",stRecS:"le top 10 
  mBz:"🔔 Défis au buzzer",mBzN:"Buzz",mBzOk:"Bonnes réponses",mBzMs:"Buzz le plus rapide",mDuel:"⚔️ Duels par lien",mSent:"Duels envoyés",mTaken:"Duels relevés",mRes:"Victoires · nuls · défaites",
  mRiv:"🥊 Rivalités",mRivH:"Ton bilan contre chaque adversaire : parties en direct (avec un compte) et duels par lien.",mRivNone:"Pas encore d'adversaire.",mLive:"🎮 Parties en direct",mGm:"{n} parties",mG1:"1 partie",
  mpRec:"🕘 Dernières parties en direct",wdl:"V|N|D"});
-Object.assign(T.en,{stats:"Statistics",stRec:"🏆 Records",stRecS:"the top 10 of each game",stMine:"📊 My statistics",stMineS:"games played, averages, streaks…",stMulti:"👥 Multiplayer",stMultiS:"wins, buzzer, duels, rivalries",
+Object.assign(T.en,{stats:"Statistics",stRec:"🏆 Records",stRecS:"your best results and your friends' best",stMine:"📊 My statistics",stMineS:"games played, averages, streaks…",stMulti:"👥 Multiplayer",stMultiS:"wins, buzzer, duels, rivalries",
  rcMe:"👤 Me",rcAll:"🌍 All players",rcHn:"Total points of a complete Classic game.",rcHq:"Total points of a short Classic game.",
  rcHl:"Ranked by the longest word, then by the time it was submitted. Counted: Classic game, Daily puzzle and Link duel.",
  rcHc:"Ranked by the gap to the target (exact hits first), then by the time of the best calculation. Counted: Classic game, Daily puzzle and Link duel.",
@@ -3051,8 +3073,8 @@ all("[data-rl]").forEach(b=>b.onclick=()=>{rcL=b.dataset.rl;renderRec()});
 Object.assign(T.fr,{mpLiveH:"🎮 En direct",mpAsyH:"⏳ À ton rythme",daFrNone:"Tu n'as pas encore d'amis dans ta liste.",daPickFr:"Choisis d'abord ton adversaire."});
 Object.assign(T.en,{mpLiveH:"🎮 Live",mpAsyH:"⏳ At your own pace",daFrNone:"You don't have any friends in your list yet.",daPickFr:"Choose your opponent first."});
 // modes de la version complète : absents de cette version
-var tbReady=false,tbx=null,cmx=null;
-const tbLang=()=>{},cmLang=()=>{},isGP=()=>false,dfBzM=()=>!!mpr;
+var tbReady=false,cmx=null;
+const cmLang=()=>{},isGP=()=>false,dfBzM=()=>!!mpr;
 // ----- bouton retour en haut à droite (v17.1) : reprend le bouton Retour visible de l'écran affiché -----
 function bkFind(){const pg=document.querySelector("main>.pg:not(.hide)");if(!pg||!$("modal").classList.contains("hide"))return null;const L=t("back");let r=null;
  pg.querySelectorAll("button").forEach(b=>{if(!b.disabled&&b.offsetParent&&(b.id==="tbRBack"||b.id==="tnRBack"||b.textContent.trim()===L))r=b});return r}
@@ -3060,12 +3082,241 @@ let bkRaf=0;function bkUpd(){if(bkRaf)return;bkRaf=requestAnimationFrame(()=>{bk
 new MutationObserver(bkUpd).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:["class","disabled"]});
 $("topBk").onclick=()=>{const b=bkFind();if(b)b.click()};
 // ----- bouton maison et pastille -----
-const HBP=new Set(["daP","origP","dailyP","rankP","freeP","rulesP","ruleT","recsP","recP","dictP","profP","frP","mpMenu","mpJoinP","chMenu","chP","dfMenu","defP"]);
+const HBP=new Set(["daP","origP","dailyP","rankP","freeP","rulesP","ruleT","recsP","recP","dictP","profP","frP","mpMenu","mpJoinP","chMenu","chP","dfMenu","defP","tbMenu","tbNewP","tbP","tbRP"]);
 function onShow(id){menuHook(id);admHook(id);netUI();bkUpd();if(id==="home"&&NET&&ME&&SESS&&netPend())plSync().then(netUI);if(!tbReady)return;const b=$("homeB");if(b)b.classList.toggle("hide",!HBP.has(id)||!!MP);
- if(ME&&(id==="chMenu"||(id==="home"||id==="mpMenu")&&(!DAL||DAL.id!==ME.id||Date.now()-DAL.at>20000)))daLoad();else daBadge()}
-$("homeB").onclick=()=>{if(MP)return;closeModal();chNav=false;dfNav=false;chCur=null;party=null;toHome()};
-function daBadge(){const d=daN(),B=(i,v)=>{const e=$(i);if(e){e.textContent=v;e.classList.toggle("hide",!v)}};B("tbB0",d);B("daB1",d)}
-const tbBadge=daBadge;
+ if(ME&&(id==="chMenu"||(id==="home"||id==="mpMenu")&&(!DAL||DAL.id!==ME.id||Date.now()-DAL.at>20000)))daLoad();
+ if((id==="home"||id==="mpMenu")&&ME&&(!TBL||TBL.id!==ME.id||Date.now()-TBL.at>20000))tbLoad();else tbBadge()}
+$("homeB").onclick=()=>{if(MP)return;closeModal();tbx=null;chNav=false;dfNav=false;chCur=null;party=null;toHome()};
+function tbBadge(){const a=tbMine(),n=a?a.filter(x=>tbTurn(x)||tbInvIn(x)).length:0,d=daN(),B=(i,v)=>{const e=$(i);if(e){e.textContent=v;e.classList.toggle("hide",!v)}};B("tbB0",n+d);B("tbB1",n);B("daB1",d)}
+const daBadge=()=>tbBadge();
+// ===== Lot 4 : match au tour par tour (version gratuite : partie courte en 4 tours, 2 matchs en cours au maximum) =====
+// Repris de NumériMots (v14). La partie complète en 6 tours et jusqu'à 10 matchs sont réservés à la version complète (invisibles ici).
+Object.assign(T.fr,{
+ tbT:"🔁 Match au tour par tour",tbS:"contre un ami · un tour quand tu veux",
+ tbH:"Un match contre un ami, en 4 tours. Chacun joue son tour quand il veut ; le tour suivant se débloque quand vous avez joué tous les deux.",
+ rTB:"<p>Un vrai match contre un ami, qui se joue sur plusieurs jours.</p><p>🧩 <b>Une partie courte, en 4 tours</b> : chiffres + lettres · 1 défi · chiffres + lettres · Sprint final.</p><p>⏳ <b>Chacun son tour</b> : tu joues ton tour quand tu as le temps. Le tour suivant se débloque quand vous avez joué tous les deux. Vous avez exactement les mêmes tirages, que tu découvres seulement en jouant.</p><p>🎯 <b>Le défi</b> : 7 points pour la bonne réponse la plus rapide des deux.</p><p>📅 <b>3 jours par tour</b> : passé ce délai, celui qui n'a pas joué marque 0 point sur le tour. Deux tours manqués d'affilée, et le match est perdu par forfait.</p><p>🚫 <b>Pas de seconde chance</b> : une épreuve commencée ne peut pas être rejouée. Si tu la quittes, elle compte 0 point.</p><p>👥 Il faut un compte, et ton adversaire doit être dans ta liste d'amis. 2 matchs en cours au maximum. La pastille rouge te montre quand c'est à toi de jouer.</p>",
+ tbNew:"➕ Nouveau match",tbNewS:"invite un ami de ta liste",tbFr:"Ton adversaire",tbK4:"4 tours",
+ tbNewH:"Une partie courte en 4 tours. Ton ami reçoit l'invitation dans le jeu et a 3 jours pour l'accepter.",tbSend:"Envoyer l'invitation",
+ tbFrNone:"Tu n'as pas encore d'amis dans ta liste.",tbPickFr:"Choisis d'abord ton adversaire.",tbSent:"Invitation envoyée à {n} !",
+ tbFull:"Tu as déjà 2 matchs en cours : termine-en un avant d'en lancer un autre.",tbFullFr:"{n} a déjà 2 matchs en cours.",tbNotFr:"{n} n'est plus dans ta liste d'amis.",
+ tbAcc:"<p>Le match au tour par tour se joue avec un compte, contre un ami de ta liste.</p>",tbErr:"Impossible de charger tes matchs : vérifie ta connexion.",
+ tbNone:"Aucun match pour l'instant. Touche « Nouveau match » pour défier un ami.",tbInvIn:"📩 Invitations reçues",tbRunT:"Mes matchs en cours · {n}/2",tbEndT:"Derniers matchs",
+ tbInvFrom:"{n} te défie",tbTurn:"▶ À toi !",tbResume:"▶ Reprends ton tour",tbWaitO:"⏳ Au tour de {n}",tbWaitInv:"⏳ Invitation envoyée",tbTourN:"Tour {n}/{m}",
+ tbDh:"{n} j {m} h",tbHh:"{n} h",tbMn:"{n} min",tbLate:"délai dépassé",tbLeft:"reste {n}",tbVs:"Contre {n}",
+ tbStInvIn:"{n} t'invite à un match. Tu as encore {m} pour répondre.",tbStInvOut:"Invitation envoyée à {n}. Elle expire dans {m}.",
+ tbAccept:"✓ Accepter",tbDecline:"✕ Refuser",tbCancel:"Annuler l'invitation",tbCancelQ:"Annuler l'invitation envoyée à {n} ?",tbDeclineQ:"Refuser l'invitation de {n} ?",
+ tbStMe:"C'est à toi ! Il te reste {n} pour jouer le tour {m}.",tbStWait:"Tu as joué le tour {m}. Au tour de {n} maintenant.",tbStWaitL:"Il lui reste {n} pour jouer.",
+ tbPlay:"▶ Jouer le tour {n}",tbPlayR:"▶ Reprendre le tour {n} · épreuve {m}",tbAbandon:"🏳️ Abandonner le match",tbAbandonQ:"Abandonner le match contre {n} ? Il comptera comme une défaite.",tbRev:"🔁 Revanche",
+ tbWin:"🏆 Tu as gagné !",tbLoss:"{n} a gagné",tbDrawR:"🤝 Match nul",tbByF:" · par forfait",tbByAm:" · tu as abandonné",tbByAo:" · {n} a abandonné",tbBothF:"Match arrêté : deux tours manqués de chaque côté.",
+ tbDeclined:"Invitation refusée",tbExpired:"Invitation expirée",tbCanceled:"Invitation annulée",tbToursT:"Les tours",
+ tbPlanC:"Chiffres",tbPlanL:"Lettres",tbPlanL2:"2 × Lettres",tbPlanD1:"1 défi",tbPlanDn:"{n} défis",tbPlanW:"Sprint final",
+ tbCur:"en cours",tbMeOk:"tu as joué ✓",tbMeTo:"à toi de jouer",tbOppOk:"{n} a joué ✓",tbOppTo:"{n} n'a pas encore joué",tbSee:"voir ›",
+ tbAnnT:"Prochaine manche",tbDfN:"Défi {n}/{m}",tbNxDf:"Défi",
+ tbDfProc:"<h3>Le déroulement en tour par tour</h3><p>Tu joues le défi de ton côté : 30 secondes, une seule réponse, comme en solo. Ton ami aura exactement le même.</p><p>⚡ <b>Les 7 points</b> vont à la bonne réponse la plus rapide : si vous trouvez tous les deux, le plus rapide marque ; si l'un se trompe, l'autre marque s'il a bon ; si personne ne trouve, personne ne marque.</p><p>Tu sauras qui a marqué une fois que ton ami aura joué le tour.</p>",
+ tbLater:"Plus tard",tbStg:"Contre {n}",tbStg2:"Tour {n}/{m}",tbEp:"Épreuve {n}/{m}",tbDrawH:"Le tirage du match",
+ tbNextE:"Épreuve suivante : {n} ▶",tbSeeM:"Voir le match ▶",
+ tbDfOk:"Bonne réponse en {m} ! Les 7 points iront au plus rapide de vous deux : verdict quand {n} aura joué.",tbDfKo:"Pas de point pour toi sur ce défi. Si {n} trouve, les 7 points sont pour lui.",
+ tbQuitQ:"Quitter cette épreuve ? Elle comptera 0 point et ne pourra pas être rejouée. Tu pourras finir le reste du tour plus tard.",
+ tbNet:"Pas de connexion : ton résultat sera envoyé dès que possible.",tbNetB:"Connexion impossible : il faut internet pour jouer une épreuve du match.",tbSync:"Le match a avancé entre-temps : voici où il en est.",
+ tbTourEnd:"Tour {n} terminé !",tbRT:"Tour {n} · résultats",tbTot:"Total du tour",tbNoPlay:"pas joué",tbQuit0:"épreuve quittée",tbNotYet:"pas encore joué",
+ tbWaitRes:"Les réponses de {n} apparaîtront quand il aura joué ce tour.",tbFast:"⚡ plus rapide",
+ dM:"en direct ou à ton rythme"});
+Object.assign(T.en,{
+ tbT:"🔁 Turn-based match",tbS:"against a friend · one turn whenever you like",
+ tbH:"A match against a friend, in 4 turns. Each of you plays your turn whenever you like; the next turn unlocks once you have both played.",
+ rTB:"<p>A real match against a friend, played over several days.</p><p>🧩 <b>A short game, in 4 turns</b>: numbers + letters · 1 challenge · numbers + letters · Final Sprint.</p><p>⏳ <b>Taking turns</b>: play your turn whenever you have time. The next turn unlocks once you have both played. You both get exactly the same draws, which you only discover when you play.</p><p>🎯 <b>The challenge</b>: 7 points for the faster right answer of the two.</p><p>📅 <b>3 days per turn</b>: after that, whoever hasn't played scores 0 points for the turn. Miss two turns in a row and you lose the match by forfeit.</p><p>🚫 <b>No second chance</b>: a round you've started can't be replayed. If you leave it, it scores 0 points.</p><p>👥 You need an account, and your opponent must be in your friends list. Up to 2 matches at a time. The red badge shows you when it's your turn.</p>",
+ tbNew:"➕ New match",tbNewS:"invite a friend from your list",tbFr:"Your opponent",tbK4:"4 turns",
+ tbNewH:"A short game in 4 turns. Your friend gets the invitation in the game and has 3 days to accept it.",tbSend:"Send the invitation",
+ tbFrNone:"You don't have any friends in your list yet.",tbPickFr:"Choose your opponent first.",tbSent:"Invitation sent to {n}!",
+ tbFull:"You already have 2 matches in progress: finish one before starting another.",tbFullFr:"{n} already has 2 matches in progress.",tbNotFr:"{n} is no longer in your friends list.",
+ tbAcc:"<p>Turn-based matches are played with an account, against a friend from your list.</p>",tbErr:"Couldn't load your matches: check your connection.",
+ tbNone:"No matches yet. Tap “New match” to challenge a friend.",tbInvIn:"📩 Invitations received",tbRunT:"My matches in progress · {n}/2",tbEndT:"Latest matches",
+ tbInvFrom:"{n} challenges you",tbTurn:"▶ Your turn!",tbResume:"▶ Finish your turn",tbWaitO:"⏳ {n}'s turn",tbWaitInv:"⏳ Invitation sent",tbTourN:"Turn {n}/{m}",
+ tbDh:"{n} d {m} h",tbHh:"{n} h",tbMn:"{n} min",tbLate:"time is up",tbLeft:"{n} left",tbVs:"Against {n}",
+ tbStInvIn:"{n} invites you to a match. You have {m} left to answer.",tbStInvOut:"Invitation sent to {n}. It expires in {m}.",
+ tbAccept:"✓ Accept",tbDecline:"✕ Decline",tbCancel:"Cancel the invitation",tbCancelQ:"Cancel the invitation sent to {n}?",tbDeclineQ:"Decline {n}'s invitation?",
+ tbStMe:"Your turn! You have {n} left to play turn {m}.",tbStWait:"You have played turn {m}. It's {n}'s turn now.",tbStWaitL:"They have {n} left to play.",
+ tbPlay:"▶ Play turn {n}",tbPlayR:"▶ Resume turn {n} · round {m}",tbAbandon:"🏳️ Give up the match",tbAbandonQ:"Give up the match against {n}? It will count as a loss.",tbRev:"🔁 Rematch",
+ tbWin:"🏆 You won!",tbLoss:"{n} won",tbDrawR:"🤝 Draw",tbByF:" · by forfeit",tbByAm:" · you gave up",tbByAo:" · {n} gave up",tbBothF:"Match stopped: two missed turns on each side.",
+ tbDeclined:"Invitation declined",tbExpired:"Invitation expired",tbCanceled:"Invitation cancelled",tbToursT:"The turns",
+ tbPlanC:"Numbers",tbPlanL:"Letters",tbPlanL2:"2 × Letters",tbPlanD1:"1 challenge",tbPlanDn:"{n} challenges",tbPlanW:"Final Sprint",
+ tbCur:"in progress",tbMeOk:"you've played ✓",tbMeTo:"your turn",tbOppOk:"{n} has played ✓",tbOppTo:"{n} hasn't played yet",tbSee:"see ›",
+ tbAnnT:"Next round",tbDfN:"Challenge {n}/{m}",tbNxDf:"Challenge",
+ tbDfProc:"<h3>How it works in a turn-based match</h3><p>You play the challenge on your own: 30 seconds, one answer, just like solo. Your friend gets exactly the same one.</p><p>⚡ <b>The 7 points</b> go to the faster right answer: if you both get it, the faster one scores; if one is wrong, the other scores if right; if nobody gets it, nobody scores.</p><p>You'll find out who scored once your friend has played the turn.</p>",
+ tbLater:"Later",tbStg:"Against {n}",tbStg2:"Turn {n}/{m}",tbEp:"Round {n}/{m}",tbDrawH:"The match draw",
+ tbNextE:"Next round: {n} ▶",tbSeeM:"See the match ▶",
+ tbDfOk:"Right answer in {m}! The 7 points go to the faster of you two: verdict once {n} has played.",tbDfKo:"No points for you on this challenge. If {n} gets it, the 7 points are theirs.",
+ tbQuitQ:"Leave this round? It will score 0 points and can't be replayed. You can finish the rest of the turn later.",
+ tbNet:"No connection: your result will be sent as soon as possible.",tbNetB:"Can't connect: you need the internet to play a round of the match.",tbSync:"The match has moved on in the meantime: here is where it stands.",
+ tbTourEnd:"Turn {n} complete!",tbRT:"Turn {n} · results",tbTot:"Turn total",tbNoPlay:"didn't play",tbQuit0:"round left",tbNotYet:"not played yet",
+ tbWaitRes:"{n}'s answers will appear once they have played this turn.",tbFast:"⚡ faster",
+ dM:"live or at your own pace"});
+const tbxL=()=>t("tbStg",tbx?tbx.opp:"");
+// ----- état -----
+var TBL=null,tbTok=0,tbCur=null,tbx=null,tbDet=null,tbFrs=null,tbNw={f:null,k:"q",l:"en"},tbTA=0;
+const TBD=3*86400000,TBDF=["t","k","u","s"],TBMAX=2;
+const tbMine=()=>ME&&TBL&&TBL.id===ME.id&&TBL.rows?TBL.rows:null;
+const tbRow=id=>(tbMine()||[]).find(x=>x.id===id)||null;
+const tbSt=m=>String(m.steps||"").split("|");
+const tbTurn=x=>x.status==="run"&&!x.my_done,tbInvIn=x=>x.status==="invite"&&!x.first;
+const tbOpen=id=>!$(id).classList.contains("hide");
+function tbLeftS(ms){if(ms<=0)return t("tbLate");if(ms<3600000)return t("tbMn",Math.max(1,Math.min(59,Math.ceil(ms/60000))));const d=Math.floor(ms/86400000),h=Math.floor(ms%86400000/3600000);return d?t("tbDh",d,h):t("tbHh",h)}
+const tbDue=m=>(Date.parse(m.status==="invite"?m.created_at:m.tour_at)||Date.now())+TBD-Date.now();
+const tbKindS=m=>t(m.kind==="n"?"pN":"pQ")+" · "+t("tbK4");
+function tbPlan(st,names){const c=st.split("").filter(g=>g==="c").length,l=st.split("").filter(g=>g==="l").length,d=st.split("").filter(g=>TBDF.includes(g)),p=[];
+ if(c)p.push("🔢 "+t("tbPlanC"));if(l)p.push("🔤 "+t(l>1?"tbPlanL2":"tbPlanL"));
+ if(d.length)p.push("🎯 "+(names?d.map(g=>t("m"+g.toUpperCase())).join(" + "):d.length>1?t("tbPlanDn",d.length):t("tbPlanD1")));
+ if(st.includes("w"))p.push("🏁 "+t("tbPlanW"));return p.join(" + ")}
+// ----- échanges avec Supabase -----
+async function tbLoad(){if(!ME||!sb||!SESS){tbBadge();return null}const id=ME.id,tok=++tbTok;
+ try{try{await tbFlush()}catch(e){}const r=await sb.rpc("tb_list");if(r.error)throw r.error;if(tok!==tbTok||!ME||ME.id!==id)return TBL;TBL={id,rows:r.data||[],at:Date.now(),err:0}}
+ catch(e){if(tok===tbTok&&ME&&ME.id===id)TBL=TBL&&TBL.id===id?{...TBL,at:Date.now(),err:1}:{id,rows:null,at:Date.now(),err:1}}
+ tbBadge();return TBL}
+const TBPK="fwtbpend";
+function tbPend(x,r){if(!ME)return;try{localStorage.setItem(TBPK,JSON.stringify({u:ME.id,m:x.id,tour:x.tour,idx:x.idx,r}))}catch(e){}return tbFlush().catch(()=>toast(t("tbNet")))}
+async function tbFlush(){let p=null;try{p=JSON.parse(localStorage.getItem(TBPK)||"null")}catch(e){}if(!p||!ME||p.u!==ME.id||!sb||!SESS)return null;
+ const r=await sb.rpc("tb_result",{p_match:p.m,p_tour:p.tour,p_idx:p.idx,p_r:p.r});if(r.error)throw r.error;
+ try{const q=JSON.parse(localStorage.getItem(TBPK)||"null");if(q&&q.m===p.m&&q.tour===p.tour&&q.idx===p.idx)localStorage.removeItem(TBPK)}catch(e){}return r.data}
+setInterval(()=>{if(document.visibilityState!=="visible"||!ME||tbx)return;if(["home","mpMenu","tbMenu","tbP"].some(tbOpen))tbRefresh()},60000);
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&ME&&!tbx&&["home","mpMenu","tbMenu","tbP"].some(tbOpen))tbRefresh()});
+async function tbRefresh(){await tbLoad();if(tbOpen("tbMenu"))renderTb();else if(tbOpen("tbP")&&tbCur)openTbM(tbCur,1)}
+// ----- menu du mode -----
+$("tbGo").onclick=openTb;
+$("tbInfo").onclick=$("tbInfo2").onclick=()=>modal(t("tbT"),t("rTB"),[{l:t("close"),c:"p",f:closeModal}]);
+$("tbBack").onclick=()=>{renderMpWho();show("mpMenu")};
+function openTb(){if(!ME){const b=[{l:t("close"),f:closeModal}];if(ACC)b.push({l:t("useAcc",ACC.pseudo),c:"p",f:()=>{closeModal();setMe(ACC);openTb()}});else b.push({l:t("login"),f:()=>goAuth("loginP","mpMenu")},{l:t("signup"),c:"p",f:()=>goAuth("signupP","mpMenu")});return modal(t("tbT"),t("tbAcc"),b)}
+ tbCur=null;renderTb();show("tbMenu");tbLoad().then(()=>{if(tbOpen("tbMenu"))renderTb()})}
+function tbCard(m){const tr=tbTurn(m),sc=m.my_score+" – "+m.opp_score;let st,cl="";
+ if(m.status==="invite"){st=m.first?t("tbWaitInv"):t("tbInvFrom",m.opp_name);cl=m.first?"":"ok"}
+ else if(m.status==="run"){st=tr?(m.my_idx||m.my_busy?t("tbResume"):t("tbTurn")):t("tbWaitO",m.opp_name);cl=tr?"ok":""}
+ else st=tbEndS(m);
+ const sub=tbKindS(m)+(m.status==="run"?" · "+t("tbTourN",m.tour,tbSt(m).length):"")+(m.status==="run"||m.status==="invite"?" · "+t("tbLeft",tbLeftS(tbDue(m))):m.ended_at?" · "+fmtD(m.ended_at):"");
+ return'<button class="tbc'+(tr||tbInvIn(m)?" go":"")+'" data-tbm="'+m.id+'"><div class="l1"><span>'+esc(m.opp_name)+"</span><b>"+(m.status==="invite"?"":sc)+'</b></div><div class="l2"><span>'+sub+'</span><b class="'+cl+'">'+esc(st)+"</b></div></button>"}
+function tbEndS(m){if(m.status==="declined")return t("tbDeclined");if(m.status==="expired")return t("tbExpired");if(m.status==="cancel")return t("tbCanceled");
+ const r=m.result==="win"?t("tbWin"):m.result==="loss"?"❌ "+t("tbLoss",m.opp_name):m.reason==="forfeit"?t("tbBothF"):t("tbDrawR");return r+(m.reason==="forfeit"&&m.result!=="draw"?t("tbByF"):m.reason==="abandon"?(m.result==="loss"?t("tbByAm"):t("tbByAo",m.opp_name)):"")}
+function renderTb(){const a=tbMine(),el=$("tbL");if(!a){el.innerHTML='<p class="dnote">'+t(TBL&&TBL.err?"tbErr":"frLoad")+"</p>";return}
+ const inv=a.filter(tbInvIn),act=a.filter(x=>x.status==="run"||(x.status==="invite"&&x.first)),old=a.filter(x=>!["run","invite"].includes(x.status)).slice(0,5);
+ act.sort((x,y)=>(tbTurn(y)?1:0)-(tbTurn(x)?1:0)||tbDue(x)-tbDue(y));
+ let h="";if(inv.length)h+="<h3>"+t("tbInvIn")+"</h3>"+inv.map(tbCard).join("");
+ if(act.length)h+="<h3>"+t("tbRunT",act.length+inv.length)+"</h3>"+act.map(tbCard).join("");
+ if(old.length)h+="<h3>"+t("tbEndT")+"</h3>"+old.map(tbCard).join("")+'<p class="dnote" style="margin-top:6px">'+t("tbEndH")+"</p>";
+ el.innerHTML=h||'<p class="dnote">'+t(TBL.err?"tbErr":"tbNone")+"</p>"}
+$("tbL").onclick=e=>{const b=e.target.closest("[data-tbm]");if(b)openTbM(b.dataset.tbm)};
+// ----- nouveau match -----
+$("tbNew").onclick=openTbNew;$("tbNBack").onclick=openTb;
+async function openTbNew(){if(!ME||!needSb())return;{const a=tbMine();if(a&&a.filter(x=>x.status==="run"||x.status==="invite").length>=TBMAX)return modal(t("tbT"),"<p>"+esc(t("tbFull"))+"</p>",[{l:t("ok"),c:"p",f:closeModal}])}tbNw={f:null,k:"q",l:"en"};am("tbNMsg","");tbFrs=null;drawTbNew();show("tbNewP");
+ try{const r=await sb.rpc("friend_list");if(r.error)throw r.error;tbFrs=(r.data||[]).filter(x=>x.state==="friend")}catch(e){tbFrs=[];am("tbNMsg",errT(e))}if(tbOpen("tbNewP"))drawTbNew()}
+function drawTbNew(){const f=tbFrs;$("tbFrL").innerHTML=!f?'<p class="dnote">'+t("frLoad")+"</p>":f.length?f.map(x=>'<div class="fr'+(tbNw.f===x.id?" on":"")+'" data-tf="'+x.id+'"><span>'+esc(x.pseudo)+"</span></div>").join(""):'<p class="dnote">'+t("tbFrNone")+'</p><button class="btn mb" id="tbFrGo">'+esc(t("frSee"))+"</button>";
+ all("[data-tk]").forEach(b=>b.classList.toggle("on",b.dataset.tk===tbNw.k));all("[data-tl]").forEach(b=>b.classList.toggle("on",b.dataset.tl===tbNw.l));$("tbSend").disabled=!(f&&f.length)}
+$("tbFrL").onclick=e=>{if(e.target.closest("#tbFrGo")){profFrom="mpMenu";return openFr()}const b=e.target.closest("[data-tf]");if(!b)return;tbNw.f=b.dataset.tf;am("tbNMsg","");drawTbNew()};
+all("[data-tk]").forEach(b=>b.onclick=()=>{tbNw.k=b.dataset.tk;drawTbNew()});all("[data-tl]").forEach(b=>b.onclick=()=>{tbNw.l=b.dataset.tl;drawTbNew()});
+$("tbSend").onclick=()=>busy("tbSend",async()=>{if(!tbNw.f)return am("tbNMsg",t("tbPickFr"));const fr=(tbFrs||[]).find(x=>x.id===tbNw.f),nm=fr?fr.pseudo:"?";
+ const id=await tbCreate(tbNw.f,tbNw.k,tbNw.l,nm,"tbNMsg");if(id){await tbLoad();openTbM(id)}});
+async function tbCreate(f,k,l,nm,msgId){const r=await sb.rpc("tb_create",{p_friend:f,p_kind:k,p_dict:l});if(r.error)throw r.error;const x=(r.data||[])[0]||{};
+ if(x.status==="ok"&&x.id){toast(t("tbSent",nm));nfAskSoon();return x.id}
+ const m=x.status==="full"?t("tbFull"):x.status==="fullfr"?t("tbFullFr",nm):x.status==="notfriend"?t("tbNotFr",nm):x.status==="auth"?t("eAuth"):t("eGen");
+ if(msgId)am(msgId,m);else modal(t("tbT"),"<p>"+esc(m)+"</p>",[{l:t("ok"),c:"p",f:closeModal}]);return null}
+// ----- page d'un match -----
+async function openTbM(id,quiet){tbCur=id;const m=tbRow(id);if(!m){if(!quiet){await tbLoad();if(!tbRow(id))return openTb()}else return}
+ if(!tbDet||tbDet.id!==id)tbDet=null;renderTbM();if(!tbOpen("tbP"))show("tbP");
+ if(m.status==="run"||m.status==="done"){const tok=++tbTA;try{const r=await sb.rpc("tb_detail",{p_match:id});if(r.error)throw r.error;if(tok===tbTA&&tbCur===id){tbDet={id,tours:(r.data&&r.data.tours)||[]};if(tbOpen("tbP"))renderTbM()}}catch(e){}}}
+function renderTbM(){const m=tbRow(tbCur);if(!m)return;const st=tbSt(m),N=st.length,D=tbDet&&tbDet.id===m.id?tbDet.tours:null,B=(k,l,c)=>'<button class="btn mb '+(c||"")+'" data-tba="'+k+'">'+esc(l)+"</button>";
+ $("tbPT").textContent=t("tbVs",m.opp_name);
+ let h=m.status==="invite"?'<p class="tbm" style="margin-top:8px">'+tbKindS(m)+'</p>':'<div class="tbsc"><div class="me"><small>'+esc(t("chYou"))+"</small><b>"+m.my_score+'</b></div><i>–</i><div><small>'+esc(m.opp_name)+"</small><b>"+m.opp_score+'</b></div></div><p class="tbm">'+tbKindS(m)+(m.status==="run"?" · "+t("tbTourN",m.tour,N):"")+"</p>";let b="";
+ if(m.status==="invite"){h+='<p class="mpw">'+esc(t(m.first?"tbStInvOut":"tbStInvIn",m.opp_name,tbLeftS(tbDue(m))))+"</p>";b=m.first?B("cancel",t("tbCancel"),"dng"):B("acc",t("tbAccept"),"p")+B("dec",t("tbDecline"),"dng")}
+ else if(m.status==="run"){const tr=tbTurn(m);
+  if(tr){const i=(m.my_idx||0)+(m.my_busy?1:0);h+='<p class="mpw">'+esc(t("tbStMe",tbLeftS(tbDue(m)),m.tour))+"</p>";b=B("play",i>0&&i<st[m.tour-1].length?t("tbPlayR",m.tour,(i+1)+"/"+st[m.tour-1].length):t("tbPlay",m.tour),"p")}
+  else h+='<p class="mpw">'+esc(t("tbStWait",m.opp_name,m.tour))+"<br>"+esc(t("tbStWaitL",tbLeftS(tbDue(m))))+"</p>";
+  b+=B("aband",t("tbAbandon"),"dng")}
+ else{h+='<div class="win">'+esc(tbEndS(m))+"</div>";if(m.status==="done"||m.status==="declined"||m.status==="expired")b=B("rev",t("tbRev"),"p")}
+ if(m.status==="run"||m.status==="done"){h+="<h3>"+t("tbToursT")+"</h3>";
+  for(let k=1;k<=N;k++){const s=st[k-1],x=D&&D[k-1],cur=m.status==="run"&&k===m.tour,fut=m.status==="run"?k>m.tour:k>m.tour||(m.status==="done"&&!x),rv=x&&x.rv;let r="",sub=tbPlan(s,rv);
+   if(rv&&x.me&&x.me.pts!=null)r="+"+x.me.pts+" <small>–</small> +"+((x.opp&&x.opp.pts)||0);else if(rv)r="—";
+   else if(cur){sub+="<small>"+esc(m.my_done?t("tbMeOk"):t("tbMeTo"))+" · "+esc(m.opp_done?t("tbOppOk",m.opp_name):t("tbOppTo",m.opp_name))+"</small>";r=t("tbCur")}
+   const hm=!!(x&&x.me&&x.me.res&&x.me.res.length),ho=!!(x&&x.opp&&x.opp.res&&x.opp.res.length),on=!!(x&&(hm||(rv&&(ho||(x.me&&x.me.pts!=null)))));if(rv&&!on)r="—";
+   h+='<button class="tbt'+(on?" on":"")+(cur?" cur":"")+(fut&&!cur?" fut":"")+'"'+(on?' data-tbt="'+k+'"':"")+"><span>"+t("tbTourN",k,N)+"<small>"+sub+"</small></span><b>"+r+(on?' <small>'+t("tbSee")+"</small>":"")+"</b></button>"}}
+ $("tbPB").innerHTML=h;$("tbPBtn").innerHTML=b+'<button class="btn mb" data-tba="back">'+esc(t("back"))+"</button>"}
+$("tbPB").onclick=e=>{const b=e.target.closest("[data-tbt]");if(b)openTbR(+b.dataset.tbt)};
+$("tbPBtn").onclick=e=>{const b=e.target.closest("[data-tba]");if(!b)return;const k=b.dataset.tba,m=tbRow(tbCur);if(k==="back")return openTb();if(!m)return;
+ const go=f=>busy2(b,f),nm=m.opp_name;
+ if(k==="play")return tbPlay(m);
+ if(k==="acc")return go(async()=>{const r=await sb.rpc("tb_answer",{p_match:m.id,p_ok:true});if(r.error)throw r.error;if(r.data==="ok")nfAskSoon();if(r.data==="full")modal(t("tbT"),"<p>"+t("tbFull")+"</p>",[{l:t("ok"),c:"p",f:closeModal}]);await tbLoad();openTbM(m.id)});
+ const ask=(q,f)=>modal(t("tbT"),"<p>"+esc(t(q,nm))+"</p>",[{l:t("no"),f:closeModal},{l:t("yes"),c:"p",f:()=>{closeModal();go(f)}}]);
+ const leave=async()=>{const r=await sb.rpc("tb_leave",{p_match:m.id});if(r.error)throw r.error;await tbLoad();openTbM(m.id)};
+ if(k==="dec")return ask("tbDeclineQ",async()=>{const r=await sb.rpc("tb_answer",{p_match:m.id,p_ok:false});if(r.error)throw r.error;await tbLoad();openTb()});
+ if(k==="cancel")return ask("tbCancelQ",leave);
+ if(k==="aband")return ask("tbAbandonQ",leave);
+ if(k==="rev")return go(async()=>{const id=await tbCreate(m.opp,"q","en",nm);if(id){await tbLoad();openTbM(id)}})};
+async function busy2(b,f){if(b.disabled)return;b.disabled=true;try{await f()}catch(e){modal(t("oops"),"<p>"+esc(errT(e))+"</p>",[{l:t("ok"),c:"p",f:closeModal}])}finally{b.disabled=false}}
+// ----- résultats d'un tour -----
+function tbPts(st,a,b){return st.split("").map((g,i)=>{const x=a&&a[i],y=b&&b[i];if(!TBDF.includes(g))return[x&&!x.z?x.p|0:0,y&&!y.z?y.p|0:0];
+ const ox=!!(x&&x.ok),oy=!!(y&&y.ok),tx=x&&x.t!=null?x.t:1e9,ty=y&&y.t!=null?y.t:1e9;return[ox&&(!oy||tx<=ty)?7:0,oy&&(!ox||ty<=tx)?7:0]})}
+function tbVal(g,e,lg){if(!e)return t("tbNotYet");if(e.z)return t("tbQuit0");if(TBDF.includes(g))return e.ok?"✓ "+dfUp(e.x)+" · "+fmtT(e.t||0):e.x?"✗ "+dfUp(e.x):t("noAns");
+ if(g==="l")return e.r?wdH(e.x,lg)+" ("+e.r+")":t("noWord");if(g==="c")return e.r>=9999?t("noAns"):esc(e.x)+" · "+(e.r===0?t("exactS"):t("near",e.r));return t("words",e.r)}
+function tbDrawH(d,lg,g){if(!d)return"";if(TBDF.includes(g))return dfSolHTML(d);
+ if(g==="c")return'<div class="plates">'+d.P.map(v=>'<div class="plate" style="cursor:default">'+v+'</div>').join("")+'</div><div class="tgt">'+String(d.tgt).split("").map(x=>"<b>"+x+"</b>").join("")+'</div><p style="text-align:center;color:var(--mut)">'+t("solution")+"</p>"+solHTML(solve(d.P,d.tgt));
+ if(g==="w")return'<div class="wl">'+d.rounds.map(r=>wdH(r.w,lg,"c")).join("")+"</div>";
+ const E=D[lg]?exL(d.l,D[lg].list,lg):{b:[]};return dfTilesH(d.l)+(E.b.length?E.h:"")}
+function openTbR(k){const m=tbRow(tbCur),x=tbDet&&tbDet.tours[k-1];if(!m||!x)return;const st=tbSt(m)[k-1],lg=m.dict,me=x.me&&x.me.res||[],op=x.rv&&x.opp?x.opp.res||[]:null,P=tbPts(st,me,op),dr={};(x.draws||[]).forEach(z=>dr[z.i]=z.d);
+ $("tbRT").textContent=t("tbRT",k);let h='<p class="tbm">'+esc(t("tbVs",m.opp_name))+" · "+tbKindS(m)+"</p>";
+ if(!x.rv)h+='<p class="mpw">'+esc(t("tbWaitRes",m.opp_name))+"</p>";
+ const row=(n,e,p,me2,win,miss,g)=>'<div class="res'+(me2?" me":"")+'"><span class="rn"><b>'+(win?"🏆":"")+"</b>"+esc(n)+'</span><span class="rv"><b>'+(miss||(!e&&x.rv)?t("tbNoPlay"):tbVal(g,e,lg))+"</b>"+(x.rv||me2?" · +"+p+" "+t("pts"):"")+"</span></div>";
+ st.split("").forEach((g,i)=>{if(!x.rv&&!(i<me.length))return;const e1=me[i],e2=op&&op[i],[p1,p2]=P[i],df=TBDF.includes(g);
+  h+='<div class="tbe"><h3>'+t("tbEp",i+1,st.length)+" · "+t("m"+g.toUpperCase())+"</h3>"+(dr[i]?tbDrawH(dr[i],lg,g):"")+
+   row(t("chYou"),e1,x.rv||!df?p1:"?",true,x.rv&&p1>p2,x.me&&x.me.missed,g)+(x.rv?row(m.opp_name,e2,p2,false,p2>p1,x.opp&&x.opp.missed,g):"")+
+   (x.rv&&df&&e1&&e2&&e1.ok&&e2.ok?'<p class="dnote" style="margin:6px 0 0">'+t("tbFast")+" : "+esc(p1?t("chYou"):m.opp_name)+"</p>":"")+"</div>"});
+ if(x.rv){const a=P.reduce((s,z)=>s+z[0],0),b=P.reduce((s,z)=>s+z[1],0);h+='<div class="tbsc"><div class="me"><small>'+esc(t("chYou"))+"</small><b>+"+a+'</b></div><i>'+t("tbTot")+'</i><div><small>'+esc(m.opp_name)+"</small><b>+"+b+"</b></div></div>"}
+ $("tbRB").innerHTML=h+wdHint();show("tbRP");if(!D[lg]&&st.includes("l"))preDict(lg).then(()=>{if(tbOpen("tbRP")&&$("tbRT").textContent===t("tbRT",k))openTbR(k)}).catch(()=>{})}
+$("tbRBack").onclick=()=>openTbM(tbCur);
+// ----- jouer un tour -----
+function tbPlay(m){const st=tbSt(m)[m.tour-1],i=(m.my_idx||0)+(m.my_busy?1:0);if(i>=st.length)return tbBegin(m,i);tbStep(m,i)}
+function tbStep(m,i){const g=tbSt(m)[m.tour-1][i];if(TBDF.includes(g))return tbAnnShow(m,i);tbBegin(m,i)}
+function tbAnnShow(m,i){const st=tbSt(m)[m.tour-1],g=st[i],G=g.toUpperCase(),ds=st.split("").filter(x=>TBDF.includes(x)),k=st.slice(0,i+1).split("").filter(x=>TBDF.includes(x)).length;
+ $("tbAS").innerHTML=esc(t("tbStg",m.opp_name))+" · "+t("tbStg2",m.tour,tbSt(m).length)+(ds.length>1?" · "+t("tbDfN",k,ds.length):"");
+ $("tbAG").textContent=t("m"+G);$("tbAH").innerHTML=t("tbDfProc");$("tbARul").textContent=t("dfRulesB",t("m"+G));
+ $("tbARul").onclick=()=>modal(t("m"+G),t("i"+G),[{l:t("close"),c:"p",f:closeModal}]);
+ $("tbAGo").onclick=()=>tbBegin(m,i);$("tbABack").onclick=()=>openTbM(m.id);show("tbAnn")}
+function tbLetters(lg){const nv=[3,4,4,4,5][Math.floor(Math.random()*5)],a=[];for(let i=0;i<10;i++)a.push(wp(WT[lg][i<nv?"v":"c"]));return sh(a)}
+function tbCand(g,lg){if(g==="c"){const P=sh(PL).slice(0,6);return{g,P,tgt:genT(P)}}
+ if(g==="l")return{g,l:tbLetters(lg)};
+ if(g==="w"){const S=lg==="fr"?F:W,pk={},rs=[];[5,6,7,8].forEach(n=>pk[n]=sh(S[n]).slice(0,2));[0,1].forEach(k=>[5,6,7,8].forEach(n=>{const w=pk[n][k];rs.push({w,l:scr(w)})}));return{g,rounds:rs}}
+ return dfGen(g,lg)}
+async function tbBegin(m,i){if(!sb||!SESS)return modal(t("oops"),"<p>"+t("eAuth")+"</p>",[{l:t("ok"),c:"p",f:closeModal}]);
+ const st=tbSt(m)[m.tour-1],g=st[i];modal(t("tbT"),"<p>"+t(g==="l"||g==="w"?"loading":"frLoad")+"</p>",[]);
+ const fail=()=>modal(t("oops"),"<p>"+t("tbNetB")+"</p>",[{l:t("ok"),c:"p",f:closeModal}]);
+ try{await tbFlush()}catch(e){return fail()}
+ if(g==="l"||g==="w")dict=await loadDict(m.dict);
+ let x;try{const r=await sb.rpc("tb_begin",{p_match:m.id,p_idx:i,p_cand:g?tbCand(g,m.dict):null});if(r.error)throw r.error;x=r.data||{}}catch(e){return fail()}
+ if(x.e||x.tour!==m.tour||x.idx!==i||!x.d||x.d.g!==g){closeModal();await tbLoad();const n=tbRow(m.id);if(n&&n.status==="run"&&n.tour===m.tour&&x.e==="done")return tbBack(m.id);toast(t("tbSync"));return openTbM(m.id)}
+ tbx={id:m.id,opp:m.opp_name,tour:x.tour,nt:tbSt(m).length,idx:i,n:st.length,st,g,d:x.d,dl:m.dict,t0:0,lt:0,sent:0};
+ ctok++;sfxStop();dfStop();clearTimeout(tmo);clearTimeout(dtm);clearInterval(timer);pending=null;stopM();
+ party=null;trn=null;daily=null;chl=null;chNav=false;dfNav=false;dur={l:30,c:45};mode=g;dl=m.dict;closeModal();
+ if(g==="c")return startC();if(TBDF.includes(g))return startDf(g);g==="w"?startW():startL()}
+function tbStartL(){clearTimeout(tmo);clearTimeout(dtm);stopM();clearInterval(timer);over=true;best="";tried="";const tok=++ctok,L0=tbx.d.l.slice();ld=[];nv=nc=10;
+ $("vcRow").classList.add("hide");setStage();rdS();$("drawH").textContent=t("tbDrawH");$("dmsg").textContent="";show("drawP");
+ (async()=>{for(const c of L0){await wait(ld.length?600:700);if(tok!==ctok)return;sfx(A.clic);ld.push(c);rdS()}await wait(900);if(tok!==ctok)return;beginL()})()}
+// fin d'une épreuve : résultat envoyé, puis épreuve suivante ou retour au match
+function tbEnd(why,html){const x=tbx;over=true;clearInterval(timer);pending=null;stopM();closeModal();const g=x.g;let r;
+ if(g==="l")r={p:score,r:best?best.length:0,x:best||"",t:best?Math.round(x.lt||30000):30000};
+ else if(g==="c")r=bv===null?{p:0,r:9999,x:"",t:45000}:{p:score,r:Math.abs(tgt-bv),x:String(bv),t:Math.round(bt)};
+ else if(g==="w"){const n=rounds.filter(z=>z.done).length;r={p:score,r:n,x:n+"/8",t:n?Math.round(x.lt):120000}}
+ else{const f=dfx,ok=score>0,a=f&&f.sent?dfAns():"";r={p:0,ok,r:ok?1:0,x:String(a||"").slice(0,24),t:ok&&f&&f.r0?Math.round(performance.now()-f.r0):0}}
+ if(!x.sent){x.sent=1;tbPend(x,r)}
+ show("end");$("why").textContent=why;const df=TBDF.includes(g);$("final").textContent=df?(r.ok?"✓ "+fmtT(r.t):"✗"):score+" "+t("pts");
+ $("extra").innerHTML=(df?'<p class="mpw">'+esc(r.ok?t("tbDfOk",x.opp,fmtT(r.t)):t("tbDfKo",x.opp))+"</p>":"")+html;
+ $("ptot").textContent=t("tbStg2",x.tour,x.nt)+" · "+t("tbEp",x.idx+1,x.n);$("ptot").classList.remove("hide");$("chBox").innerHTML="";$("saveBox").classList.add("hide");
+ const nx=x.st[x.idx+1];$("next").textContent=nx?t("tbNextE",t(TBDF.includes(nx)?"tbNxDf":"n"+nx.toUpperCase())):t("tbSeeM");$("next").classList.remove("hide");
+ $("again").classList.add("hide");$("drk").classList.add("hide");wRulB(nx==="w")}
+function tbGoNext(){const x=tbx;if(!x)return;tbx=null;setStage();const m=tbRow(x.id);if(x.idx+1<x.n&&m&&m.status==="run"&&m.tour===x.tour)return tbStep(m,x.idx+1);tbBack(x.id,x.tour)}
+function tbQuitAsk(){if(!tbx||tbx.sent)return tbLeave();modal(t("quit"),"<p>"+t("tbQuitQ")+"</p>",[{l:t("no"),f:closeModal},{l:t("yes"),c:"p",f:()=>{closeModal();tbLeave()}}])}
+function tbLeave(){const x=tbx;if(x&&!x.sent){x.sent=1;tbPend(x,TBDF.includes(x.g)?{p:0,ok:false,r:0,x:"",t:0,z:1}:{p:0,r:x.g==="c"?9999:0,x:"",t:0,z:1})}
+ ctok++;sfxStop();dfStop();clearTimeout(tmo);clearTimeout(dtm);clearInterval(timer);pending=null;stopM();over=true;tbx=null;closeModal();setStage();if(x)tbBack(x.id,x.tour);else openTb()}
+// retour à la page du match (et résultats du tour s'il vient de se terminer)
+async function tbBack(id,tour){tbCur=id;tbDet=null;show("tbP");$("tbPT").textContent="";$("tbPB").innerHTML='<p class="dnote">'+t("frLoad")+"</p>";$("tbPBtn").innerHTML="";
+ try{await tbFlush()}catch(e){}await tbLoad();const m=tbRow(id);if(!m)return openTb();await openTbM(id);
+ if(tour&&(m.tour>tour||m.status==="done")&&tbDet&&tbDet.tours[tour-1]&&tbDet.tours[tour-1].rv){toast(t("tbTourEnd",tour));openTbR(tour)}}
+// ----- langue -----
+function tbLang(){if(tbOpen("tbMenu"))renderTb();else if(tbOpen("tbNewP"))drawTbNew();else if(tbOpen("tbP"))renderTbM();else if(tbOpen("tbRP")){const k=parseInt(($("tbRT").textContent.match(/\d+/)||[])[0],10);if(k)openTbR(k)}tbBadge()}
 // ===== duels entre amis (v15) : le même duel que par lien, rangé dans Supabase =====
 // Chaque ami défié a 7 jours pour relever le duel ; son résultat revient tout seul.
 let DAL=null,daTok=0,daO=null,daFrom="end",daFrs=null,daSel=new Set();
@@ -3134,7 +3385,7 @@ $("daGo").onclick=()=>busy("daGo",async()=>{if(!daSel.size)return am("daMsg",t("
  const r=await sb.rpc("duel_send",{p_duel:o.i,p_game:o.g,p_payload:o,p_friends:ids});if(r.error)throw r.error;const rows=r.data||[];
  if(rows.some(x=>x.status==="auth"))return am("daMsg",t("eAuth"));if(!rows.length||rows.some(x=>x.status==="bad"))return am("daMsg",t("eGen"));
  const nm=id=>{const x=(daFrs||[]).find(z=>z.id===id);return x?x.pseudo:"?"},ok=rows.filter(x=>x.status==="ok"||x.status==="already"),ko=rows.filter(x=>x.status!=="ok"&&x.status!=="already");
- if(ok.length){const e=chRecOut(o);e.fr=e.fr||[];ok.forEach(x=>{if(!e.fr.some(z=>z.u===x.friend))e.fr.push({u:x.friend,n:nm(x.friend),st:"wait"})});chSave(e)}
+ if(ok.length){nfAskSoon();const e=chRecOut(o);e.fr=e.fr||[];ok.forEach(x=>{if(!e.fr.some(z=>z.u===x.friend))e.fr.push({u:x.friend,n:nm(x.friend),st:"wait"})});chSave(e)}
  if(ko.length){daSel=new Set(ko.map(x=>x.friend));daDraw();return am("daMsg",(ok.length?t(ok.length>1?"daSentN":"daSent1",ok.length>1?ok.length:nm(ok[0].friend))+" ":"")+ko.map(x=>t(x.status==="fullfr"?"daFull":"tbNotFr",nm(x.friend))).join(" "))}
  toast(ok.length>1?t("daSentN",ok.length):t("daSent1",nm(ok[0].friend)));DAL=null;chView(chFind(o.i));daLoad()});
 // supprimer un de ses duels tant que personne n'a répondu
@@ -3201,7 +3452,7 @@ function netBack(){if(netB)return netB;const n0=netPend();netB=(async()=>{try{
  if(!sb){if(SB.url&&!window.supabase)loadSB();return}
  if(ACC&&!SESS){let r=null;try{r=await sb.auth.getSession()}catch(e){}const s=r&&r.data&&r.data.session;
   if(s){await setSess(s);renderIntro()}else if(r&&!r.error){await setSess(null);renderIntro()}}
- if(ME&&SESS){await Promise.all([plSync(),syncAcc()]);if(n0&&!netPend())toast(t("netSent"))}}catch(e){}finally{netB=null;netUI()}})();return netB}
+ if(ME&&SESS){await Promise.all([plSync(),syncAcc()]);tbLoad();if(n0&&!netPend())toast(t("netSent"))}}catch(e){}finally{netB=null;netUI()}})();return netB}
 window.addEventListener("online",netProbe);window.addEventListener("offline",()=>netSet(false));
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")netProbe()});
 $("offR").onclick=netProbe;
@@ -3364,15 +3615,108 @@ const dStat=k=>k?t(k===DG.length?"banAll":k>1?"banN":"ban1",k):t("banDone");
 function renderBan(){const k=dLeft(),b=$("daily"),day=pToday();b.classList.toggle("done",!k);$("banS").textContent=dStat(k);{const n=DG.filter(g=>myD(day,g)).length;$("banP").innerHTML=DG.map((g,i)=>"<i"+(i<n?' class="d"':"")+"></i>").join("")}const o=serGet();$("serN").textContent=o.cur?t("serS",o.cur):"";$("serC").classList.toggle("hide",!o.cur)}
 function renderSolo(){const k=dLeft(),b=$("dailyS");b.classList.toggle("p",!!k);b.classList.toggle("done",!k);
  $("dSoloS").innerHTML=esc(t("dD"))+"<br>"+(k?esc(dStat(k)):'<span class="ok2">✅ '+esc(dStat(k))+"</span>");}
-function renderSet(){}
+function renderSet(){renderNf()}
 const vis=id=>{const e=$(id);return e&&!e.classList.contains("hide")};
-function menuHook(id){if(id==="home"){renderBan()}else if(id==="soloP")renderSolo();else if(id==="setP")renderSet()}
-function menuLang(){if(vis("home"))renderBan();if(vis("soloP"))renderSolo();if(vis("setP"))renderSet()}
+function menuHook(id){if(id==="home"){renderBan();nfSync()}else if(id==="soloP")renderSolo();else if(id==="setP")renderSet()}
+function menuLang(){nfLang();if(vis("home"))renderBan();if(vis("soloP"))renderSolo();if(vis("setP"))renderSet()}
 setInterval(()=>{if(vis("home"))renderBan();if(vis("soloP"))renderSolo()},30000);
 $("soloB").onclick=()=>show("soloP");$("setB").onclick=()=>show("setP");
 $("daily").onclick=()=>{soloBk="home";openDaily()};$("dailyS").onclick=()=>{soloBk="soloP";openDaily()};
 all("[data-setl]").forEach(b=>b.onclick=()=>{const v=b.dataset.setl;if(v!==L){L=v;try{localStorage.setItem("fwlang",L)}catch(e){}applyLang()}renderSet()});
 ["soloP","setP"].forEach(id=>HBP.add(id));
+// ===== Lot 4 : notifications sur le téléphone (Web Push), reprises de NumériMots (v21.1) =====
+// Le téléphone s'enregistre dans Supabase (push_save) ; la base envoie les notifications
+// par la fonction « push ». sw.js les affiche et ouvre le bon écran quand on les touche.
+const VAPID="BGoWH1KDaVAf0BJjwI4CuUEyugCljgVbWJJD3PEl0gHE4unYR_Qkqfs66qMdSkVDcoxbYEySlw9ujfnw2_atHTg";
+Object.assign(T.fr,{nfH:"🔔 Notifications",nfGuest:"Les notifications sont réservées aux joueurs connectés avec un compte.",
+ nfIOS:"Sur iPhone, les notifications ne marchent que si le jeu est sur l'écran d'accueil : touche ⬆️ Partager, puis « Sur l'écran d'accueil », et ouvre le jeu depuis cette icône.",
+ nfNoSup:"Ce navigateur ne permet pas les notifications. Sur Android, utilise Chrome ou Samsung Internet.",nfIOSold:"Ton iPhone doit être en iOS 16.4 ou plus récent pour recevoir les notifications (Réglages › Général › Mise à jour logicielle).",
+ nfBlk:"Les notifications sont bloquées pour ce jeu. Pour les autoriser : touche le cadenas 🔒 (ou ⓘ) à gauche de l'adresse du site, puis Autorisations › Notifications, et reviens ici.",
+ nfOnB:"🔔 Activer les notifications",nfOnH:"Sois prévenu quand un ami t'ajoute, quand on te lance un défi et quand c'est ton tour au tour par tour. Le réglage vaut pour ce téléphone seulement.",
+ nfOnS:"✅ Activées sur ce téléphone",nfAmis:"👥 Amis",nfAmisS:"demandes d'ami reçues ou acceptées",nfDefis:"⚔️ Défis",nfDefisS:"duels reçus et invitations à un match",
+ nfTours:"🎲 Ton tour",nfToursS:"un nouveau tour t'attend au tour par tour",nfRap:"⏰ Rappels",nfRapS:"avant la fin d'un tour pas encore joué",
+ nfNight:"🌙 Rien entre 22 h et 8 h (heure de ton téléphone) : les notifications de la nuit arrivent le matin.",nfTest:"Envoyer une notification de test",
+ nfTestOk:"C'est parti ! La notification arrive dans la minute (tu peux fermer le jeu pour la voir).",nfOff:"Désactiver sur ce téléphone",nfOffQ:"Ne plus recevoir de notifications sur ce téléphone ?",
+ nfOnT:"🔔 Notifications activées !",nfOffT:"Notifications désactivées sur ce téléphone.",nfDen:"Notifications refusées. Tu pourras les autoriser plus tard dans les réglages du navigateur.",
+ nfErr:"Impossible d'activer les notifications pour l'instant. Réessaie dans un moment.",nfAskT:"🔔 Être prévenu ?",
+ nfAskH:"<p>Reçois une notification quand c'est ton tour de jouer, quand un ami te lance un défi ou t'envoie une demande d'ami.</p><p>Tu pourras tout régler à tout moment dans ⚙️ Réglages.</p>",
+ nfLater:"Plus tard",nfYes:"Activer",nfInGame:"Notification reçue : tu la retrouveras dans le menu après ta partie."});
+Object.assign(T.en,{nfH:"🔔 Notifications",nfGuest:"Notifications are for players logged in with an account.",
+ nfIOS:"On iPhone, notifications only work when the game is on the home screen: tap ⬆️ Share, then “Add to Home Screen”, and open the game from that icon.",
+ nfNoSup:"This browser doesn't support notifications. On Android, use Chrome or Samsung Internet.",nfIOSold:"Your iPhone needs iOS 16.4 or later to receive notifications (Settings › General › Software Update).",
+ nfBlk:"Notifications are blocked for this game. To allow them: tap the padlock 🔒 (or ⓘ) left of the site address, then Permissions › Notifications, and come back here.",
+ nfOnB:"🔔 Turn on notifications",nfOnH:"Get notified when a friend adds you, when someone challenges you and when it's your turn in a turn-based match. This setting is for this phone only.",
+ nfOnS:"✅ On for this phone",nfAmis:"👥 Friends",nfAmisS:"friend requests received or accepted",nfDefis:"⚔️ Challenges",nfDefisS:"duels received and match invitations",
+ nfTours:"🎲 Your turn",nfToursS:"a new turn is waiting for you in a turn-based match",nfRap:"⏰ Reminders",nfRapS:"before a turn you haven't played yet runs out",
+ nfNight:"🌙 Nothing between 10 pm and 8 am (your phone's time): night-time notifications arrive in the morning.",nfTest:"Send a test notification",
+ nfTestOk:"Done! The notification arrives within a minute (you can close the game to see it).",nfOff:"Turn off on this phone",nfOffQ:"Stop receiving notifications on this phone?",
+ nfOnT:"🔔 Notifications on!",nfOffT:"Notifications turned off on this phone.",nfDen:"Notifications declined. You can allow them later in your browser settings.",
+ nfErr:"Notifications can't be turned on right now. Try again in a moment.",nfAskT:"🔔 Get notified?",
+ nfAskH:"<p>Get a notification when it's your turn to play, when a friend challenges you or sends you a friend request.</p><p>You can change this at any time in ⚙️ Settings.</p>",
+ nfLater:"Later",nfYes:"Turn on",nfInGame:"Notification received: you'll find it in the menu after your game."});
+const NFP=[["amis","nfAmis"],["defis","nfDefis"],["tours","nfTours"],["rappels","nfRap"]];
+let NF={uid:null,chk:false,ok:false,sub:null,pf:null,busy:false},nfSynced=null;
+var nfIn0=null;
+(()=>{try{const u=new URLSearchParams(location.search);if(!u.has("nf"))return;const k=u.get("nf")||"",m=u.get("m")||"";
+ if(/^(tb|fr|da)$/.test(k))nfIn0={k,m:/^[0-9a-f-]{36}$/.test(m)?m:""};u.delete("nf");u.delete("m");const q=u.toString();history.replaceState(null,"",location.pathname+(q?"?"+q:"")+location.hash)}catch(e){}})();
+const nfSup=()=>"serviceWorker"in navigator&&"PushManager"in window&&"Notification"in window&&window.isSecureContext;
+const nfIOS=()=>/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+const nfU=()=>{try{return localStorage.getItem("fwnfu")||""}catch(e){return""}};
+function nfKey(){const s=VAPID.replace(/-/g,"+").replace(/_/g,"/"),b=atob(s+"===".slice((s.length+3)%4));return Uint8Array.from(b,c=>c.charCodeAt(0))}
+async function nfReg(ms){if(!nfSup())return null;try{return await Promise.race([navigator.serviceWorker.ready,wait(ms||15000).then(()=>null)])}catch(e){return null}}
+async function nfState(){const id=ME?ME.id:null,r=await nfReg();if(!r){NF.chk=false;await wait(3000);return false}let s=null;try{s=await r.pushManager.getSubscription()}catch(e){NF.chk=false;await wait(3000);return false}
+ NF.uid=id;NF.sub=s;NF.ok=!!(s&&id&&nfU()===id&&Notification.permission==="granted");NF.chk=true;if(NF.ok&&!NF.pf)await nfPrefs();return NF.ok}
+async function nfPrefs(){try{const r=await sb.rpc("push_prefs_get");if(r.error)throw r.error;NF.pf=r.data||null}catch(e){NF.pf=NF.pf||null}}
+const nfTz=()=>{try{return Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){return""}};
+async function nfSave(s){const j=s.toJSON(),k=j.keys||{};const r=await sb.rpc("push_save",{p_endpoint:j.endpoint,p_p256dh:k.p256dh,p_auth:k.auth,p_lang:L,p_tz:nfTz()});if(r.error)throw r.error;if(r.data!=="ok")throw new Error(r.data)}
+async function nfOn(){if(NF.busy||!ME||!needSb()||!nfSup())return;NF.busy=true;renderNf();
+ try{let p=Notification.permission;if(p==="default")p=await Notification.requestPermission();
+  if(p!=="granted"){toast(t("nfDen"));return}
+  const r=await nfReg();if(!r)throw new Error("sw");let s=await r.pushManager.getSubscription();
+  if(!s){try{s=await r.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:nfKey()})}
+   catch(e){const o=await r.pushManager.getSubscription();if(o)await o.unsubscribe();s=await r.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:nfKey()})}}
+  await nfSave(s);try{localStorage.setItem("fwnfu",ME.id)}catch(e){}NF.uid=ME.id;NF.sub=s;NF.ok=true;NF.chk=true;NF.pf=null;await nfPrefs();toast(t("nfOnT"))}
+ catch(e){toast(t("nfErr"))}finally{NF.busy=false;renderNf()}}
+async function nfOff(){if(NF.busy)return;NF.busy=true;renderNf();try{await nfDrop()}finally{NF.busy=false;renderNf()}toast(t("nfOffT"))}
+async function nfDrop(){let s=NF.sub;try{if(!s){const r=await nfReg();s=r?await r.pushManager.getSubscription():null}}catch(e){}
+ if(s){try{if(sb&&SESS&&ME)await sb.rpc("push_remove",{p_endpoint:s.endpoint})}catch(e){}try{await s.unsubscribe()}catch(e){}}
+ try{localStorage.removeItem("fwnfu")}catch(e){}NF.sub=null;NF.ok=false;NF.pf=null}
+// déconnexion : ce téléphone ne doit plus recevoir les notifications du compte
+async function nfQuit(){if(!nfSup()||!nfU())return;try{await Promise.race([nfDrop(),wait(3000)])}catch(e){}NF.chk=false}
+// à l'ouverture du menu : on redonne l'adresse du téléphone à Supabase (elle peut changer)
+async function nfSync(){if(!ME||!sb||!SESS||!nfSup()||nfSynced===ME.id||nfU()!==ME.id)return;nfSynced=ME.id;
+ try{const r=await nfReg();if(!r){nfSynced=null;return}const s=await r.pushManager.getSubscription();if(s&&Notification.permission==="granted")await nfSave(s);
+  else{if(s)try{await sb.rpc("push_remove",{p_endpoint:s.endpoint})}catch(e){}try{localStorage.removeItem("fwnfu")}catch(e){}}}catch(e){}}
+let nfLT=0;function nfLang(){if(!NF.ok||!NF.sub||!ME||!sb||!SESS)return;clearTimeout(nfLT);nfLT=setTimeout(()=>nfSave(NF.sub).catch(()=>{}),800)}
+function renderNf(){const B=$("nfBox");if(!B)return;const H=x=>'<p class="dnote" style="text-align:left">'+x+"</p>";
+ if(!ME){B.innerHTML=H(esc(t("nfGuest")));return}
+ if(!nfSup()){const sa=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;B.innerHTML=H(esc(t(nfIOS()?(sa?"nfIOSold":"nfIOS"):"nfNoSup")));return}
+ if(Notification.permission==="denied"){B.innerHTML=H(esc(t("nfBlk")));return}
+ if(!NF.chk||NF.uid!==ME.id){B.innerHTML=H(esc(t("frLoad")));if(!NF.ld){NF.ld=1;nfState().finally(()=>{NF.ld=0;if(vis("setP"))renderNf()})}return}
+ if(!NF.ok){B.innerHTML=H(esc(t("nfOnH")))+'<button class="btn p mb" id="nfOnB" data-net'+(NF.busy?" disabled":"")+">"+esc(t("nfOnB"))+"</button>";$("nfOnB").onclick=nfOn;return}
+ const pf=NF.pf||{};
+ B.innerHTML='<div class="pcard"><div class="pn">'+esc(t("nfOnS"))+"</div></div>"+NFP.map(([k,l])=>'<button class="nfT'+(pf[k]!==false?" on":"")+'" data-nfp="'+k+'"'+(NF.pf?"":" disabled")+"><span>"+esc(t(l))+"<small>"+esc(t(l+"S"))+"</small></span><i></i></button>").join("")+
+  H(esc(t("nfNight")))+'<button class="btn mb" id="nfTst" data-net style="font-size:16px;padding:12px">'+esc(t("nfTest"))+'</button><button class="btn mb dng" id="nfOffB" style="font-size:16px;padding:12px"'+(NF.busy?" disabled":"")+">"+esc(t("nfOff"))+"</button>";
+ if(!NF.pf&&!NF.pl){NF.pl=1;nfPrefs().finally(()=>{NF.pl=0;if(vis("setP"))renderNf()})}
+ all("[data-nfp]").forEach(b=>b.onclick=async()=>{if(!NF.pf||b.disabled)return;const k=b.dataset.nfp,v=NF.pf[k]===false;b.disabled=true;
+  try{const r=await sb.rpc("push_prefs_set",{p:{[k]:v}});if(r.error)throw r.error;NF.pf={...NF.pf,[k]:v}}catch(e){toast(errT(e))}renderNf()});
+ $("nfTst").onclick=async()=>{const b=$("nfTst");if(b.disabled)return;b.disabled=true;try{const s=NF.sub;if(s)await nfSave(s);const r=await sb.rpc("push_test");if(r.error)throw r.error;toast(t(r.data==="ok"?"nfTestOk":"nfErr"))}catch(e){toast(errT(e))}b.disabled=false};
+ $("nfOffB").onclick=()=>modal(t("nfH"),"<p>"+esc(t("nfOffQ"))+"</p>",[{l:t("no"),f:closeModal},{l:t("yes"),c:"p",f:()=>{closeModal();nfOff()}}])}
+// proposition au bon moment (une seule fois), juste après une action qui appelle une réponse
+function nfAskSoon(){setTimeout(nfAsk,1300)}
+function nfAsk(){if(!ME||!nfSup()||Notification.permission!=="default"||!$("modal").classList.contains("hide"))return;
+ try{if(localStorage.getItem("fwnfask"))return;localStorage.setItem("fwnfask","1")}catch(e){return}
+ modal(t("nfAskT"),t("nfAskH"),[{l:t("nfLater"),f:closeModal},{l:t("nfYes"),c:"p",f:()=>{closeModal();nfOn()}}])}
+// ouverture du bon écran depuis une notification
+async function nfGo(o,n){if(!o)return;if(!sb||!SESS||!ME){if((n|0)<12)setTimeout(()=>nfGo(o,(n|0)+1),700);return}
+ if(o.k==="fr")return openFr();if(o.k==="da")return openChMenu();
+ if(o.k==="tb"){await tbLoad();if(o.m&&tbRow(o.m))return openTbM(o.m);return openTb()}}
+const nfBusyG=()=>!over||!!tbx||!!MP||!!daily||!!chl||$("intro")&&!$("intro").classList.contains("hide");
+if("serviceWorker"in navigator)navigator.serviceWorker.addEventListener("message",e=>{const d=e.data||{};
+ if(d.t==="nfin"){if(ME&&sb&&SESS){tbLoad();daLoad();refreshAcc()}const x=d.d||{};if(x.t&&!(!over||tbx||MP))toast(x.t+(x.b?" · "+x.b:""))}
+ else if(d.t==="nfopen"){let o=null;try{const u=new URL(d.u,location.href).searchParams,k=u.get("nf")||"",m=u.get("m")||"";if(/^(tb|fr|da)$/.test(k))o={k,m:/^[0-9a-f-]{36}$/.test(m)?m:""}}catch(e){}
+  if(!o)return;if(!ME||$("intro")&&!$("intro").classList.contains("hide")){nfIn0=o;return}if(nfBusyG())return toast(t("nfInGame"));closeModal();nfGo(o)}});
+
 
 // ===== v21.2 : copier les e-mails des joueurs (écran Admin) =====
 
@@ -3446,6 +3790,7 @@ function ixGate(g,go){const K=IX[g],o=ixGet();if(!K||mpr||cmx||!o||o[g])return f
 {const o=startDL;startDL=function(){const a=arguments;if(ixGate("l",()=>startDL.apply(this,a)))return;return o.apply(this,a)}}
 {const o=startC;startC=function(){const a=arguments;if(ixGate("c",()=>startC.apply(this,a)))return;return o.apply(this,a)}}
 {const o=startDf;startDf=function(g){const a=arguments;if(ixGate(g,()=>startDf.apply(this,a)))return;return o.apply(this,a)}}
+{const o=tbBegin;tbBegin=function(m,i){const g=tbSt(m)[m.tour-1][i];if(ixGate(g,()=>tbBegin(m,i)))return;return o.apply(this,arguments)}}
 // e-mail de bienvenue : envoyé une seule fois par la fonction Supabase « bienvenue » (la base garde la trace)
 function welc(u){try{if(!sb||!u||!u.email_confirmed_at||!NET||localStorage.getItem("fwwelc:"+u.id))return}catch(e){return}
  sb.functions.invoke("welcome",{body:{lang:L}}).then(r=>{if(r&&!r.error&&r.data&&r.data.ok)try{localStorage.setItem("fwwelc:"+u.id,"1")}catch(e){}}).catch(()=>{})}
@@ -3635,7 +3980,7 @@ function a3Conf(){try{if(matchMedia("(prefers-reduced-motion: reduce)").matches)
  c.innerHTML=h;document.body.appendChild(c);setTimeout(()=>c.remove(),4600)}
 plRecN=(o=>function(pp,pe){o.apply(this,arguments);try{for(const e of[pp,pe]){if(!e||!rcOk(e,e.g,e.l)||(e.g==="c"&&!e.p))continue;const a=rcMine(e.g,e.l),i=a.findIndex(x=>x.c===e.c);if(i<0||i>9)continue;if(i===0&&a.length>1)setTimeout(a3Conf,250);break}}catch(x){}})(plRecN);
 
-// --- classements du jour : podium, onglets Top 10 / Amis, flèches entre les jeux, série en bas ---
+// --- classements du jour : podium entre amis (lot 4 : plus de top 10 mondial), flèches entre les jeux, série en bas ---
 const FLM='<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.5 1.2-4 2.5-5 .2 2 1 3 2 3 0-3-.5-6 .5-9z"/></svg>';
 function a3Ser(){const o=serGet(),d=n=>t(n===1?"a3D1":"a3DN",n),c=o.cur||0;return'<div class="serB">'+FLM+"<b>"+t("a3Ser",d(c))+"</b><small>"+t("a3SerR",d(Math.max(o.best||0,c)))+"</small></div>"}
 function a3Rk(list,m,open){const top=list.filter(x=>x.pos<=3).slice(0,3),rest=list.slice(top.length),v=x=>rkVal(m,x,open),tm=x=>rkNo(m,x)?"":fmtT(x.time_cs*10);let h="";
@@ -3643,27 +3988,43 @@ function a3Rk(list,m,open){const top=list.filter(x=>x.pos<=3).slice(0,3),rest=li
  let prev=top.length?top[top.length-1].pos:0;
  h+=rest.map(x=>{const s=(x.pos>prev+1?'<div class="rksep">⋯</div>':"")+'<div class="rkr'+(x.me?" me":"")+'"><b>'+x.pos+"</b><span>"+esc(x.pseudo)+"</span><small><b>"+v(x)+"</b>"+(tm(x)?" · "+tm(x):"")+"</small></div>";prev=x.pos;return s}).join("");return h}
 rank=async function(g,off){syncD();off=Math.max(0,Math.min(RKN-1,off|0));rkG=g;rkO=off;const day=addDay(pToday(),-off),m=DGM[g],lg=DGL[g],me=myD(day,g),open=!!((off&&(!ENO||day<dEarly()))||(me&&me.done)),tok=++rkTok;
- $("rkT").textContent=gNoEm(t("m"+m.toUpperCase()));$("rkD").textContent=lg&&!ENO?t("gL"+lg):"";rkNav(off);
- $("rkL").innerHTML='<p class="dnote">'+t("rkLoad")+"</p>";$("rkSer").innerHTML=a3Ser();
- $("rkS").innerHTML=open?'<div class="sol"><h3>'+t("solT")+"</h3>"+solD(day,g)+"</div>":'<p class="dnote" style="margin-top:14px">'+t(off?"lockW":"lock")+"</p>";show("rankP");
- if(open&&m==="l")solL(day,g,tok);
- all("#rkTabs [data-sc]").forEach(b=>b.classList.toggle("on",b.dataset.sc===rkScope));
- if(rkScope==="friends"&&!ME){$("rkL").innerHTML='<p class="dnote">'+t("rkFrG")+'</p><button class="btn p mb" id="rkSu">'+t("signup")+"</button>";$("rkSu").onclick=()=>goAuth("signupP","rankP");return}
- let list=null;
- if(sb){if(ME){try{await sendMy(day,g)}catch(e){}}try{const r=await sb.rpc("daily_rank",{p_day:day,p_game:g,p_scope:rkScope});if(r.error)throw r.error;list=r.data||[]}catch(e){}}
- if(tok!==rkTok)return;
- if(!list){$("rkL").innerHTML='<p class="dnote">'+t("rkErr")+"</p>";return}
- if(!ME)list=list.filter(x=>x.pos<=10).map(x=>({...x,me:false}));
- let h=list.length?a3Rk(list,m,open):'<p class="dnote">'+t(off?"rkNoneP":"rkNone")+"</p>";
- if(rkScope==="friends"&&list.length<=1)h+='<p class="dnote" style="margin-top:10px">'+t("rkFr0")+"</p>";
- if(!ME&&me&&me.done){const x={result:me.r,detail:me.x,time_cs:Math.round(me.t/10)};h+='<p class="dnote" style="margin-top:10px">'+t("rkGuest",rkVal(m,x,true)+(rkNo(m,x)?"":" · "+fmtT(me.t)))+"</p>"}
- $("rkL").innerHTML=h};
+  $("rkT").textContent=gNoEm(t("m"+m.toUpperCase()));$("rkD").textContent=lg&&!ENO?t("gL"+lg):"";rkNav(off);
+  $("rkL").innerHTML='<p class="dnote">'+t("rkLoad")+"</p>";$("rkSer").innerHTML=a3Ser();$("rkPct").innerHTML="";
+  $("rkS").innerHTML=open?'<div class="sol"><h3>'+t("solT")+"</h3>"+solD(day,g)+"</div>":'<p class="dnote" style="margin-top:14px">'+t(off?"lockW":"lock")+"</p>";show("rankP");
+  if(open&&m==="l")solL(day,g,tok);
+  if(me&&me.done)rkPctLoad(day,g,me,off,tok);
+  if(!ME){let h='<p class="dnote">'+t("rkFrG")+'</p><button class="btn p mb" id="rkSu">'+t("signup")+"</button>";
+   if(me&&me.done){const x={result:me.r,detail:me.x,time_cs:Math.round(me.t/10)};h+='<p class="dnote" style="margin-top:10px">'+t("rkGuest",rkVal(m,x,true)+(rkNo(m,x)?"":" · "+fmtT(me.t)))+"</p>"}
+   $("rkL").innerHTML=h;$("rkSu").onclick=()=>goAuth("signupP","rankP");return}
+  let list=null;
+  if(sb){try{await sendMy(day,g)}catch(e){}try{const r=await sb.rpc("daily_rank",{p_day:day,p_game:g,p_scope:"friends"});if(r.error)throw r.error;list=r.data||[]}catch(e){}}
+  if(tok!==rkTok)return;
+  if(!list){$("rkL").innerHTML='<p class="dnote">'+t("rkErr")+"</p>";return}
+  let h='<h3 class="rkFrT">'+esc(t("rkFrT"))+"</h3>"+(list.length?a3Rk(list,m,open):'<p class="dnote">'+t(off?"rkNoneFP":"rkNoneF")+"</p>");
+  if(list.length<=1)h+='<p class="dnote" style="margin-top:10px">'+t("rkFr0")+"</p>";
+  $("rkL").innerHTML=h};
+// repère anonyme : « You did better than 72 % of players today » (aucun nom, aucun classement mondial)
+const PCTMIN=5;
+async function rkPctLoad(day,g,me,off,tok){if(!sb)return;let d=null;
+  try{const r=await sb.rpc("daily_beat",{p_day:day,p_game:g,p_result:+me.r||0,p_time_cs:Math.max(0,Math.min(12100,Math.round((me.t||0)/10)))});if(r.error)throw r.error;d=(r.data||[])[0]||null}catch(e){}
+  if(tok!==rkTok||!d||!$("rkPct"))return;$("rkPct").innerHTML=pctH(d,off)}
+function pctH(d,off){const n=d.players|0,p=Math.max(0,Math.min(100,d.pct|0));
+  if(n<PCTMIN)return off?"":'<div class="pctB"><i>🌅</i><span><b>'+esc(t("pctFew"))+"</b></span></div>";
+  return'<div class="pctB"><i>'+(p>=100?"🏆":p+"%")+"</i><span><b>"+esc(p>=100?t(off?"pctAllP":"pctAll"):t(off?"pctP":"pctT",p))+"</b><small>"+esc(t("pctN",n.toLocaleString(L==="fr"?"fr-FR":"en-GB")))+"</small></span></div>"}
+Object.assign(T.fr,{rkFrT:"👥 Entre amis",rkNoneF:"Aucun de tes amis n'a encore joué ce défi.",rkNoneFP:"Aucun de tes amis n'a joué ce défi ce jour-là.",
+  pctT:"Tu as fait mieux que {n} % des joueurs aujourd'hui",pctP:"Tu as fait mieux que {n} % des joueurs ce jour-là",
+  pctAll:"Personne n'a fait mieux que toi aujourd'hui !",pctAllP:"Personne n'a fait mieux que toi ce jour-là !",
+  pctN:"comparé à {n} autres joueurs",pctFew:"Tu fais partie des premiers à jouer : reviens plus tard pour te comparer aux autres joueurs."});
+Object.assign(T.en,{rkFrT:"👥 Among friends",rkNoneF:"None of your friends has played this challenge yet.",rkNoneFP:"None of your friends played this challenge that day.",
+  pctT:"You did better than {n}% of players today",pctP:"You did better than {n}% of players that day",
+  pctAll:"Nobody has done better than you today!",pctAllP:"Nobody did better than you that day!",
+  pctN:"compared with {n} other players",pctFew:"You're one of the first to play: come back later to see how you compare with other players."});
 
 solL=async function(day,g,tok){const d=genDaily(day,g),lg=DGL[g],dc=await loadDict(lg);if(tok!==rkTok||!$("lsol"))return;
  $("lsol").innerHTML="<p>"+t("longest")+"</p>"+a3T(d.w,"n")+'<div style="height:14px"></div>'+a3ExH(a3Ex(d.l,[...new Set(dc.list.concat(d.w))],lg),d.w,lg)};
 // --- classement d'une épreuve du jour pas encore jouée : touche pour la jouer directement ---
-Object.assign(T.fr,{dRkAll:"Les classements",dRkAllS:"top 10, amis et 30 derniers jours",rkPlay:"▶ Jouer cette épreuve"});
-Object.assign(T.en,{dRkAll:"Leaderboards",dRkAllS:"top 10, friends and the last 30 days",rkPlay:"▶ Play this round"});
+Object.assign(T.fr,{dRkAll:"Les classements",dRkAllS:"entre amis et 30 derniers jours",rkPlay:"▶ Jouer cette épreuve"});
+Object.assign(T.en,{dRkAll:"Leaderboards",dRkAllS:"among friends and the last 30 days",rkPlay:"▶ Play this round"});
 function rkPlayB(){const b=$("rkPlay");if(!b)return;const g=rkG;if(rkO||!DGM[g]||myD(pToday(),g)){b.innerHTML="";return}
  b.innerHTML='<button class="btn p mb" id="rkGo" style="margin-top:14px">'+t("rkPlay")+"</button>";
  $("rkGo").onclick=()=>modal(nameOf(g),t("dConf")+(ME?"":"<p><b>"+t("dGuest")+"</b></p>"),[{l:t("no"),f:closeModal},{l:t("dGo"),c:"p",f:()=>startD(g)}])}
@@ -3696,11 +4057,12 @@ var autoL=false,autoGo=false;
 (()=>{if(!ACC||recov||HT||HE||HM)return;
  const unl=()=>{document.removeEventListener("pointerdown",unl,true);try{unlockA()}catch(e){}};
  const go=()=>{if(!ACC||!vis("intro"))return;autoGo=true;autoL=true;launch(true);document.addEventListener("pointerdown",unl,true)};
- if(!(chIn0||mpJoin0||frIn0))return go();
+ if(!(nfIn0||chIn0||mpJoin0||frIn0))return go();
  // lien reçu (notification, duel, salon, ami) : on attend que la session soit vérifiée
  const t0=Date.now(),iv=setInterval(()=>{if(authReady||Date.now()-t0>15000){clearInterval(iv);if(authReady&&ACC&&(SESS||!NET))go()}},200)})();
 // session expirée ou refusée juste après l'ouverture directe : retour à l'écran d'accueil
 setSess=(o=>async function(){const r=await o.apply(this,arguments);if(autoGo&&!ACC&&vis("home")){renderIntro();show("intro")}return r})(setSess);
+setSess=(o=>async function(){const r=await o.apply(this,arguments);try{if(ME&&SESS&&sb&&(vis("home")||vis("mpMenu"))){tbLoad();daLoad()}}catch(e){}return r})(setSess);
 // ===== Lot 3a : saisie des lettres avec ou sans clavier (réglage gardé sur le téléphone) =====
 const KBK="nmKb";
 function kbGet(){try{return localStorage.getItem(KBK)||"1"}catch(e){return"1"}}
@@ -3752,17 +4114,17 @@ Object.assign(T.en,{tagl:"The daily letters and numbers game",whatB:"❓ What is
 <p>⚡ <b>Final Sprint</b>: unscramble 8 words in 2 minutes. Stuck? Skip and come back later.</p>
 <p>🎯 <b>Challenges</b>: theme, mental maths, nested words and spelling, 30 seconds each.</p>
 <h3>📅 The Daily puzzle</h3>
-<p>Every day at midnight, your time: one Word Hunt, one Target Number and one Final Sprint. Same puzzle for everyone, one try each. Climb the leaderboard, keep your streak going and share your result with your friends, spoiler-free.</p>
+<p>Every day at midnight, your time: one Word Hunt, one Target Number and one Final Sprint. Same puzzle for everyone, one try each. See how you rank among your friends and how many players you beat, keep your streak going and share your result, spoiler-free.</p>
 <h3>🙋 Solo</h3>
 <p>🏆 <b>Classic game</b>: the rounds follow one another, in about 6 or 16 minutes.</p>
 <p>🎲 <b>Quick play</b>: one round of the game of your choice.</p>
 <h3>👥 With friends</h3>
-<p>Live rooms for up to 16 players, each on their own phone, and duels you can play whenever you like, with friends or by link.</p>
+<p>Live rooms for up to 16 players, each on their own phone, duels you can play whenever you like, with friends or by link, and turn-based matches against a friend, over a few days.</p>
 <h3>📚 The dictionary</h3>
 <p>British and American spellings, plurals and verb forms all count. Tap any word in the results to see its definition.</p>
 <h3>💾 With an account</h3>
-<p>Your scores are kept, you appear in the leaderboards and you can add friends. You can also play without an account, as a guest.</p>`,
- rD:`<p>Every day at midnight, your time, three new challenges: Word Hunt (30 seconds), Target Number (45 seconds) and Final Sprint (2 minutes).</p><p>The draw is the same for every player and each challenge can be played only once. For Word Hunt, the draw always contains at least one 10-letter word.</p><p>Leaderboards: Word Hunt by the longest word found, Target Number by the result closest to the target, Final Sprint by the number of words found. Ties are broken by time, to the hundredth of a second (time the word was submitted, time of the best calculation, time of the last word found).</p><p>Once you have played, the draw and the solutions appear below the leaderboard. If you haven't played yet, only the leaderboard is shown. The draw and solutions of a past day are visible to everyone once that day is over around the world.</p><p>Leaderboards: the top 10 of all players with an account, and the ranking among friends. As a guest, you can play but your result is not ranked.</p>`});
+<p>Your scores are kept, you can add friends, compare your results with theirs and get notified when it's your turn. You can also play without an account, as a guest.</p>`,
+ rD:`<p>Every day at midnight, your time, three new challenges: Word Hunt (30 seconds), Target Number (45 seconds) and Final Sprint (2 minutes).</p><p>The draw is the same for every player and each challenge can be played only once. For Word Hunt, the draw always contains at least one 10-letter word.</p><p>Leaderboards: Word Hunt by the longest word found, Target Number by the result closest to the target, Final Sprint by the number of words found. Ties are broken by time, to the hundredth of a second (time the word was submitted, time of the best calculation, time of the last word found).</p><p>Once you have played, the draw and the solutions appear below the leaderboard. If you haven't played yet, only the leaderboard is shown. The draw and solutions of a past day are visible to everyone once that day is over around the world.</p><p>Leaderboards: you are ranked among your friends, and you can see what percentage of players you did better than that day. As a guest, you can play but your result is not ranked.</p>`});
 Object.assign(T.fr,{tagl:"Le jeu de lettres et de chiffres du jour",whatB:"❓ C'est quoi Lexicalc ?",whatT:"C'est quoi Lexicalc ?"});
 applyLang();
 </script></body></html>
