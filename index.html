@@ -309,7 +309,9 @@ h1.logo{margin:14px 0 20px;letter-spacing:0;text-transform:none}
 #gm.w #tiles{gap:8px}#gm.w #tiles .tile{height:56px;font-size:26px}
 .gbt{display:flex;gap:10px;margin-top:16px}
 .gbt .btn{flex:1;min-width:0;height:52px;padding:0 6px;font-size:16px;font-weight:900;white-space:nowrap}
-.gbt #del{flex:0 0 64px;display:flex;align-items:center;justify-content:center}
+.gbt #del,.gbt #clr{flex:0 0 64px;display:flex;align-items:center;justify-content:center}
+.lw #clr{flex:0 0 56px}
+#instB{font-size:16px;padding:12px;font-weight:800}
 .btn.sk{color:#d9822b}
 .gbt2{display:flex;gap:10px;margin-top:10px}.gbt2 .btn{flex:1;height:56px;font-size:18px;font-weight:900}
 .btn.g{background:var(--ok);color:var(--tx);box-shadow:0 5px 0 #17824a}
@@ -325,6 +327,10 @@ h1.logo{margin:14px 0 20px;letter-spacing:0;text-transform:none}
 #dmsg{margin:0;min-height:20px;text-align:center;color:var(--mut);font-size:14px;font-weight:600}
 #vcRow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 0}
 #vcRow .btn{height:72px;border-radius:16px;font-size:22px;font-weight:900}
+#vcAuto{display:block;width:100%;margin:12px 0 0;min-height:52px;font-size:17px;font-weight:800}
+#vcAuto.hide{display:none}
+.mpSt{display:flex;justify-content:center;margin:0 0 8px}.mpSt .btn{min-height:40px;padding:6px 16px;font-size:15px;font-weight:800}div.mpSt.hide{display:none}
+.mpo{margin:12px 0 4px}.mpo h4{margin:0 0 6px;font-size:14px;color:var(--mut);text-align:center;font-weight:800}.mpo .row{display:flex;gap:8px}.mpo .row .btn{flex:1;min-width:0;padding-left:4px;padding-right:4px}
 
 .ccard{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--in);border-radius:18px;padding:14px 16px}
 .cct{display:flex;flex-direction:column;gap:6px;min-width:0}.cct .gti{text-align:left}
@@ -628,7 +634,7 @@ input,.fi{color:var(--tx)}
 <button class="btn p mb ic" id="soloB"><i class="mi"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></i><span class="mt"><span data-t="pSolo"></span><small class="sub" data-t="dSolo"></small></span><i class="chv"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></i></button>
 <button class="btn p mb ic" id="multi" data-net><i class="mi"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.6 3-6 7-6s7 2.4 7 6"/><circle cx="18" cy="7" r="3"/><path d="M17 13.2c3.5-.4 7 1.8 7 5.8"/></svg></i><span class="mt"><span data-t="pM"></span><span class="bdg hide" id="tbB0"></span><small class="sub" data-t="dM"></small></span><i class="chv"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></i></button>
 <div class="h3t"><button class="btn bl" id="dicB" data-net><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg><span data-t="hDic"></span></button><button class="btn" id="rules"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/></svg><span data-t="rules"></span></button><button class="btn" id="records"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span data-t="recB"></span></button></div>
-<button class="btn mb" id="discB" style="font-size:16px;padding:12px" data-t="discT"></button><button class="btn mb hide" id="admB" style="font-size:16px;padding:12px" data-net data-t="admT"></button>
+<button class="btn mb" id="discB" style="font-size:16px;padding:12px" data-t="discT"></button><button class="btn mb hide" id="instB" data-t2="instB"></button><button class="btn mb hide" id="admB" style="font-size:16px;padding:12px" data-net data-t="admT"></button>
 <div class="foot"><p id="ofS" class="hide"></p><p data-t="copy"></p><button class="lnk" data-priv data-t="privL"></button><button class="lnk" data-legal data-t="legL"></button><button class="lnk" data-del data-t="lgDel"></button><button class="lnk" id="rldB" data-t="reload" data-net></button></div></section>
 <section id="soloP" class="pg hide"><h2 data-t="pSolo"></h2>
 <button class="btn p mb ic" id="dailyS" data-net><i class="mi"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></i><span class="mt"><span data-t="pD"></span><small class="sub" id="dSoloS"></small></span><i class="chv"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></i></button>
@@ -667,15 +673,15 @@ input,.fi{color:var(--tx)}
 <div class="row tabs" id="recLg"><button class="btn" data-rl="fr">🇫🇷 Français</button><button class="btn" data-rl="en">🇬🇧 English</button></div>
 <div id="recL"></div><p class="dnote" id="recH" style="margin-top:12px"></p><button class="btn mb" data-st="recsP" data-t="back"></button></section>
 <section id="dictP" class="pg hide"><h2 data-t="chooseDict"></h2><button class="btn p mb" data-d="fr" data-t="dFr"></button><button class="btn p mb" data-d="en" data-t="dEn"></button><div id="dst" style="min-height:24px;text-align:center;color:var(--mut);margin-bottom:12px"></div><button class="btn mb" id="dback" data-t="back"></button></section>
-<section id="drawP" class="pg hide gs"><div class="gh"><div class="stg hide"></div><div class="ghr"><button class="gb" data-quit aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><div class="ghm"></div><span class="gb gbx"></span></div></div><div class="dwc"><span class="gti"></span><h2 id="drawH" data-t="drawT"></h2><div class="tiles" id="slots"></div><div class="vcc" id="vcC"><span><b id="nvC">0</b> <i id="nvL"></i></span><span><b id="ncC">0</b> <i id="ncL"></i></span></div><p id="dmsg" data-t="drawH"></p></div><div class="row" id="vcRow"><button class="btn p" id="vow" data-t="pickV"></button><button class="btn bl" id="con" data-t="pickC"></button></div></section>
-<section id="gm" class="pg hide gs"><div class="gh"><div class="stg hide"></div><div class="ghr"><button class="gb" data-quit aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><div class="ghm"></div><button class="gb mute" aria-label="Son"></button></div></div>
+<section id="drawP" class="pg hide gs"><div class="gh"><div class="stg hide"></div><div class="ghr"><button class="gb" data-quit aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><div class="ghm"></div><span class="gb gbx"></span></div></div><div class="dwc"><span class="gti"></span><h2 id="drawH" data-t="drawT"></h2><div class="tiles" id="slots"></div><div class="vcc" id="vcC"><span><b id="nvC">0</b> <i id="nvL"></i></span><span><b id="ncC">0</b> <i id="ncL"></i></span></div><p id="dmsg" data-t="drawH"></p></div><div class="row" id="vcRow"><button class="btn p" id="vow" data-t="pickV"></button><button class="btn bl" id="con" data-t="pickC"></button></div><button class="btn hide" id="vcAuto" data-t2="vcAuto"></button></section>
+<section id="gm" class="pg hide gs"><div class="gh"><div class="stg hide"></div><div class="ghr"><button class="gb" data-quit aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><div class="ghm"></div><button class="gb mute" aria-label="Son"></button></div></div><div class="mpSt hide"><button class="btn" data-mpstop data-t2="mpHStop"></button></div>
 <div class="ghost hide"></div><div class="gtm"><span class="gti"></span><div id="time">2:00</div><span class="tbar"><i></i></span></div>
 <div class="dots" id="dots"></div><p class="dlg hide" id="dotsL"></p>
 <div class="gmid"><div class="acard"><p id="len"></p><div class="ansv" id="ansV"></div><input id="ans" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Mot"></div><div id="msg"></div>
 <div class="tiles" id="tiles"></div></div><span id="score" class="hide"></span>
-<div class="gbt"><button class="btn" id="del" aria-label="⌫"><svg aria-hidden="true" width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h15a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8l-6-9z"/><path d="M13 8l6 6M19 8l-6 6"/></svg></button><button class="btn hide" id="clr" data-t="clrW"></button><button class="btn" id="shuf" data-t="shuffle"></button><button class="btn sk" id="skip" data-t="skipW"></button></div>
+<div class="gbt"><button class="btn" id="del" aria-label="⌫"><svg aria-hidden="true" width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h15a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8l-6-9z"/><path d="M13 8l6 6M19 8l-6 6"/></svg></button><button class="btn hide" id="clr" aria-label="Clear"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg></button><button class="btn" id="shuf" data-t="shuffle"></button><button class="btn sk" id="skip" data-t="skipW"></button></div>
 <div class="gbt2"><button class="btn hide" id="lend" data-t="done"></button><button class="btn g" id="ok" data-t="submit"></button></div></section>
-<section id="cGame" class="pg hide gs"><div class="gh"><div class="stg hide"></div><div class="ghr"><button class="gb" data-quit aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><div class="ghm"></div><button class="gb mute" aria-label="Son"></button></div></div>
+<section id="cGame" class="pg hide gs"><div class="gh"><div class="stg hide"></div><div class="ghr"><button class="gb" data-quit aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><div class="ghm"></div><button class="gb mute" aria-label="Son"></button></div></div><div class="mpSt hide"><button class="btn" data-mpstop data-t2="mpHStop"></button></div>
 <div class="ghost hide"></div><div class="ccard"><div class="cct"><span class="gti" data-t="mC"></span><div class="tgt" id="tg"></div></div><div class="gtm sm"><div id="ctime">0:45</div><span class="tbar"><i></i></span></div></div>
 <div id="clog"></div><div id="cpend" class="cpend hide"></div><div id="cmsg"></div><div class="csp"></div>
 <div class="plates" id="pl"></div><div class="ops" id="ops"></div>
@@ -713,7 +719,7 @@ input,.fi{color:var(--tx)}
 <input class="fi" id="mjCode" inputmode="numeric" autocomplete="off" maxlength="7" data-ph="mpCodePh" data-go="mjGo">
 <div class="amsg" id="mjMsg"></div><button class="btn p mb" id="mjGo" data-t="mpJoinGo"></button><button class="btn mb" id="mjBack" data-t="back"></button></section>
 <section id="mpP" class="pg hide"><h2 id="mpT"></h2><div class="mpHead"></div><p id="mpWait" class="mpw hide"></p><div id="mpBody"></div><button class="btn mb" id="mpLeave" style="margin-top:12px"></button></section>
-<section id="mpWaitP" class="pg hide"><h2 id="mwT"></h2><div id="mwS"></div><p class="mpw" id="mwM"></p><button class="btn mb" id="mwLeave" style="margin-top:12px"></button></section>
+<section id="mpWaitP" class="pg hide"><h2 id="mwT"></h2><div id="mwS"></div><p class="mpw" id="mwM"></p><button class="btn p mb mpSt hide" data-mpstop data-t2="mpHStop" style="margin-top:12px"></button><button class="btn mb" id="mwLeave" style="margin-top:12px"></button></section>
 <section id="mpResP" class="pg hide"><h2 id="mrT"></h2><div id="mrW"></div><div id="mrB"></div><div id="mrBtn" style="margin-top:14px"></div><div id="mrInv"></div><button class="btn mb" id="mrLeave" style="margin-top:4px"></button></section>
 <section id="frP" class="pg hide"><h2 data-t="friends"></h2>
 <div class="frc"><small data-t="frCodeT"></small><b id="frCode">…</b><div class="row"><button class="btn" id="frCopy" data-t="frCopy"></button><button class="btn" id="frInv" data-t="frInv"></button></div></div>
@@ -735,7 +741,7 @@ input,.fi{color:var(--tx)}
 <div class="mrow"><button class="btn p mb" data-df="u"><span data-t="mU"></span><small class="sub" data-t="s30"></small></button><button class="info" data-info="U">?</button></div>
 <div class="mrow"><button class="btn p mb" data-df="s"><span data-t="mS"></span><small class="sub" data-t="s30"></small></button><button class="info" data-info="S">?</button></div>
 <button class="btn mb" id="dfBack" data-t="back"></button></section>
-<section id="dfP" class="pg hide gs"><div class="gh"><div class="stg hide"></div><div class="ghr"><button class="gb" data-quit aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><div class="ghm"></div><button class="gb mute" aria-label="Son"></button></div></div><div class="ghost hide"></div>
+<section id="dfP" class="pg hide gs"><div class="gh"><div class="stg hide"></div><div class="ghr"><button class="gb" data-quit aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><div class="ghm"></div><button class="gb mute" aria-label="Son"></button></div></div><div class="mpSt hide"><button class="btn" data-mpstop data-t2="mpHStop"></button></div><div class="ghost hide"></div>
 <div class="dfban"><span class="dfbi" id="dfBi"></span><span class="dfbt"><small id="dfBl"></small><h2 id="dfTh"></h2></span><div class="gtm xs"><div id="dftime">0:30</div></div><span class="tbar"><i></i></span></div>
 <p class="dfh" id="dfHint"></p><div id="dfArea"></div><div id="dfBzL" class="mpw hide"></div><div id="dfmsg"></div><div id="dfIn"></div></section>
 <section id="defP" class="pg hide"><h2 data-t="pDic"></h2><p class="dnote" data-t="dicH"></p>
@@ -880,7 +886,7 @@ loadDict=(o=>async function(l){const d=await o(l);if(l==="en"&&d&&!d.lx){d.list=
 async function goDict(l){clearTimeout(dAuto);if(ENO)l="en";dl=l;if(dfIs(mode)&&!party)return startDf(mode);$("dst").textContent=t("loading");all("[data-d]").forEach(b=>b.disabled=true);dict=await loadDict(l);all("[data-d]").forEach(b=>b.disabled=false);party?runStep():mode==="w"?startW():startL()}
 function lock(b){["ok","del","clr","shuf","skip","ans"].forEach(id=>$(id).disabled=b);locked=b}
 const mx=()=>mode==="w"?rounds[queue[cur]].w.length:10;
-function gameUI(){lock(false);msg("");ghOn();$("skip").classList.toggle("hide",mode==="l"||!!(mpr&&mpr.g==="a")||!!cmx);$("clr").classList.toggle("hide",mode!=="l");$("clr").parentNode.classList.toggle("lw",mode==="l");if(mode!=="l")$("lend").classList.add("hide");show("gm");draw()}
+function gameUI(){lock(false);msg("");ghOn();$("skip").classList.toggle("hide",mode==="l"||!!(mpr&&mpr.g==="a")||!!cmx);$("clr").classList.toggle("hide",mode!=="l"&&mode!=="w");$("clr").parentNode.classList.toggle("lw",mode==="l");if(mode!=="l")$("lend").classList.add("hide");show("gm");draw()}
 function draw(){$("dots").innerHTML=mode==="w"?rounds.map((r,i)=>'<i class="'+(r.done?"d ":"")+(i===queue[cur]?"c":"")+'"></i>').join(""):"";
  if(mode==="w"&&!queue.length){results(t(mpr&&mpr.g==="a"||cmx?"gpGood":"allFound"),xW());return}
  const r=rounds[queue[cur]];$("len").textContent=mode==="w"?t("nLetters",r.w.length):t("longH");gPk=[];$("ans").value="";$("ans").maxLength=mx();$("score").textContent=cmx?"":score+" "+t("pts");msg("");rt()}
@@ -903,7 +909,7 @@ $("ok").onclick=()=>{const r=rounds[queue[cur]],a=$("ans").value.trim().toLowerC
 };
 function tryL(a){tried=a;const c={};rounds[0].l.forEach(x=>c[x]=(c[x]||0)+1);for(const x of a){if(!c[x])return false;c[x]--}
  if(!dict.set.has(a))return false;
- if(a.length>best.length){best=a;score=a.length;RTL=dur.l?Math.min(performance.now()-RT0,dur.l*1000):performance.now()-RT0;{const k=daily||mpr||chl||tbx||cmx;if(k)k.lt=Math.min(dEl(),dur.l*1000)}}return true}
+ if(a.length>best.length){best=a;score=a.length;RTL=dur.l?Math.min(performance.now()-RT0,dur.l*1000):performance.now()-RT0;{const k=daily||mpr||chl||tbx||cmx;if(k)k.lt=dur.l?Math.min(dEl(),dur.l*1000):dEl()}}return true}
 function endL(){if(over)return;clearInterval(timer);lock(true);stopM();pending=null;results(tried?t(best?"wAccT":"wRefT"):t("ended"),xL())}
 const key=w=>w.split("").sort().join("");
 function timeUp(){if(mode==="l"){const a=$("ans").value.trim();if(a)tryL(a)}lock(true);msg(t("timeUp"),"ko");afterMusic(()=>results(t("timeUp"),mode==="w"?xW():xL()))}
@@ -959,7 +965,7 @@ const cState=()=>bv===tgt?msg(t("exact"),"ok","cmsg"):msg("","","cmsg");
 function ap(a,o,b){if((o==="−"||o==="÷")&&items[a].v<items[b].v){const k=a;a=b;b=k}const x=items[a].v,y=items[b].v;let r;if(o==="+")r=x+y;else if(o==="×")r=x*y;else if(o==="−")r=x-y;else r=y?x/y:0;
  if(r<=0||!Number.isInteger(r)){msg(t("opBad"),"ko","cmsg");so=null;rdC();return}
  items[a].u=items[b].u=1;items.push({v:r,u:0});lines.push({a:x,o,b:y,r,i:items.length-1,ia:a,ib:b});sa=sz=so=null;
- if(bv===null||Math.abs(r-tgt)<Math.abs(bv-tgt)){bv=r;RTL=dur.c?Math.min(performance.now()-RT0,dur.c*1000):performance.now()-RT0;if(daily||mpr||chl||tbx||cmx)bt=Math.min(dEl(),dur.c*1000);if(chl&&!chl.opp&&chl.ev.length<60)chl.ev.push([Math.round(bt/100),r])}cState();rdC();if(bv===tgt&&(mpr&&isGP()||cmx))cEnd()}
+ if(bv===null||Math.abs(r-tgt)<Math.abs(bv-tgt)){bv=r;try{bvC=cChain(items.length-1)}catch(e){bvC=""}RTL=dur.c?Math.min(performance.now()-RT0,dur.c*1000):performance.now()-RT0;if(daily||mpr||chl||tbx||cmx)bt=dur.c?Math.min(dEl(),dur.c*1000):dEl();if(chl&&!chl.opp&&chl.ev.length<60)chl.ev.push([Math.round(bt/100),r])}cState();rdC();if(bv===tgt&&(mpr&&isGP()||cmx))cEnd()}
 $("undo").onclick=()=>{if(cl||!lines.length)return;const l=lines.pop();items.pop();items[l.ia].u=0;items[l.ib].u=0;sa=sz=so=null;cState();rdC()};
 $("rst").onclick=()=>{if(cl)return;items=P.map(v=>({v,u:0}));lines=[];sa=sz=so=null;cState();rdC()};
 $("cdone").onclick=()=>{if($("cGame").classList.contains("hide"))return;if(cmx&&!cmx.cf&&!over&&bv!==tgt)return modal(t("quit"),"<p>"+t("cmGiveQ",fmtCM(45000))+"</p>",[{l:t("no"),f:closeModal},{l:t("yes"),c:"p",f:()=>{closeModal();cmx.cf=1;$("cdone").click()}}]);if(rv){ctok++;rv=false;shown=6;sfxStop();bv=null;setTg(String(tgt).split(""));over=false}else if(chl&&!over&&chl.t0)chl.f=Math.round(Math.min(dEl(),45000)/100);cEnd()};
@@ -1021,10 +1027,10 @@ const dT0=()=>{RT0=performance.now();RTL=0;const k=daily||mpr||chl||tbx||cmx;if(
 const dEl=()=>{const k=daily||mpr||chl||tbx||cmx;return k&&k.t0?performance.now()-k.t0:0};
 function dResult(){const m=DGM[daily.g];
  if(m==="l")return best?{r:best.length,x:best,t:Math.round(daily.lt||30000)}:{...WORST.l};
- if(m==="c")return bv===null?{...WORST.c}:{r:Math.abs(tgt-bv),x:String(bv),t:Math.round(bt)};
- const n=rounds.filter(x=>x.done).length;return n?{r:n,x:n+"/8",t:Math.round(daily.lt)}:{...WORST.w}}
+ if(m==="c")return bv===null?{...WORST.c}:{r:Math.abs(tgt-bv),x:cDet(),t:Math.round(bt)};
+ const n=rounds.filter(x=>x.done).length;return n?{r:n,x:wDet(n),t:Math.round(daily.lt)}:{...WORST.w}}
 function dFinish(){if(!daily||daily.done)return;daily.done=1;setMy(daily.day,daily.g,{...dResult(),done:1,sent:0});sendMy(daily.day,daily.g)}
-async function sbSend(day,g,o){if(!sb||!ME)return false;const{error}=await sb.rpc("submit_score",{p_day:day,p_game:g,p_result:o.r,p_detail:String(o.x||"").slice(0,20),p_time_cs:Math.max(0,Math.min(12100,Math.round(o.t/10)))});if(error)throw error;return true}
+async function sbSend(day,g,o){if(!sb||!ME)return false;const q=x=>sb.rpc("submit_score",{p_day:day,p_game:g,p_result:o.r,p_detail:x,p_time_cs:Math.max(0,Math.min(12100,Math.round(o.t/10)))});const x=String(o.x||"").slice(0,20);let{error}=await q(x);if(error&&x.includes("|"))({error}=await q(cV(x)));if(error)throw error;return true}
 async function sendMy(day,g){const o=myD(day,g);if(!o||!o.done||o.sent)return true;let ok=false;try{ok=await sbSend(day,g,o)}catch(e){}if(ok){const n=myD(day,g);if(n){n.sent=1;setMy(day,g,n)}}return ok}
 function syncD(){const d0=pToday();[d0,addDay(d0,-1)].forEach(day=>DG.forEach(g=>{const e=myD(day,g);if(!e)return;if(!e.done&&!(daily&&daily.g===g&&daily.day===day)){e.done=1;setMy(day,g,e)}if(e.done&&!e.sent&&ME)sendMy(day,g)}))}
 function renderD(){syncD();const day=pToday();{const o=serGet(),e=$("serL");if(e){e.textContent=o.best?"🔥 "+t("serL",o.cur,o.best):"";e.classList.toggle("hide",!o.best)}}$("dInfo").innerHTML=t("dInfo",leftMid());$("dPs").textContent=ME?t("dAcc",ME.pseudo):t("dGst");
@@ -1046,7 +1052,7 @@ function startDL(){clearTimeout(tmo);clearTimeout(dtm);stopM();clearInterval(tim
 $("drk").onclick=()=>{const g=daily&&daily.g;quitGame();if(g)rank(g,0)};
 const rkNo=(m,x)=>m==="c"?x.result>=9999:!x.result;
 function rkVal(m,x,open){if(dfIs(m))return x.result?"✓ "+dfUp(x.detail):x.detail?"✗ "+dfUp(x.detail):t("noAns");if(m==="l")return x.result?(open?esc(String(x.detail).toUpperCase())+" ("+x.result+")":t("lets",x.result)):t("noWord");
- if(m==="c")return x.result>=9999?t("noAns"):(open?esc(x.detail)+" · ":"")+(x.result===0?t("exactS"):t("near",x.result));
+ if(m==="c")return x.result>=9999?t("noAns"):(open?esc(cV(x.detail))+" · ":"")+(x.result===0?t("exactS"):t("near",x.result));
  return t("words",x.result)}
 const RKN=30;
 function rkNav(off){const d0=pToday();$("rkSel").innerHTML=Array.from({length:RKN},(_,i)=>{const ds=fmtDayS(addDay(d0,-i),i<2);return'<option value="'+i+'"'+(i===off?" selected":"")+">"+(i<2?t(i?"yday":"today")+" · "+ds:ds.charAt(0).toUpperCase()+ds.slice(1))+"</option>"}).join("");$("rkPrev").disabled=off>=RKN-1;$("rkNext").disabled=off<=0}
@@ -2182,6 +2188,7 @@ function mpConnect(code,host){return new Promise(res=>{let done=false,synced=fal
  ch.on("broadcast",{event:"pg"},({payload:p})=>{if(MP===M&&!M.host&&p){M.pg=p;mpWaitRefresh()}});
  ch.on("broadcast",{event:"bye"},()=>{if(MP===M&&!M.host)mpQuit("mpClosed")});
  ch.on("broadcast",{event:"kick"},({payload:p})=>{if(MP===M&&!M.host&&p&&p.id===MID)mpQuit("mpKick")});
+ ch.on("broadcast",{event:"hlp"},({payload:p})=>{if(MP===M&&!M.host&&p)try{mpHlpShow(p)}catch(e){}});
  ch.subscribe(async st=>{
   if(st==="SUBSCRIBED"){
    if(M.trk){try{await ch.track(mpMeta(M))}catch(e){}return}// reconnexion après une coupure
@@ -2242,11 +2249,11 @@ function mpPlayers(){const R=MP.R,ids=Object.keys(R.pl).sort((a,b)=>(b===R.hid)-
 function mpRender(prev){if(!MP||!MP.R)return;const R=MP.R,ph=R.ph,pp=prev&&prev.ph;mpHeadRefresh();if(R.dl)preDict(R.dl);
  if(ph==="setup"){const was=!!mpr;mpAbortLocal();if(!MP.host&&(was||LIVE.includes(pp)))modal(t("pM"),"<p>"+t("mpStopped")+"</p>",[{l:t("ok"),c:"p",f:closeModal}]);return mpSetup()}
  if(ph==="draw")return mpDraw();if(ph==="pick")return mpResShow();
- if(ph==="play"){if(MP.rid!==R.rid){if(R.ids.includes(MID))mpStartLocal();else mpWaitShow()}else if(R.d&&dfIs(R.d.g)&&mpr&&mpr.rid===R.rid)dfSync();else if(!mpr||mpr.done||mpr.ld)mpWaitShow();return}
+ if(ph==="play"){if(MP.rid!==R.rid){if(R.ids.includes(MID))mpStartLocal();else mpWaitShow()}else if(R.d&&dfIs(R.d.g)&&mpr&&mpr.rid===R.rid)dfSync();else if(!mpr||mpr.done||mpr.ld)mpWaitShow();mpSpChk();return}
  if(mpr){if(!mpr.done)mpAbortLocal();else mpr=null}
  mpResShow();if(ph==="end")mpSave()}
 function mpTitle(){const R=MP.R;return t(R.mo==="o"?"mpO":R.mo==="g"?"gpT":R.mo==="p"?"mpP":"mpQ")}
-function mpSubT(){const R=MP.R;if(R.mo==="p")return t("cuN",R.nr);const a=[R.mo==="o"||R.mo==="g"?t(R.ty==="n"?"pN":"pQ")+" ("+t(R.mo==="g"?(R.ty==="n"?"gpDn":"gpDq"):(R.ty==="n"?"d15":"d5"))+")":t("m"+R.ty.toUpperCase())+" ("+t({l:"s30",c:"s45",w:"s120",t:"s30",k:"s30",u:"s30",s:"s30"}[R.ty])+")"];if(R.dl)a.push(t("dic"+R.dl));return a.join(" · ")}
+function mpSubT(){const R=MP.R;if(R.mo==="p")return t("cuN",R.nr);if(R.mo==="q"&&R.ty)return t("m"+R.ty.toUpperCase())+" ("+(mptK(R.ty)?mptLbl(R.tq,1):t("s120"))+")";const a=[R.mo==="o"||R.mo==="g"?t(R.ty==="n"?"pN":"pQ")+" ("+t(R.mo==="g"?(R.ty==="n"?"gpDn":"gpDq"):(R.ty==="n"?"d15":"d5"))+")":t("m"+R.ty.toUpperCase())+" ("+t({l:"s30",c:"s45",w:"s120",t:"s30",k:"s30",u:"s30",s:"s30"}[R.ty])+")"];if(R.dl)a.push(t("dic"+R.dl));return a.join(" · ")}
 function mpSetup(){const R=MP.R,h=MP.host,dis=h?"":" disabled";show("mpP");$("mpT").textContent=t("mpRoomOf",R.hn);
  $("mpWait").classList.toggle("hide",h);$("mpWait").textContent=t(R.scr==="ready"?"mpWaitGo":"mpHostPrep");
  const B=(k,lab,sub,cls)=>'<button class="btn '+(cls===undefined?"p":cls)+' mb" data-ms="'+k+'"'+dis+">"+(sub?"<span>"+lab+'</span><small class="sub">'+sub+"</small>":lab)+"</button>",
@@ -2255,23 +2262,24 @@ function mpSetup(){const R=MP.R,h=MP.host,dis=h?"":" disabled";show("mpP");$("mp
  if(R.scr==="modes")x="<h3>"+t("mpChoose")+"</h3>"+B("o",t("mpO"),t("mpOS"))+B("q",t("mpQ"),t("mpQS"))+B("p",t("mpP"),t("mpPS"));
   else if(R.scr==="rounds")x="<h3>"+t("cuRounds")+'</h3><div class="ngrid">'+[2,3,4,5,10,15,20,25,30].map(n=>'<button class="btn p" data-ms="n'+n+'"'+dis+">"+n+"</button>").join("")+"</div>"+back;
  else if(R.scr==="orig")x="<h3>"+t("mpO")+"</h3>"+I("n",t("pN"),t("d15"),"N")+I("q",t("pQ"),t("d5"),"Q")+back;
- else if(R.scr==="quick")x="<h3>"+t("mpQ")+"</h3>"+B("l",t("mL"),t("s30"))+B("c",t("mC"),t("s45"))+I("w",t("mW"),t("s120"),"W")+I("t",t("mT"),t("s30"),"T")+I("k",t("mK"),t("s30"),"K")+I("u",t("mU"),t("s30"),"U")+I("s",t("mS"),t("s30"),"S")+back;
+ else if(R.scr==="quick")x="<h3>"+t("mpQ")+"</h3>"+B("l",t("mL"),t("qTl"))+B("c",t("mC"),t("qTc"))+I("w",t("mW"),t("s120"),"W")+I("t",t("mT"),t("qTl"),"T")+I("k",t("mK"),t("qTl"),"K")+I("u",t("mU"),t("qTl"),"U")+I("s",t("mS"),t("qTl"),"S")+back;
  else if(R.scr==="gp")x="<h3>"+t("gpT")+"</h3>"+I("n",t("pN"),t("gpDn"),"GN")+I("q",t("pQ"),t("gpDq"),"GQ")+back;
  else if(R.scr==="dict")x="<h3>"+t(R.mo==="q"&&R.ty==="v"?"dvT":"chooseDict")+"</h3>"+B("fr",t(R.mo==="q"&&R.ty==="v"?"dvFr":"dFr"))+B("en",t(R.mo==="q"&&R.ty==="v"?"dvEn":"dEn"))+back;
- else{const g=mpGuests();x="<h3>"+t("mpReady")+'</h3><div class="pcard"><div class="pn">'+mpTitle()+'</div><div class="pm">'+mpSubT()+'</div><div class="pm">'+t("mpNbP",mpOnIds().length)+"</div></div>"+(h?B("go",t("mpGo"))+(g?"":'<p class="dnote">'+t("mpNeed1")+"</p>"):"")+back}
+ else{const g=mpGuests();x="<h3>"+t("mpReady")+'</h3><div class="pcard"><div class="pn">'+mpTitle()+'</div><div class="pm">'+mpSubT()+'</div><div class="pm">'+t("mpNbP",mpOnIds().length)+"</div></div>"+(R.mo==="q"&&R.ty?mpOptH(R.ty,R.tq,"ms",dis):"")+(h?B("go",t("mpGo"))+(g?"":'<p class="dnote">'+t("mpNeed1")+"</p>"):"")+back}
  $("mpBody").innerHTML=x;const go=$("mpBody").querySelector('[data-ms="go"]');if(go)go.disabled=!mpGuests();
  $("mpLeave").textContent=t(h?"mpClose":"mpLeave");$("mpBody").classList.toggle("mir",!h)}
 $("mpBody").onclick=e=>{const i=e.target.closest("[data-info]");if(i){const k=i.dataset.info;return modal(t(IT[k]),t("i"+k),[{l:t("close"),c:"p",f:closeModal}])}
  const b=e.target.closest("[data-ms]");if(!b||b.disabled||!MP||!MP.host)return;const R=MP.R,k=b.dataset.ms;
  if(k==="go")return mpLaunch();
+ if(R.scr==="ready"&&R.mo==="q"&&/^tm-/.test(k)){R.tq=+k.slice(3);mptSave(R.ty,R.tq);return mpPush()}
  if(k==="back")R.scr=R.scr==="ready"&&R.mo==="p"?"rounds":R.scr==="ready"?(R.mo==="q"?"quick":"orig"):R.scr==="dict"?(R.mo==="o"?"orig":R.mo==="g"?"gp":"quick"):"modes";
  else if(R.scr==="modes"){R.mo=k;R.scr=k==="o"?"orig":k==="g"?"gp":k==="p"?"rounds":"quick"}
   else if(R.scr==="rounds"){R.nr=+k.slice(1)||5;R.ty="p";R.dl=null;R.scr="ready"}
  else if(R.scr==="orig"){R.ty=k;R.dl="en";R.scr="ready"}
- else if(R.scr==="quick"){R.ty=k;R.dl=k==="c"||k==="k"?null:"en";R.scr="ready"}
+ else if(R.scr==="quick"){R.ty=k;R.dl=k==="c"||k==="k"?null:"en";R.tq=mptDef(k);R.scr="ready"}
  else if(R.scr==="dict"){R.dl=k;R.scr="ready"}
  mpPush()};
-function mpLaunch(){const R=MP.R;if(!mpGuests())return;R.gid=Date.now().toString(36)+Math.random().toString(36).slice(2,8);R.st=R.mo==="o"?(R.ty==="n"?mkNS():mkQS()):R.mo==="g"?(R.ty==="n"?mkGPN():mkGPQ()):R.mo==="p"?[]:[R.ty];R.i=0;
+function mpLaunch(){const R=MP.R;if(!mpGuests())return;R.sp=0;R.tm=R.mo==="q"&&mptK(R.ty)?(MPT[mptK(R.ty)].includes(R.tq)?R.tq:MPT[mptK(R.ty)][0]):null;R.gid=Date.now().toString(36)+Math.random().toString(36).slice(2,8);R.st=R.mo==="o"?(R.ty==="n"?mkNS():mkQS()):R.mo==="g"?(R.ty==="n"?mkGPN():mkGPQ()):R.mo==="p"?[]:[R.ty];R.i=0;
  for(const id in R.pl){if(id!==MID&&!R.pl[id].on)delete R.pl[id];else{R.pl[id].tot=0;R.pl[id].np=0}}if(R.mo==="p"){R.ph="pick";R.last=null;R.d=null;R.dl=null;MP.pk=null;return mpPush()}mpRound()}
 function mpRound(){const R=MP.R,g=R.st[R.i];R.last=null;R.bz=null;
  if(R.mo==="g")return mpPlay(gpGen(g,R.dl));
@@ -2282,8 +2290,8 @@ function mpRound(){const R=MP.R,g=R.st[R.i];R.last=null;R.bz=null;
 function mpPick(ty){const R=MP.R;if(R.ph!=="draw"||R.ld.length>=10||(ty==="v"?R.nv:R.nc)>=8)return;R.ld.push(wp(WT[R.dl][ty]));ty==="v"?R.nv++:R.nc++;mpPush();
  if(R.ld.length===10){clearTimeout(MP.dtm);MP.dtm=setTimeout(()=>{if(MP&&MP.R.ph==="draw")mpPlay({g:"l",l:MP.R.ld.slice()})},900)}}
 function mpPlay(d){const R=MP.R;R.d=d;R.ph="play";R.rid++;R.ids=mpOnIds();R.ids.forEach(id=>R.pl[id].np=(R.pl[id].np||0)+1);MP.ans={};MP.pg=null;const rid=R.rid;
- clearTimeout(MP.dlt);if(dfIs(d.g)&&R.mo!=="g")dfHStart();else MP.dlt=setTimeout(()=>{if(MP&&MP.R.ph==="play"&&MP.R.rid===rid)mpPublish()},R.mo==="g"?gpDL(d.g):MPDL[d.g]);mpPush()}
-const mpClean=a=>({p:Math.max(0,Math.min(999,a.p|0)),r:Math.max(0,Math.min(9999,a.r|0)),x:String(a.x||"").slice(0,20),t:Math.max(0,Math.min(999999,a.t|0))});
+ clearTimeout(MP.dlt);if(dfIs(d.g)&&R.mo!=="g")dfHStart();else{const dlv=R.mo==="g"?gpDL(d.g):mpDL(d.g);if(dlv)MP.dlt=setTimeout(()=>{if(MP&&MP.R.ph==="play"&&MP.R.rid===rid)mpPublish()},dlv)}mpPush()}
+const mpClean=a=>({p:Math.max(0,Math.min(999,a.p|0)),r:Math.max(0,Math.min(9999,a.r|0)),x:String(a.x||"").slice(0,20),t:Math.max(0,Math.min(3600000,a.t|0))});
 function mpOnAns(p){const R=MP.R;if(!p||!p.a||R.ph!=="play"||p.rid!==R.rid||!R.ids.includes(p.id))return;if(!MP.ans[p.id])MP.ans[p.id]=mpClean(p.a);mpPgSend();mpCheckDone()}
 function mpPgSend(){const p={rid:MP.R.rid,d:Object.keys(MP.ans)};MP.pg=p;mpSend("pg",p);mpWaitRefresh()}
 function mpCheckDone(){const R=MP.R;if(R.ph!=="play"||(R.d&&dfIs(R.d.g)&&R.mo!=="g"))return;if(R.ids.filter(id=>id===MID||(R.pl[id]&&R.pl[id].on)).every(id=>MP.ans[id]))mpPublish()}
@@ -2300,16 +2308,16 @@ function mpDraw(){const R=MP.R;mpAbortLocal();mode="l";dl=R.dl;ld=R.ld.slice();n
  $("drawH").textContent=t("drawT");$("dmsg").textContent=MP.host?(ld.length<10?t("drawH"):""):t("mpHostPicks");
  if(ld.length>MP.ldn)sfx(A.clic);MP.ldn=ld.length;if($("drawP").classList.contains("hide"))show("drawP")}
 async function mpStartLocal(){const R=MP.R,rid=R.rid,g=R.d.g;MP.rid=rid;MP.played[R.gid]=1;clearInterval(MP.rs);closeModal();
- mpr={rid,g,t0:0,lt:0,done:0,ld:0};party=null;daily=null;trn=null;chl=null;chNav=false;dfNav=false;dur={l:30,c:45};dl=R.dl;mode=g;
+ mpr={rid,g,t0:0,lt:0,done:0,ld:0};party=null;daily=null;trn=null;chl=null;chNav=false;dfNav=false;dur={l:30,c:45};{const tm=mpTm();if(tm!==null){if(g==="l")dur.l=tm;if(g==="c")dur.c=tm}}dl=R.dl;mode=g;
  if(dfIs(g))return startDf(g);if(g==="c")return startC();
  if(!D[dl]){mpr.ld=1;mpWaitShow()}dict=await preDict(dl);
  if(!mpr||mpr.rid!==rid||!MP||MP.R.rid!==rid||MP.R.ph!=="play")return;mpr.ld=0;mode=g;
  if(g==="w"||g==="a"){mode="w";startW()}else{ld=R.d.l.slice();setStage();beginL()}}
 function mpAbortLocal(){if(!mpr)return;ctok++;sfxStop();dfStop();clearTimeout(tmo);clearTimeout(dtm);clearInterval(timer);pending=null;stopM();over=true;mpr=null;if(MP)clearInterval(MP.rs)}
 function mpEnd(why,html){over=true;clearInterval(timer);pending=null;stopM();closeModal();const g=mpr.g;let a;
- if(isGP())a=gpAns(g);else if(g==="l")a={p:score,r:best?best.length:0,x:best||"",t:best?Math.round(mpr.lt||30000):30000};
- else if(g==="c")a=bv===null?{p:0,r:9999,x:"",t:45000}:{p:score,r:Math.abs(tgt-bv),x:String(bv),t:Math.round(bt)};
- else{const n=rounds.filter(x=>x.done).length;a={p:score,r:n,x:n+"/8",t:n?Math.round(mpr.lt):120000}}
+ if(isGP())a=gpAns(g);else if(g==="l")a={p:score,r:best?best.length:0,x:best||"",t:best?Math.round(mpr.lt||(dur.l||3600)*1000):(dur.l||3600)*1000};
+ else if(g==="c")a=bv===null?{p:0,r:9999,x:"",t:(dur.c||3600)*1000}:{p:score,r:Math.abs(tgt-bv),x:cDet(),t:Math.round(bt)};
+ else{const n=rounds.filter(x=>x.done).length;a={p:score,r:n,x:wDet(n),t:n?Math.round(mpr.lt):120000}}
  mpr.done=1;MP.mine=a;MP.html[mpr.rid]={why,html};const rid=mpr.rid;
  if(MP.host){MP.ans[MID]=a;mpPgSend();mpWaitShow();mpCheckDone();return}
  const go=()=>{const R=MP&&MP.R;if(!R||R.rid!==rid||R.ph!=="play"||(MP.pg&&MP.pg.rid===rid&&MP.pg.d.includes(MID))){if(MP)clearInterval(MP.rs);return}mpSend("ans",{id:MID,rid,a})};
@@ -2333,7 +2341,7 @@ function mpResShow(){const R=MP.R,Z=R.last;if(!Z)return R.ph==="pick"?mpPickShow
  let w="";if(end){const top=q?Z.rows.filter(x=>x.pos===1&&!mpInv(g,x)):mpStand(1).filter(x=>x.pos===1&&x.tot>0),nm=andJ(top.map(x=>x.n));if(top.length)w=top.length>1?t("mpTie",nm):t(q?"mpWinQ":"mpWin",nm)}
  $("mrW").innerHTML=w?'<div class="win">'+esc(w)+"</div>":"";
  const own=MP.html[Z.rid],row=x=>'<div class="res'+(x.id===MID?" me":"")+'"><span class="rn"><b>'+x.pos+".</b>"+esc(x.n)+(on(x.id)?"":"<small> · "+t("mpOffl")+"</small>")+'</span><span class="rv"><b>'+(x.m?t("mpMiss"):rkVal(g,{result:x.r,detail:x.x},true))+"</b>"+(q?(mpInv(g,x)?"":" · "+fmtT(x.t)):" · +"+x.p+" "+t("pts"))+"</span></div>";
- let b=(own?'<h3 class="ct">'+esc(own.why)+"</h3>"+own.html:'<h3 class="ct">'+t("solT")+"</h3>"+mpSol())+"<h3>"+t("mpRoundRes")+"</h3>"+Z.rows.map(R.mo==="g"?x=>gpRow(x,g):row).join("");
+ let b=(own?'<h3 class="ct">'+esc(own.why)+"</h3>"+own.html:'<h3 class="ct">'+t("solT")+"</h3>"+mpSol())+"<h3>"+t("mpRoundRes")+"</h3>"+Z.rows.map((x,i)=>dtTag(R.mo==="g"?gpRow(x,g):row(x),dtHas(g,x.x,x.m),"mrw",i)).join("")+(Z.rows.some(x=>dtHas(g,x.x,x.m))?'<p class="dnote dtH">'+t("dtHint")+"</p>":"");
  if(!q){const s=mpStand(end);b+="<h3>"+t(end?"mpFinal":"mpProv")+"</h3>"+s.map(x=>'<div class="res'+(x.id===MID?" me":"")+'"><span class="rn"><b>'+x.pos+".</b>"+(R.mo==="g"?gpMv(Z,x.id):"")+esc(x.n)+(x.on?"":"<small> · "+t("mpOffl")+"</small>")+'</span><span class="rv"><b>'+x.tot+" "+t("pts")+"</b></span></div>").join("")}
  if(end&&MP.played[R.gid])b+='<p class="dnote" id="mrSave" style="margin-top:10px">'+(ME?MP.saved[R.gid]==="ok"?"✓ "+t("mpSaved"):"":t("mpNoSave"))+"</p>";
  const nx=R.st[R.i+1];if(R.mo==="o"&&!end&&nx==="w")b+='<div class="sol wpan"><h3>'+t("wPanT")+"</h3>"+t("wIntroM")+"</div>";
@@ -2347,7 +2355,7 @@ $("mrBtn").onclick=e=>{const b=e.target.closest("[data-mr]");if(!b||!MP||!MP.hos
  else if(k==="change")mpToSetup();
  else modal(t("mpQuitG"),"<p>"+t("mpQuitGQ")+"</p>",[{l:t("no"),f:closeModal},{l:t("yes"),c:"p",f:()=>{closeModal();if(MP&&MP.host)mpToSetup()}}])};
 function mpSave(){const R=MP.R,k=R.gid;if(!R.last||!ME||!sb||!SESS||!MP.played[k]||MP.saved[k])return;let rank,players,points,detail="";
- if(R.mo==="q"){const x=R.last.rows.find(y=>y.id===MID);if(!x)return;rank=x.pos;players=R.last.rows.length;points=x.p;detail=x.m?"":String(x.x||"")}
+ if(R.mo==="q"){const x=R.last.rows.find(y=>y.id===MID);if(!x)return;rank=x.pos;players=R.last.rows.length;points=x.p;detail=x.m?"":cV(x.x)}
  else{const s=mpStand(1),x=s.find(y=>y.id===MID);if(!x)return;rank=x.pos;players=s.length;points=x.tot}
  if(R.mo==="p")detail=String(R.i+1);MP.saved[k]="…";const M=MP;
  mpSub({p_gid:k,p_mode:R.mo,p_game:R.ty,p_dict:R.mo==="p"?null:R.dl||null,p_rank:rank,p_players:players,p_points:points,p_detail:detail.slice(0,20)},k).then(r=>{if(r.error)throw r.error;M.saved[k]="ok";const e=$("mrSave");if(e&&MP===M&&MP.R.gid===k)e.textContent="✓ "+t("mpSaved")}).catch(()=>{M.saved[k]="ko";const e=$("mrSave");if(e&&MP===M)e.textContent=t("mpSaveKo")})}
@@ -2522,8 +2530,8 @@ document.addEventListener("click",ev=>{const b=ev.target.closest("[data-ch]");if
 
 const mpN=()=>MP.R.mo==="p"?MP.R.nr:MP.R.st.length;
 function mpPickUI(){const R=MP.R,n=R.ph==="res"?R.i+2:R.i+1,B=(k,l)=>'<button class="btn p mb" data-mr="'+k+'">'+l+"</button>";
- if(MP.pk)return"<h3>"+t("m"+MP.pk.toUpperCase())+" · "+t(MP.pk==="v"?"dvT":"chooseDict")+"</h3>"+B("pd-fr",t(MP.pk==="v"?"dvFr":"dFr"))+B("pd-en",t(MP.pk==="v"?"dvEn":"dEn"))+B("pd-r",t("cuRnd"))+'<button class="btn mb" data-mr="pkback">'+t("back")+"</button>";
- return"<h3>"+t("cuNext",n,mpN())+"</h3>"+B("pk-c",t("mC"))+B("pk-l",t("mL"))+B("pk-w",t("mW"))+B("pk-t",t("mT"))+B("pk-k",t("mK"))+B("pk-u",t("mU"))+B("pk-s",t("mS"))+B("pk-r",t("cuRnd"))}
+ if(MP.pk)return"<h3>"+t("round",n,mpN())+" · "+t("m"+MP.pk.toUpperCase())+"</h3>"+mpOptH(MP.pk,MP.pkt,"mr","")+B("pd-go",t("cuGo"))+'<button class="btn mb" data-mr="pkback">'+t("back")+"</button>";
+ return"<h3>"+t("cuNext",n,mpN())+"</h3>"+B("pk-c",t("mC"))+B("pk-l",t("mL"))+B("pk-t",t("mT"))+B("pk-k",t("mK"))+B("pk-u",t("mU"))+B("pk-s",t("mS"))+B("pk-w",t("mW"))+B("pk-r",t("cuRnd"))}
 function mpPickShow(){const R=MP.R,h=MP.host;show("mpResP");$("mrT").textContent=mpTitle()+" · "+t("cuN",R.nr);$("mrW").innerHTML="";
  const s=Object.keys(R.pl).filter(id=>R.pl[id].on||id===MID);
  $("mrB").innerHTML="<h3>"+t("mpNbP",s.length)+"</h3>"+s.map(id=>'<div class="res'+(id===MID?" me":"")+'"><span class="rn">'+(id===R.hid?"👑 ":"")+esc(R.pl[id].n)+"</span></div>").join("");
@@ -2534,9 +2542,11 @@ function mpPickAct(k){const R=MP.R;if(R.mo!=="p")return;
  if(k==="endnow")return modal(t("cuEnd"),"<p>"+t("cuEndQ")+"</p>",[{l:t("no"),f:closeModal},{l:t("yes"),c:"p",f:()=>{closeModal();if(MP&&MP.host&&MP.R.ph==="res"){MP.pk=null;MP.R.ph="end";mpPush()}}}]);
  if(R.ph!=="pick"&&R.ph!=="res")return;
  if(k==="pkback"){MP.pk=null;return mpResShow()}
- if(k.startsWith("pk-")){let g=k.slice(3);if(g==="r")g=["c","l","w","t","k","u","s"][Math.floor(Math.random()*7)];return mpPickGo(g,"en")}
- let d=k.slice(3);if(d==="r")d=Math.random()<.5?"fr":"en";if(MP.pk)mpPickGo(MP.pk,d)}
-function mpPickGo(g,d){const R=MP.R;if(R.ph==="res")R.i++;else if(R.ph!=="pick")return;R.st[R.i]=g;if(g!=="c"&&g!=="k")R.dl=d;MP.pk=null;mpRound()}
+ if(k.startsWith("pk-")){let g=k.slice(3);if(g==="r")g=["c","l","w","t","k","u","s"][Math.floor(Math.random()*7)];if(!mptK(g))return mpPickGo(g,"en",null);MP.pk=g;MP.pkt=mptDef(g);return mpResShow()}
+ if(!MP.pk)return;const d=k.slice(3);
+ if(/^tm-/.test(d)){MP.pkt=+d.slice(3);mptSave(MP.pk,MP.pkt);return mpResShow()}
+ if(d==="go")mpPickGo(MP.pk,"en",MP.pkt)}
+function mpPickGo(g,d,tm){const R=MP.R;if(R.ph==="res")R.i++;else if(R.ph!=="pick")return;R.st[R.i]=g;if(g!=="c"&&g!=="k")R.dl=d;R.tm=mptK(g)&&typeof tm==="number"?tm:null;R.sp=0;MP.pk=null;mpRound()}
 
 Object.assign(T.fr,{pX:"Les défis",dX:"30 secondes par défi",dfH:"Les défis : 30 secondes, une seule réponse, 7 points si c'est juste.",mT:"Défi thème",mK:"Défi calcul mental",nT:"Défi thème",nK:"Défi calcul mental",
  dfTheme:"Thème : {n}",dfFindH:"Avec les 10 lettres, forme 2 mots du thème",dfW1:"1er mot",dfW2:"2e mot",dfCalcH:"Chaque opération s'applique au résultat précédent",dfBuzz:"🔔 BUZZ",dfBzH:"Tu as la réponse ? Buzze !",dfBzMe:"🔔 À toi ! Réponds en {n} s",dfBzO:"🔔 {n} a buzzé et répond…",dfChk:"Réponse envoyée…",dfOut:"Tu t'es trompé : tu ne peux plus répondre sur ce défi.",dfOutMe:"✗ Mauvaise réponse : les autres joueurs peuvent encore buzzer.",dfWrong:"✗ {n} s'est trompé ({m}) : à vous de buzzer !",dfRight:"✓ {n} a trouvé : {m}",dfNoOne:"Personne n'a trouvé.",dfWaitK:"Mémorise le calcul…",dfTwo:"Écris un mot dans chaque case",dfUse10:"Utilise les 10 lettres, chacune une seule fois",dfNumE:"Tape ton résultat",dfOk:"Bonne réponse !",dfKo:"Mauvaise réponse",dfExp:"Réponse attendue :",dfYour:"Ta réponse :",dfRes:"Résultat :",
@@ -2708,7 +2718,7 @@ function dfReveal(el,f){const x=dfx;if(!x)return;const T=(x.sl?DFTM_S:DFTM)[x.g]
   if(x.ready)return dfRT();$("dfTiles").innerHTML=x.l.map((c,i)=>i<k?'<div class="tile'+(i===k-1&&n>old?" pop":"")+'" style="cursor:default">'+c.toUpperCase()+"</div>":'<div class="tile" style="cursor:default;opacity:.3">?</div>').join("")}}
 function dfReady(){const x=dfx;if(!x||x.ready)return;x.ready=true;x.r0=performance.now();if(chl&&!mpr&&!tbx)chl.t0=x.r0;dfReveal(Infinity,1);
  if(x.g==="k")dfNum();if(x.g==="s"||x.g==="v")dfWd();
- if(!mpr||!MP||!MP.R||!MP.R.bz||MP.R.bz.st!=="done")playM(A.defis);dfCtl()}
+ if(!mpr||!MP||!MP.R||!MP.R.bz||MP.R.bz.st!=="done"){playM(A.defis);if(mpr&&MP&&MP.R&&MP.R.bz&&(MP.R.bz.ms||DFMS)!==DFMS&&music===A.defis)music.loop=true}dfCtl()}
 function dfRT(){const x=dfx;if(!x||(x.g!=="t"&&x.g!=="u")||!x.ready)return;if(!x.pk)x.pk=[[],[]];const U=new Set();  if(x.g==="u")x.pk[x.ai]=pkSync(x.l,$("dfA"+x.ai).value,x.pk[x.ai],U);else [0,1].forEach(i=>{x.pk[i]=pkSync(x.l,$("dfA"+i).value,x.pk[i],U)});
  $("dfTiles").innerHTML=x.l.map((c,i)=>{const u=U.has(i);return'<button class="tile" data-ti="'+i+'"'+(u?' data-u="1" style="opacity:.3"':"")+">"+c.toUpperCase()+"</button>"}).join("");
  [0,1].forEach(i=>$("dfA"+i).classList.toggle("on",x.ai===i))}
@@ -2729,11 +2739,11 @@ function dfCtl(){const x=dfx;if(!x)return;let inp,line="",bz=false;const pre=x.r
  $("dfBzL").innerHTML=line;$("dfBzL").classList.toggle("hide",!line)}
 function dfTick(){const x=dfx;if(!x||over||$("dfP").classList.contains("hide"))return;const now=performance.now();let rem,ar=null;
  if(dfBzM()){const b=MP&&MP.R&&MP.R.bz;if(!b)return;
-  if(b.st==="pre"){dfReveal(DFPRE[x.g]-(b.prem-(now-MP.rt)));rem=DFMS}
+  dfTot(b.ms||DFMS);if(b.st==="pre"){dfReveal(DFPRE[x.g]-(b.prem-(now-MP.rt)));rem=b.ms||DFMS}
   else{if(!x.ready)dfReady();rem=b.st==="run"?b.rem-(now-MP.rt):b.rem;if(b.st==="ans")ar=b.arem-(now-MP.rt)}
   if(b.st==="ans"&&music===A.defis&&!music.paused)music.pause()}
- else{const el=now-x.p0;if(!x.ready){dfReveal(el);if(el>=x.pre)dfReady()}rem=x.ready?DFMS-(now-x.r0):DFMS}
- rem=Math.max(0,rem);$("dftime").textContent=fmt(Math.ceil(rem/1000));$("dftime").classList.toggle("low",x.ready&&rem<=10000);
+ else{dfTot(DFMS);const el=now-x.p0;if(!x.ready){dfReveal(el);if(el>=x.pre)dfReady()}rem=x.ready?DFMS-(now-x.r0):DFMS}
+ rem=Math.max(0,rem);const inf=dfBzM()&&MP&&MP.R&&MP.R.bz&&MP.R.bz.inf;$("dftime").textContent=inf?"∞":fmt(Math.ceil(rem/1000));$("dftime").classList.toggle("low",!inf&&x.ready&&rem<=10000);
  if(ar!==null&&MP.R.bz.who===MID&&!x.sent){$("dfBzL").innerHTML=t("dfBzMe",Math.max(0,Math.ceil(ar/1000)));if(ar<=0)dfSubmit(true)}
  if(!dfBzM()&&x.ready&&rem<=0&&!x.end)dfTimeUp()}
 function dfTimeUp(){const x=dfx;x.end=1;dfCtl();msg(t("timeUp"),"ko","dfmsg");afterMusic(()=>results(t("timeUp"),dfSolHTML(x.d,null,false)))}
@@ -2767,10 +2777,10 @@ all("[data-df]").forEach(b=>b.onclick=()=>{const g=b.dataset.df,fc=dfFrom==="chM
 document.addEventListener("click",e=>{const b=e.target.closest("[data-dfr]");if(!b)return;const g=b.dataset.dfr.toUpperCase();modal(t("m"+g),t("i"+g)+t(isGP()?"gpProc":"dfProc"),[{l:t("close"),c:"p",f:closeModal}])});
 function dfSync(){const x=dfx,R=MP&&MP.R;if(!x||!R||!R.bz||!mpr||mpr.rid!==R.rid)return;const b=R.bz;
  if(b.st!=="pre"&&!x.ready)dfReady();
- if(b.st==="ans"&&b.who===MID&&!x.bzMe){x.bzMe=1;bzAdd(R.gid,0,DFMS-(b.rem||0))}
+ if(b.st==="ans"&&b.who===MID&&!x.bzMe){x.bzMe=1;bzAdd(R.gid,0,(b.ms||DFMS)===DFMS?DFMS-(b.rem||0):null)}
  if(b.st!==x.st){if(b.st==="run"&&x.st==="ans"&&music===A.defis&&hasS(music)&&musicOn&&!x.fin)music.play().catch(()=>{});if(b.st!=="run"||b.who){x.bzS=0;clearInterval(x.bzI)}x.st=b.st}
  if(b.wk!==x.wk){x.wk=b.wk;if(b.w)msg(b.w.id===MID?t("dfOutMe"):t("dfWrong",b.w.n,b.w.a?dfUp(b.w.a):"—"),"ko","dfmsg")}
- if(b.st==="done"&&!x.fin){x.fin=1;stopM();if(b.ok){if(b.ok.id===MID){score=7;if(!x.bzMe){x.bzMe=1;bzAdd(R.gid,0,null)}bzAdd(R.gid,1)}ding();msg(t("dfRight",b.ok.n,dfUp(b.ok.a)),"ok","dfmsg")}else msg(t(b.to?"timeUp":"dfNoOne"),"ko","dfmsg")}
+ if(b.st==="done"&&!x.fin){x.fin=1;stopM();if(b.ok){if(b.ok.id===MID){score=7;if(!x.bzMe){x.bzMe=1;bzAdd(R.gid,0,null)}bzAdd(R.gid,1)}ding();msg(t("dfRight",b.ok.n,dfUp(b.ok.a)),"ok","dfmsg")}else msg(t(b.hs?"mpHStopd":b.to?"timeUp":"dfNoOne"),"ko","dfmsg")}
  dfCtl();dfTick()}
 function dfBuzz(){const x=dfx,R=MP&&MP.R;if(!x||!mpr||!R||!R.bz||R.bz.st!=="run"||x.bzS||!x.ready||R.bz.out.includes(MID))return;x.bzS=1;dfCtl();
  if(MP.host)return dfHBuzz(MID,R.rid);const rid=R.rid;let n=0;
@@ -2781,20 +2791,20 @@ function dfSendAns(a){const R=MP.R,rid=R.rid,x=dfx;if(MP.host)return dfHAns(MID,
  go();x.baI=setInterval(go,1000)}
 const dfHOk=rid=>MP&&MP.host&&MP.R&&MP.R.ph==="play"&&MP.R.rid===rid&&MP.R.bz&&MP.R.d&&dfIs(MP.R.d.g);
 function dfHClr(){if(!MP)return;clearTimeout(MP.bzTo);clearTimeout(MP.baTo);clearTimeout(MP.pubTo);clearTimeout(MP.preTo)}
-function dfHStart(){const R=MP.R,g=R.d.g,rid=R.rid;dfHClr();R.bz={st:"pre",prem:DFPRE[g],rem:DFMS,arem:0,who:null,wn:"",out:[],w:null,wk:0,ok:null,to:0};MP.preT=performance.now();MP.dfW={};MP.dfWin=null;MP.preTo=setTimeout(()=>dfHRun(rid),DFPRE[g])}
-function dfHRun(rid){if(!dfHOk(rid))return;const b=MP.R.bz;if(b.st!=="pre")return;b.st="run";b.prem=0;b.rem=DFMS;MP.bzL=DFMS;MP.bzT=performance.now();MP.bzTo=setTimeout(dfHTime,DFMS+300);mpPush()}
+function dfHStart(){const R=MP.R,g=R.d.g,rid=R.rid;dfHClr();const ms=mpDfMs();R.bz={st:"pre",prem:DFPRE[g],rem:ms,ms,inf:mpTm()===0?1:0,hs:0,arem:0,who:null,wn:"",out:[],w:null,wk:0,ok:null,to:0};MP.preT=performance.now();MP.dfW={};MP.dfWin=null;MP.preTo=setTimeout(()=>dfHRun(rid),DFPRE[g])}
+function dfHRun(rid){if(!dfHOk(rid))return;const b=MP.R.bz;if(b.st!=="pre")return;b.st="run";b.prem=0;b.rem=b.ms||DFMS;MP.bzL=b.rem;MP.bzT=performance.now();MP.bzTo=setTimeout(dfHTime,MP.bzL+300);mpPush()}
 function dfFresh(R){const b=R.bz,now=performance.now();if(b.st==="pre")b.prem=Math.max(0,Math.round(DFPRE[R.d.g]-(now-MP.preT)));else if(b.st==="run")b.rem=Math.max(0,Math.round(MP.bzL-(now-MP.bzT)));else if(b.st==="ans")b.arem=Math.max(0,Math.round(DFANS[R.d.g]-(now-MP.baT)))}
 function dfHBuzz(id,rid){if(!dfHOk(rid))return;const R=MP.R,b=R.bz;if(b.st!=="run"||b.out.includes(id)||!R.ids.includes(id))return;
  const now=performance.now();MP.bzL=Math.max(0,MP.bzL-(now-MP.bzT));if(MP.bzL<=0)return;clearTimeout(MP.bzTo);
  b.st="ans";b.who=id;b.wn=R.pl[id]?R.pl[id].n:"?";b.rem=Math.round(MP.bzL);MP.baT=now;b.arem=DFANS[R.d.g];
  MP.baTo=setTimeout(()=>dfHAns(id,"",rid),DFANS[R.d.g]+2500);mpPush()}
 function dfHAns(id,a,rid){if(!dfHOk(rid))return;const R=MP.R,b=R.bz;if(b.st!=="ans"||b.who!==id)return;clearTimeout(MP.baTo);a=String(a||"").slice(0,24);
- if(a&&dfCheck(R.d,a)){b.st="done";b.ok={id,n:b.wn,a};MP.dfWin={id,a,t:Math.round(DFMS-MP.bzL)};mpPush();MP.pubTo=setTimeout(()=>dfHPub(rid),2000);return}
+ if(a&&dfCheck(R.d,a)){b.st="done";b.ok={id,n:b.wn,a};MP.dfWin={id,a,t:Math.round((b.ms||DFMS)-MP.bzL)};mpPush();MP.pubTo=setTimeout(()=>dfHPub(rid),2000);return}
  b.out.push(id);MP.dfW[id]=a;b.wk++;b.w={id,n:b.wn,a};b.who=null;b.wn="";
  const left=R.ids.filter(i=>(i===MID||(R.pl[i]&&R.pl[i].on))&&!b.out.includes(i));
  if(!left.length){b.st="done";mpPush();MP.pubTo=setTimeout(()=>dfHPub(rid),2000);return}
- b.st="run";MP.bzT=performance.now();MP.bzTo=setTimeout(dfHTime,MP.bzL+300);mpPush()}
-function dfHTime(){const R=MP&&MP.R;if(!R||!R.bz||R.ph!=="play"||R.bz.st!=="run"||!R.d||!dfIs(R.d.g))return;const rid=R.rid;MP.bzL=0;R.bz.st="done";R.bz.to=1;R.bz.rem=0;mpPush();MP.pubTo=setTimeout(()=>dfHPub(rid),1500)}
+ b.st="run";MP.bzT=performance.now();MP.bzTo=setTimeout(dfHTime,MP.bzL+300);if(MP.hsp===rid)return dfHTime();mpPush()}
+function dfHTime(){const R=MP&&MP.R;if(!R||!R.bz||R.ph!=="play"||R.bz.st!=="run"||!R.d||!dfIs(R.d.g))return;const rid=R.rid;MP.bzL=0;R.bz.st="done";R.bz.to=1;R.bz.rem=0;if(MP.hsp===rid)R.bz.hs=1;mpPush();MP.pubTo=setTimeout(()=>dfHPub(rid),1500)}
 function dfHPub(rid){if(!dfHOk(rid))return;MP.ans={};for(const id in MP.dfW)MP.ans[id]={p:0,r:0,x:MP.dfW[id],t:0};const w=MP.dfWin;if(w)MP.ans[w.id]={p:7,r:1,x:w.a,t:w.t};mpPublish()}
 Object.assign(T.fr,{pDic:"📖 Dictionnaire",dicH:"Choisis la langue, tape un mot et découvre sa définition.",dicPh:"Tape un mot",dicGo:"Chercher",dicLd:"Recherche de la définition…",dicNo:"Aucune définition trouvée pour ce mot sur le Wiktionnaire.",dicNet:"Définition non disponible : il faut une connexion internet.",dicBase:"Définition de « {n} »",dicSrcfr:"Source : Wiktionnaire",dicSrcen:"Source : Wiktionary (en anglais)",dicSee:"voir la page",wdHint:"📖 Touche un mot pour voir sa définition"});
 Object.assign(T.en,{pDic:"📖 Dictionary",dicH:"Type a word to see its definition.",dicPh:"Type a word",dicGo:"Search",dicLd:"Looking up the definition…",dicNo:"No definition found for this word on Wiktionary.",dicNet:"Definition unavailable: an internet connection is needed.",dicBase:"Definition of “{n}”",dicSrcfr:"Source: Wiktionnaire (French Wiktionary)",dicSrcen:"Source: Wiktionary",dicSee:"open the page",wdHint:""});
@@ -3335,7 +3345,7 @@ window.addEventListener("click",e=>{if(NET)return;const b=e.target.closest&&e.ta
 if("serviceWorker"in navigator&&(location.protocol==="https:"||location.hostname==="localhost"||location.hostname==="127.0.0.1"))
  window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{})});
 $("rldB").onclick=()=>modal(t("reload").replace("🔄 ",""),t("reloadQ"),[{l:t("cancel"),f:closeModal},{l:t("reloadGo"),c:"p",f:async()=>{closeModal();
- try{for(const k of await caches.keys())await caches.delete(k)}catch(e){}location.reload()}}]);
+ try{for(const k of await caches.keys())await caches.delete(k)}catch(e){}try{const r=await navigator.serviceWorker.getRegistration();if(r)await Promise.race([r.update(),wait(5000)])}catch(e){}location.reload()}}]);
 netOn=true;netProbe();
 
 Object.assign(T.fr,{admT:"🛡️ Admin",admOv:"Vue d'ensemble",admPl:"Joueurs",admFd:"Activité",admMu:"Multi",admRf:"🔄 Actualiser",
@@ -3521,7 +3531,11 @@ var nfIn0=null;
  if(/^(tb|fr|da)$/.test(k))nfIn0={k,m:/^[0-9a-f-]{36}$/.test(m)?m:""};u.delete("nf");u.delete("m");const q=u.toString();history.replaceState(null,"",location.pathname+(q?"?"+q:"")+location.hash)}catch(e){}})();
 const nfSup=()=>"serviceWorker"in navigator&&"PushManager"in window&&"Notification"in window&&window.isSecureContext;
 const nfIOS=()=>/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
-const nfU=()=>{try{return localStorage.getItem("fwnfu")||""}catch(e){return""}};
+const NFK="fwnfu|"+location.pathname.replace(/[^/]*$/,"");
+const nfU=()=>{try{let v=localStorage.getItem(NFK);if(v===null){v=localStorage.getItem("fwnfu")||"";if(v)localStorage.setItem(NFK,v)}return v||""}catch(e){return""}};
+const nfUset=v=>{try{localStorage.setItem(NFK,v||"")}catch(e){}};
+async function nfHeal(r){if(!ME||!sb||!SESS||Notification.permission!=="granted"||nfU()!==ME.id)return null;
+ try{const s=await r.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:nfKey()});await nfSave(s);return s}catch(e){return null}}
 function nfKey(){const s=VAPID.replace(/-/g,"+").replace(/_/g,"/"),b=atob(s+"===".slice((s.length+3)%4));return Uint8Array.from(b,c=>c.charCodeAt(0))}
 async function nfReg(ms){if(!nfSup())return null;try{return await Promise.race([navigator.serviceWorker.ready,wait(ms||15000).then(()=>null)])}catch(e){return null}}
 async function nfState(){const id=ME?ME.id:null,r=await nfReg();if(!r){NF.chk=false;await wait(3000);return false}let s=null;try{s=await r.pushManager.getSubscription()}catch(e){NF.chk=false;await wait(3000);return false}
@@ -3535,16 +3549,17 @@ async function nfOn(){if(NF.busy||!ME||!needSb()||!nfSup())return;NF.busy=true;r
   const r=await nfReg();if(!r)throw new Error("sw");let s=await r.pushManager.getSubscription();
   if(!s){try{s=await r.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:nfKey()})}
    catch(e){const o=await r.pushManager.getSubscription();if(o)await o.unsubscribe();s=await r.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:nfKey()})}}
-  await nfSave(s);try{localStorage.setItem("fwnfu",ME.id)}catch(e){}NF.uid=ME.id;NF.sub=s;NF.ok=true;NF.chk=true;NF.pf=null;await nfPrefs();toast(t("nfOnT"))}
+  await nfSave(s);nfUset(ME.id);NF.uid=ME.id;NF.sub=s;NF.ok=true;NF.chk=true;NF.pf=null;await nfPrefs();toast(t("nfOnT"))}
  catch(e){toast(t("nfErr"))}finally{NF.busy=false;renderNf()}}
 async function nfOff(){if(NF.busy)return;NF.busy=true;renderNf();try{await nfDrop()}finally{NF.busy=false;renderNf()}toast(t("nfOffT"))}
 async function nfDrop(){let s=NF.sub;try{if(!s){const r=await nfReg();s=r?await r.pushManager.getSubscription():null}}catch(e){}
  if(s){try{if(sb&&SESS&&ME)await sb.rpc("push_remove",{p_endpoint:s.endpoint})}catch(e){}try{await s.unsubscribe()}catch(e){}}
- try{localStorage.removeItem("fwnfu")}catch(e){}NF.sub=null;NF.ok=false;NF.pf=null}
+ nfUset("");NF.sub=null;NF.ok=false;NF.pf=null}
 async function nfQuit(){if(!nfSup()||!nfU())return;try{await Promise.race([nfDrop(),wait(3000)])}catch(e){}NF.chk=false}
 async function nfSync(){if(!ME||!sb||!SESS||!nfSup()||nfSynced===ME.id||nfU()!==ME.id)return;nfSynced=ME.id;
- try{const r=await nfReg();if(!r){nfSynced=null;return}const s=await r.pushManager.getSubscription();if(s&&Notification.permission==="granted")await nfSave(s);
-  else{if(s)try{await sb.rpc("push_remove",{p_endpoint:s.endpoint})}catch(e){}try{localStorage.removeItem("fwnfu")}catch(e){}}}catch(e){}}
+ try{const r=await nfReg();if(!r){nfSynced=null;return}let s=await r.pushManager.getSubscription();if(!s&&Notification.permission==="granted"){s=await nfHeal(r);if(s){NF.sub=s;return}}
+  if(s&&Notification.permission==="granted")await nfSave(s);
+  else if(Notification.permission!=="granted"){if(s)try{await sb.rpc("push_remove",{p_endpoint:s.endpoint})}catch(e){}nfUset("")}}catch(e){nfSynced=null}}
 let nfLT=0;function nfLang(){if(!NF.ok||!NF.sub||!ME||!sb||!SESS)return;clearTimeout(nfLT);nfLT=setTimeout(()=>nfSave(NF.sub).catch(()=>{}),800)}
 function renderNf(){const B=$("nfBox");if(!B)return;const H=x=>'<p class="dnote" style="text-align:left">'+x+"</p>";
  if(!ME){B.innerHTML=H(esc(t("nfGuest")));return}
@@ -3812,10 +3827,10 @@ plRecN=(o=>function(pp,pe){o.apply(this,arguments);try{for(const e of[pp,pe]){if
 
 const FLM='<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.5 1.2-4 2.5-5 .2 2 1 3 2 3 0-3-.5-6 .5-9z"/></svg>';
 function a3Ser(){const o=serGet(),d=n=>t(n===1?"a3D1":"a3DN",n),c=o.cur||0;return'<div class="serB">'+FLM+"<b>"+t("a3Ser",d(c))+"</b><small>"+t("a3SerR",d(Math.max(o.best||0,c)))+"</small></div>"}
-function a3Rk(list,m,open){const top=list.filter(x=>x.pos<=3).slice(0,3),rest=list.slice(top.length),v=x=>rkVal(m,x,open),tm=x=>rkNo(m,x)?"":fmtT(x.time_cs*10);let h="";
- if(top.length)h='<div class="pod">'+[top[1],top[0],top[2]].map((x,k)=>x?'<div class="p'+[2,1,3][k]+(x.me?" me":"")+'"><span class="pn">'+esc(x.pseudo)+'</span><div class="pb"><b>'+x.pos+"</b><small>"+v(x)+"</small>"+(tm(x)?"<i>"+tm(x)+"</i>":"")+"</div></div>":"<div></div>").join("")+"</div>";
+function a3Rk(list,m,open){const top=list.filter(x=>x.pos<=3).slice(0,3),rest=list.slice(top.length),v=x=>rkVal(m,x,open),tm=x=>rkNo(m,x)?"":fmtT(x.time_cs*10),dk=x=>open&&dtHas(m,x.detail)?' data-rd="'+list.indexOf(x)+'"':"";let h="";
+ if(top.length)h='<div class="pod">'+[top[1],top[0],top[2]].map((x,k)=>x?'<div class="p'+[2,1,3][k]+(x.me?" me":"")+(dk(x)?" dt":"")+'"'+dk(x)+'><span class="pn">'+esc(x.pseudo)+'</span><div class="pb"><b>'+x.pos+"</b><small>"+v(x)+"</small>"+(tm(x)?"<i>"+tm(x)+"</i>":"")+"</div></div>":"<div></div>").join("")+"</div>";
  let prev=top.length?top[top.length-1].pos:0;
- h+=rest.map(x=>{const s=(x.pos>prev+1?'<div class="rksep">⋯</div>':"")+'<div class="rkr'+(x.me?" me":"")+'"><b>'+x.pos+"</b><span>"+esc(x.pseudo)+"</span><small><b>"+v(x)+"</b>"+(tm(x)?" · "+tm(x):"")+"</small></div>";prev=x.pos;return s}).join("");return h}
+ h+=rest.map(x=>{const s=(x.pos>prev+1?'<div class="rksep">⋯</div>':"")+'<div class="rkr'+(x.me?" me":"")+(dk(x)?" dt":"")+'"'+dk(x)+'><b>'+x.pos+"</b><span>"+esc(x.pseudo)+"</span><small><b>"+v(x)+"</b>"+(tm(x)?" · "+tm(x):"")+"</small></div>";prev=x.pos;return s}).join("");return h+(list.some(x=>dk(x))?'<p class="dnote dtH">'+t("dtHint")+"</p>":"")}
 rank=async function(g,off){syncD();off=Math.max(0,Math.min(RKN-1,off|0));rkG=g;rkO=off;const day=addDay(pToday(),-off),m=DGM[g],lg=DGL[g],me=myD(day,g),open=!!((off&&(!ENO||day<dEarly()))||(me&&me.done)),tok=++rkTok;
   $("rkT").textContent=gNoEm(t("m"+m.toUpperCase()));$("rkD").textContent=lg&&!ENO?t("gL"+lg):"";rkNav(off);
   $("rkL").innerHTML='<p class="dnote">'+t("rkLoad")+"</p>";$("rkSer").innerHTML=a3Ser();$("rkPct").innerHTML="";
@@ -3829,7 +3844,7 @@ rank=async function(g,off){syncD();off=Math.max(0,Math.min(RKN-1,off|0));rkG=g;r
   if(sb){try{await sendMy(day,g)}catch(e){}try{const r=await sb.rpc("daily_rank",{p_day:day,p_game:g,p_scope:"friends"});if(r.error)throw r.error;list=r.data||[]}catch(e){}}
   if(tok!==rkTok)return;
   if(!list){$("rkL").innerHTML='<p class="dnote">'+t("rkErr")+"</p>";return}
-  let h='<h3 class="rkFrT">'+esc(t("rkFrT"))+"</h3>"+(list.length?a3Rk(list,m,open):'<p class="dnote">'+t(off?"rkNoneFP":"rkNoneF")+"</p>");
+  RKD={day,g,m,list};let h='<h3 class="rkFrT">'+esc(t("rkFrT"))+"</h3>"+(list.length?a3Rk(list,m,open):'<p class="dnote">'+t(off?"rkNoneFP":"rkNoneF")+"</p>");
   if(list.length<=1)h+='<p class="dnote" style="margin-top:10px">'+t("rkFr0")+"</p>";
   $("rkL").innerHTML=h};
 const PCTMIN=5;
@@ -3865,7 +3880,7 @@ mpHead=function(pl){const c=String(MP.code).replace(/\D/g,"");
  return'<div class="room2"><div class="rl"><small>'+t("mpCode")+'</small><div class="ctl" aria-label="'+esc(fmtCode(MP.code))+'">'+c.split("").map((d,i)=>(i===3&&c.length>4?'<i class="sp"></i>':"")+"<i>"+d+"</i>").join("")+"</div><small>"+t("a3QrS")+'</small><button class="btn" data-mpa="share">'+SHI+t("mpShare")+'</button></div><button class="qrb" data-mpa="qr" aria-label="'+esc(t("mpQR"))+'">'+qrSvg(mpUrl())+"</button></div>"+(pl?a3Pl():"")};
 mpHeadRefresh=function(){all(".mpHead").forEach(e=>e.innerHTML=MP&&MP.R?mpHead(!!e.closest("#mpP")):"")};
 mpSetup=(o=>function(){o.apply(this,arguments);mpHeadRefresh();const R=MP.R,h=MP.host;if(["modes","rounds","orig","quick","gp","dict"].includes(R.scr))return;const g=mpGuests();
- $("mpBody").innerHTML='<div class="mdc"><span><small>'+t("a3Mode")+"</small><b>"+mpTitle()+"</b><i>"+mpSubT()+"</i></span>"+(h?'<button class="btn" data-ms="back">'+t("a3Edit")+"</button>":"")+"</div>"+(h?'<button class="btn go" data-ms="go"'+(g?"":" disabled")+">"+t("a3Go")+"</button>"+(g?"":'<p class="dnote" style="margin-top:12px">'+t("mpNeed1")+"</p>"):"")})(mpSetup);
+ $("mpBody").innerHTML='<div class="mdc"><span><small>'+t("a3Mode")+"</small><b>"+mpTitle()+"</b><i>"+mpSubT()+"</i></span>"+(h?'<button class="btn" data-ms="back">'+t("a3Edit")+"</button>":"")+"</div>"+(R.mo==="q"&&R.ty?mpOptH(R.ty,R.tq,"ms",h?"":" disabled"):"")+(h?'<button class="btn go" data-ms="go"'+(g?"":" disabled")+">"+t("a3Go")+"</button>"+(g?"":'<p class="dnote" style="margin-top:12px">'+t("mpNeed1")+"</p>"):"")})(mpSetup);
 lyApply();
 
 Object.assign(T.fr,{kbT:"Saisie des lettres",kb1:"Avec clavier",kb1S:"toucher la réponse ouvre le clavier",kb0:"Sans clavier",kb0S:"seulement les lettres du jeu"});
@@ -3939,4 +3954,132 @@ Object.assign(T.en,{tagl:"The daily letters and numbers game",whatB:"❓ What is
  rD:`<p>Every day at midnight, your time, three new challenges: Word Hunt (30 seconds), Target Number (45 seconds) and Final Sprint (2 minutes).</p><p>The draw is the same for every player and each challenge can be played only once. For Word Hunt, the draw always contains at least one 10-letter word.</p><p>Leaderboards: Word Hunt by the longest word found, Target Number by the result closest to the target, Final Sprint by the number of words found. Ties are broken by time, to the hundredth of a second (time the word was submitted, time of the best calculation, time of the last word found).</p><p>Once you have played, the draw and the solutions appear below the leaderboard. If you haven't played yet, only the leaderboard is shown. The draw and solutions of a past day are visible to everyone once that day is over around the world.</p><p>Leaderboards: you are ranked among your friends, and you can see what percentage of players you did better than that day. As a guest, you can play but your result is not ranked.</p>`});
 Object.assign(T.fr,{tagl:"Le jeu de lettres et de chiffres du jour",whatB:"❓ C'est quoi Lexicalc ?",whatT:"C'est quoi Lexicalc ?"});
 applyLang();
+
+Object.assign(T.fr,{dtHint:"Touche un joueur pour voir le détail de sa réponse.",dtGot:"Résultat : <b>{n}</b> · cible {m}",dtNo:"Détail non disponible pour cette réponse (jouée avec une ancienne version du jeu).",hlpN:"👑 L'hôte affiche les règles pour tout le monde."});
+Object.assign(T.en,{dtHint:"Tap a player to see their answer in detail.",dtGot:"Result: <b>{n}</b> · target {m}",dtNo:"No detail available for this answer (played with an older version of the game).",hlpN:"👑 The host is showing the rules to everyone."});
+(()=>{const st=document.createElement("style");st.textContent=".dt{cursor:pointer}.res.dt .rv::after,.rkr.dt>small::after{content:\" ›\";opacity:.6;font-weight:900}.pod .dt .pb small::after{content:\" ›\"}.dtH{text-align:center;margin:6px 0 0}.dtV{text-align:center;margin:0 0 10px}.dtM{margin-top:0}.ewr.dtx{opacity:.45}.ewr .dtw{flex:1;font-weight:900;letter-spacing:.5px}.ansv{position:relative;z-index:1;pointer-events:none}.ansv i:not(.e){pointer-events:auto;cursor:pointer}";document.head.appendChild(st)})();
+var bvC="",RKD=null;
+const COP={"+":"+","−":"-","×":"*","÷":"/"},COR={"+":"+","-":"−","*":"×","/":"÷"};
+function cChain(i){const o=[],seen=new Set(),rec=j=>{if(seen.has(j))return;const l=lines.find(x=>x.i===j);if(!l)return;seen.add(j);rec(l.ia);rec(l.ib);o.push(l)};rec(i);
+ const n0=P.length,map={};for(let k=0;k<n0;k++)map[k]=k;let n=n0,c="";
+ for(const l of o){const a=map[l.ia],b=map[l.ib];if(a===undefined||b===undefined||a>35||b>35||!COP[l.o])return"";c+=a.toString(36)+COP[l.o]+b.toString(36);map[l.i]=n++}return c}
+function cDet(){if(bv===null)return"";const s=String(bv)+(bvC?"|"+bvC:"");return s.length<=20?s:String(bv)}
+function cV(x){return String(x==null?"":x).split("|")[0]}
+function cDec(x,P0){const s=String(x||""),k=s.indexOf("|"),v=k<0?s:s.slice(0,k),c=k<0?"":s.slice(k+1),no={v,st:[]};if(!c||c.length%3||!P0)return no;const V=P0.slice(),st=[];
+ for(let j=0;j<c.length;j+=3){const a=parseInt(c[j],36),o=COR[c[j+1]],b=parseInt(c[j+2],36),x1=V[a],y1=V[b];if(!o||x1==null||y1==null)return no;
+  const r=o==="+"?x1+y1:o==="×"?x1*y1:o==="−"?x1-y1:y1?x1/y1:0;if(r<=0||!Number.isInteger(r))return no;st.push({a:x1,o,b:y1,r});V.push(r)}
+ return st.length&&String(st[st.length-1].r)===v?{v,st}:no}
+function wDet(n){let k=0;if(rounds&&rounds.length<=12)rounds.forEach((r,i)=>{if(r.done)k|=1<<i});return n+"/8"+(k?"|"+k.toString(16):"")}
+function wDec(x){const m=/\|([0-9a-f]{1,3})$/.exec(String(x||""));return m?parseInt(m[1],16):null}
+function dtHas(m,x,miss){if(miss)return false;if(m==="c")return String(x||"").includes("|");if(m==="w")return wDec(x)!==null;return false}
+function dtTag(h,on,k,i){return on?h.replace('<div class="res','<div data-'+k+'="'+i+'" class="res dt'):h}
+function dtShow(m,x,nm,cx){let h;
+ if(m==="c"){const s=cDec(x,cx&&cx.P);h='<div class="sol dtM"><p class="dtV">'+t("dtGot",esc(s.v),cx?cx.tgt:"?")+"</p>"+(s.st.length?solHTML({st:s.st,v:s.v}):'<p class="dnote">'+t("dtNo")+"</p>")+"</div>"}
+ else{const k=wDec(x),R=cx&&cx.rounds;if(k===null||!R)h='<p class="dnote">'+t("dtNo")+"</p>";
+  else{let n=0;const rw=R.map((r,i)=>{const ok=k>>i&1;if(ok)n++;return'<div class="ewr'+(ok?" d":" dtx")+'"><span class="exn'+(ok?" y":"")+'">'+r.w.length+'</span><span class="dtw">'+esc(r.w.toUpperCase())+"</span><small>"+(ok?"✓":"✗")+"</small></div>"}).join("");
+   h='<p class="dtV"><b>'+t("words",n)+'</b></p><div class="ewl">'+rw+"</div>"}}
+ modal(nm,h,[{l:t("close"),c:"p",f:closeModal}])}
+$("rkL").addEventListener("click",e=>{const b=e.target.closest("[data-rd]");if(!b||!RKD)return;const x=RKD.list[+b.dataset.rd];if(!x)return;const m=RKD.m;let cx=null;
+ try{const d=genDaily(RKD.day,RKD.g);cx=m==="c"?{P:d.P,tgt:d.tgt}:{rounds:d.rounds}}catch(er){}
+ dtShow(m,x.detail,x.pseudo+" · "+nameOf(RKD.g),cx)});
+$("mrB").addEventListener("click",e=>{const b=e.target.closest("[data-mrw]");if(!b||!MP||!MP.R||!MP.R.last)return;const R=MP.R,Z=R.last,x=Z.rows[+b.dataset.mrw];if(!x)return;
+ const d=R.d&&R.d.g===Z.g?R.d:null,cx=d?(Z.g==="c"?{P:d.P,tgt:d.tgt}:{rounds:d.rounds}):null;
+ dtShow(Z.g,x.x,x.n+" · "+t("m"+Z.g.toUpperCase()),cx)});
+$("ansV").addEventListener("mousedown",e=>{if(e.target.closest("i:not(.e)"))e.preventDefault()});
+$("ansV").addEventListener("click",e=>{const c=e.target.closest("i:not(.e)");if(!c||locked||!rounds||!rounds[queue[cur]])return;e.preventDefault();e.stopPropagation();
+ const a=$("ans"),v=a.value,k=Array.prototype.indexOf.call($("ansV").children,c);if(k<0||k>=v.length)return;a.value=v.slice(0,k)+v.slice(k+1);gPk.splice(k,1);rt()});
+document.addEventListener("click",e=>{if(!MP||!MP.host||!MP.R)return;const i=e.target.closest("#mpBody [data-info]");if(i){mpSend("hlp",{f:"i",k:i.dataset.info});return}
+ const d=e.target.closest("#mpResP [data-dfr]");if(d)mpSend("hlp",{f:"df",k:d.dataset.dfr})},true);
+function mpHlpShow(p){if(!MP||MP.host||(mpr&&!mpr.done))return;const k=String(p.k||"");let ti,h;
+ if(p.f==="i"){if(!/^[A-Z]{1,2}$/.test(k)||!IT[k]||!T[L][IT[k]]||!T[L]["i"+k])return;ti=t(IT[k]);h=t("i"+k)}
+ else if(p.f==="df"){if(!/^[a-z]$/.test(k)||!dfIs(k))return;const g=k.toUpperCase();ti=t("m"+g);h=t("i"+g)+t(isGP()?"gpProc":"dfProc")}else return;
+ modal(ti,'<p class="dnote">'+t("hlpN")+"</p>"+h,[{l:t("close"),c:"p",f:closeModal}])}
+
+Object.assign(T.fr,{qTl:"30 s, 60 s ou ∞",qTc:"45 s, 90 s ou ∞",mpoTm:"Temps",cuGo:"▶ Lancer la manche",mpHStop:"⏹ Arrêter l'épreuve",mpHStopQ:"Arrêter l'épreuve pour tous les joueurs ? Chacun termine avec sa réponse en cours.",mpHStopd:"⏹ Épreuve arrêtée par l'hôte",vcAuto:"🎲 Laisser le jeu décider",
+ rM:T.fr.rM+"<p><b>⏱️ Choix du temps</b> : en Partie rapide et en Partie personnalisée, l'hôte choisit le temps de chaque manche (Chasse aux mots et défis : 30 secondes, 60 secondes ou infini ; Nombre cible : 45 secondes, 90 secondes ou infini). En temps infini, la manche s'arrête dès que tout le monde a répondu, ou quand l'hôte touche « Arrêter l'épreuve ». Le Sprint final reste à 2 minutes.</p>"});
+Object.assign(T.en,{qTl:"30 s, 60 s or ∞",qTc:"45 s, 90 s or ∞",mpoTm:"Time",cuGo:"▶ Start the round",mpHStop:"⏹ Stop the round",mpHStopQ:"Stop the round for all players? Everyone finishes with their current answer.",mpHStopd:"⏹ Round stopped by the host",vcAuto:"🎲 Let the game decide",
+ rM:T.en.rM+"<p><b>⏱️ Choosing the time</b>: in Quick play and Custom game, the host chooses the time for each round (Word Hunt and challenges: 30 seconds, 60 seconds or endless; Target Number: 45 seconds, 90 seconds or endless). In endless mode, the round ends as soon as everyone has answered, or when the host taps “Stop the round”. Final Sprint stays at 2 minutes.</p>"});
+const MPT={l:[30,60,0],c:[45,90,0],d:[30,60,0]},DFINF=3600000;
+const mptK=g=>g==="l"?"l":g==="c"?"c":dfIs(g)?"d":null;
+function mptGet(){try{return JSON.parse(localStorage.getItem("fwmpt")||"{}")||{}}catch(e){return{}}}
+function mptDef(g){const k=mptK(g);if(!k)return null;const v=mptGet()[k];return MPT[k].includes(v)?v:MPT[k][0]}
+function mptSave(g,v){const k=mptK(g);if(!k||!MPT[k].includes(v))return;const o=mptGet();o[k]=v;try{localStorage.setItem("fwmpt",JSON.stringify(o))}catch(e){}}
+const mptLbl=(v,long)=>v?(long?t("secs",v):v+" s"):(long?t("inf"):"∞");
+function mpTm(){const R=MP&&MP.R;return R&&(R.mo==="q"||R.mo==="p")&&typeof R.tm==="number"?R.tm:null}
+function mpDL(g){const tm=mpTm();if(tm===null||(g!=="l"&&g!=="c"))return MPDL[g];return tm?tm*1000+(g==="l"?20000:30000):0}
+function mpDfMs(){const tm=mpTm();return tm===null?DFMS:tm?tm*1000:DFINF}
+function dfTot(ms){const e=$("dftime"),v=String(Math.round(ms/1000));if(e&&e.dataset.tot!==v){e.dataset.tot=v;e._s=null}}
+function mpOptH(g,tm,at,dis){const pre=at==="mr"?"pd-":"",k=mptK(g);if(!k)return"";
+ return'<div class="mpo"><h4>'+t("mpoTm")+'</h4><div class="row">'+MPT[k].map(v=>'<button class="btn'+(tm===v?" p":"")+'" data-'+at+'="'+pre+"tm-"+v+'"'+(dis||"")+">"+mptLbl(v)+"</button>").join("")+"</div></div>"}
+function mpHStopOk(){const R=MP&&MP.R;return!!(MP&&MP.host&&R&&R.ph==="play"&&mpTm()===0&&R.d&&mptK(R.d.g)&&R.sp!==R.rid&&MP.hsp!==R.rid)}
+function mpStopUI(){const v=mpHStopOk();all(".mpSt").forEach(e=>e.classList.toggle("hide",!v))}
+function mpHStopAsk(){if(!mpHStopOk())return;modal(t("mpHStop"),"<p>"+t("mpHStopQ")+"</p>",[{l:t("no"),f:closeModal},{l:t("yes"),c:"p",f:()=>{closeModal();mpHStop()}}])}
+function mpHStop(){if(!mpHStopOk())return;const R=MP.R,rid=R.rid;
+ if(dfIs(R.d.g)){MP.hsp=rid;const b=R.bz;if(b&&b.st==="pre"){clearTimeout(MP.preTo);b.st="run"}if(b&&b.st==="run"){clearTimeout(MP.bzTo);dfHTime()}mpStopUI();return}
+ R.sp=rid;mpPush();mpForceLocal();clearTimeout(MP.dlt);MP.dlt=setTimeout(()=>{if(MP&&MP.R.ph==="play"&&MP.R.rid===rid)mpPublish()},6000);mpStopUI()}
+function mpForceLocal(){if(!mpr||mpr.done||over||!MP||!MP.R||MP.R.rid!==mpr.rid)return;
+ if(mpr.g==="l"&&!$("gm").classList.contains("hide")){const a=$("ans").value.trim();if(a)tryL(a);clearInterval(timer);lock(true);stopM();pending=null;results(t("mpHStopd"),xL())}
+ else if(mpr.g==="c"&&!$("cGame").classList.contains("hide")){clearInterval(timer);stopM();pending=null;cEnd()}}
+function mpSpChk(){const R=MP&&MP.R;if(!MP.host&&R&&R.sp&&R.sp===R.rid&&mpr&&mpr.rid===R.rid&&!mpr.done)mpForceLocal();mpStopUI()}
+document.addEventListener("click",e=>{if(e.target.closest("[data-mpstop]"))mpHStopAsk()});
+mpWaitShow=(o=>function(){const r=o.apply(this,arguments);mpStopUI();return r})(mpWaitShow);
+mpRender=(o=>function(){const r=o.apply(this,arguments);mpStopUI();return r})(mpRender);
+setStage=(o=>function(){const r=o.apply(this,arguments);const g=gG(),tm=MP&&MP.R?mpTm():null;
+ if(tm!==null&&mptK(g)){const h='<span class="chp"><span>⏱️ '+mptLbl(tm)+"</span></span>";all(".gh .stg").forEach(e=>e.insertAdjacentHTML("beforeend",h))}
+ mpStopUI();return r})(setStage);
+let vcaRun=0;
+function vcaShow(){const b=$("vcAuto");if(!b)return;const mp=!!(MP&&MP.R&&MP.R.ph==="draw"),hid=$("vcRow").classList.contains("hide")||(mp&&!MP.host);b.classList.toggle("hide",hid);b.disabled=!!vcaRun||ld.length>=10;if(vcaRun){$("vow").disabled=$("con").disabled=true}}
+rdS=(o=>function(){const r=o.apply(this,arguments);vcaShow();return r})(rdS);
+function vcAuto(){if(vcaRun)return;const mp=!!(MP&&MP.R&&MP.R.ph==="draw");if(mp&&!MP.host)return;
+ const n0=mp?MP.R.ld.length:ld.length,v0=mp?MP.R.nv:nv,c0=mp?MP.R.nc:nc,rem=10-n0;if(rem<=0)return;
+ const lo=Math.max(2,v0),hi=Math.min(8,v0+rem,10-c0),x=Math.random();let V=x<.3?3:x<.75?4:5;V=Math.max(lo,Math.min(hi,V));
+ const ty=[];for(let i=0;i<V-v0;i++)ty.push("v");while(ty.length<rem)ty.push("c");const seq=sh(ty),tok=ctok,rid=mp?MP.R.rid:0,M=MP;
+ vcaRun=1;vcaShow();let i=0;
+ const step=()=>{const ok=mp?(MP===M&&MP&&MP.R&&MP.R.ph==="draw"&&MP.R.rid===rid):(tok===ctok&&!$("drawP").classList.contains("hide"));
+  if(!ok||i>=seq.length){vcaRun=0;if(ok||!mp)rdS();return}
+  const k=seq[i++];if(mp)mpPick(k);else dr(k);
+  if(i>=seq.length){vcaRun=0;rdS();return}setTimeout(step,420)};
+ step()}
+$("vcAuto").onclick=vcAuto;
+function v23Txt(){all("[data-t2]").forEach(e=>{try{e.textContent=t(e.dataset.t2)}catch(x){}})}
+applyLang=(o=>function(){const r=o.apply(this,arguments);v23Txt();const c=$("clr");if(c)c.setAttribute("aria-label",t("clrW"));return r})(applyLang);v23Txt();
+{const c=$("clr");if(c)c.setAttribute("aria-label",t("clrW"))}
+
+Object.assign(T.fr,{instB:"📲 Installer le jeu sur mon téléphone",instT:"📲 Installer Lexicalc",instOk:"✅ Lexicalc est installé ! Retrouve-le sur ton écran d'accueil.",
+ instIOS:"<p>Sur iPhone, l'installation se fait en 2 gestes :</p><p><b>1.</b> Touche le bouton ⬆️ <b>Partager</b> (en bas de Safari).<br><b>2.</b> Choisis « <b>Sur l'écran d'accueil</b> », puis « <b>Ajouter</b> ».</p><p>Ouvre ensuite le jeu depuis sa nouvelle icône : il s'affiche en plein écran et les notifications fonctionnent.</p><p class=\"dnote\">Si tu as ouvert le jeu depuis WhatsApp, Messenger ou un e-mail, ouvre-le d'abord dans Safari.</p>",
+ instAnd:"<p>Ouvre le menu de ton navigateur :</p><p>• <b>Chrome</b> : ⋮ en haut à droite, puis « <b>Installer l'application</b> » ou « <b>Ajouter à l'écran d'accueil</b> ».<br>• <b>Samsung Internet</b> : ☰ en bas, puis « <b>Ajouter la page à</b> », puis « <b>Écran d'accueil</b> ».</p><p>Le jeu aura sa propre icône et s'ouvrira en plein écran.</p><p class=\"dnote\">Si tu as ouvert le jeu depuis WhatsApp, Messenger ou un e-mail, ouvre-le d'abord dans Chrome.</p>"});
+Object.assign(T.en,{instB:"📲 Install the game on my phone",instT:"📲 Install Lexicalc",instOk:"✅ Lexicalc is installed! You'll find it on your home screen.",
+ instIOS:"<p>On iPhone, it only takes 2 steps:</p><p><b>1.</b> Tap the ⬆️ <b>Share</b> button (at the bottom of Safari).<br><b>2.</b> Choose “<b>Add to Home Screen</b>”, then “<b>Add</b>”.</p><p>Then open the game from its new icon: it runs full screen and notifications work.</p><p class=\"dnote\">If you opened the game from WhatsApp, Messenger or an email, open it in Safari first.</p>",
+ instAnd:"<p>Open your browser menu:</p><p>• <b>Chrome</b>: ⋮ at the top right, then “<b>Install app</b>” or “<b>Add to Home screen</b>”.<br>• <b>Samsung Internet</b>: ☰ at the bottom, then “<b>Add page to</b>”, then “<b>Home screen</b>”.</p><p>The game will get its own icon and open full screen.</p><p class=\"dnote\">If you opened the game from WhatsApp, Messenger or an email, open it in Chrome first.</p>"});
+let instEv=null;
+const instDone=()=>{try{return matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||navigator.standalone===true}catch(e){return false}};
+function instUI(){const b=$("instB");if(b)b.classList.toggle("hide",instDone())}
+function instHelp(){modal(t("instT"),nfIOS()?t("instIOS"):t("instAnd"),[{l:t("close"),c:"p",f:closeModal}])}
+window.addEventListener("beforeinstallprompt",e=>{instEv=e;instUI()});
+window.addEventListener("appinstalled",()=>{instEv=null;toast(t("instOk"))});
+$("instB").onclick=async()=>{const e=instEv;if(!e)return instHelp();instEv=null;try{await e.prompt();const r=await e.userChoice;if(r&&r.outcome!=="accepted")instEv=e}catch(x){instHelp()}};
+try{matchMedia("(display-mode: standalone)").addEventListener("change",instUI)}catch(e){}
+v23Txt();instUI();
+Object.assign(T.fr,{bkExit:"Appuie encore sur retour pour quitter Lexicalc"});
+Object.assign(T.en,{bkExit:"Press back again to leave Lexicalc"});
+let bkExitTo=0;
+const bkG=()=>!!(history.state&&history.state.nmg);
+function bkPush(){if(!bkG())try{history.pushState({nmg:1},"")}catch(e){}}
+const bkVis=e=>!!(e&&!e.disabled&&e.offsetParent);
+function bkModal(){const bs=[...$("mbtn").querySelectorAll("button")].filter(b=>!b.disabled);if(!bs.length)return closeModal();(bs.length===1?bs[0]:bs.find(x=>!x.classList.contains("p"))||bs[0]).click()}
+function bkHandle(){
+ if(!$("modal").classList.contains("hide")){bkModal();return true}
+ const pg=document.querySelector("main>.pg:not(.hide)"),id=pg?pg.id:"";
+ const b=bkFind();if(b){b.click();return true}
+ const q=pg&&[...pg.querySelectorAll("[data-quit]")].find(bkVis);
+ if(q){const asks=tbx||cmx||MP||(chl&&chl.opp&&!chl.fin)||(daily&&!daily.done)||party;
+  if(asks||over)q.click();else modal(t("quit"),"<p>"+t("quitQ")+"</p>",[{l:t("no"),f:closeModal},{l:t("yes"),c:"p",f:()=>{closeModal();q.click()}}]);return true}
+ const tm=$("tomenu");if(bkVis(tm)){tm.click();return true}
+ const hb=$("homeB");if(bkVis(hb)){hb.click();return true}
+ if(!id||id==="home"||id==="intro")return false;
+ if(!MP)toHome();return true}
+window.addEventListener("popstate",e=>{if(e.state&&e.state.nmg)return;clearTimeout(bkExitTo);
+ if(bkHandle())return bkPush();
+ toast(t("bkExit"));bkExitTo=setTimeout(bkPush,2500)});
+document.addEventListener("pointerdown",()=>{clearTimeout(bkExitTo);bkPush()},true);
 </script></body></html>
