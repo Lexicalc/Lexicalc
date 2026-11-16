@@ -1034,14 +1034,14 @@ async function sbSend(day,g,o){if(!sb||!ME)return false;const q=x=>sb.rpc("submi
 async function sendMy(day,g){const o=myD(day,g);if(!o||!o.done||o.sent)return true;let ok=false;try{ok=await sbSend(day,g,o)}catch(e){}if(ok){const n=myD(day,g);if(n){n.sent=1;setMy(day,g,n)}}return ok}
 function syncD(){const d0=pToday();[d0,addDay(d0,-1)].forEach(day=>DG.forEach(g=>{const e=myD(day,g);if(!e)return;if(!e.done&&!(daily&&daily.g===g&&daily.day===day)){e.done=1;setMy(day,g,e)}if(e.done&&!e.sent&&ME)sendMy(day,g)}))}
 function renderD(){syncD();const day=pToday();{const o=serGet(),e=$("serL");if(e){e.textContent=o.best?"🔥 "+t("serL",o.cur,o.best):"";e.classList.toggle("hide",!o.best)}}$("dInfo").innerHTML=t("dInfo",leftMid());$("dPs").textContent=ME?t("dAcc",ME.pseudo):t("dGst");
- $("dList").innerHTML=DG.map(g=>{const m=DGM[g],o=myD(day,g);return'<div class="mrow"><button class="btn mb '+(o?"done":"p")+'" data-dg="'+g+'"><span>'+nameOf(g)+'</span><small class="sub">'+t(DUR[m])+(o?'<br><span class="ok2">'+t("dPlayed")+"</span>":"")+'</small></button></div>'}).join("")
+ $("dList").innerHTML=dgOn(day).map(g=>{const m=DGM[g],o=myD(day,g);return'<div class="mrow"><button class="btn mb '+(o?"done":"p")+'" data-dg="'+g+'"><span>'+nameOf(g)+'</span><small class="sub">'+(m==="j"?esc(dyName(dyType(day,g)))+" · ":"")+t(DUR[m])+(o?'<br><span class="ok2">'+t("dPlayed")+"</span>":"")+'</small></button></div>'}).join("")
  +'<button class="btn bl mb ic" data-rk="'+(DG.find(g=>myD(day,g))||DG[0])+'"><i class="mi"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></i><span class="mt"><span>'+t("dRkAll")+'</span><small class="sub">'+t("dRkAllS")+'</small></span><i class="chv"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></i></button>'}
 function openDaily(){renderD();show("dailyP");if(ME)syncAcc()}
 setInterval(()=>{if(!$("dailyP").classList.contains("hide"))renderD()},30000);
 $("daily").onclick=openDaily;$("dPs").onclick=()=>ME?openProf("dailyP"):goAuth("signupP","dailyP");
 $("dList").onclick=e=>{const b=e.target.closest("[data-dg],[data-rk]");if(!b)return;const g=b.dataset.dg||b.dataset.rk;
  if(b.dataset.rk||myD(pToday(),g))return rank(g,0);
- modal(nameOf(g),t("dConf")+(ME?"":"<p><b>"+t("dGuest")+"</b></p>"),[{l:t("no"),f:closeModal},{l:t("dGo"),c:"p",f:()=>startD(g)}])};
+ modal(nameOf(g),dyConfT(g)+(ME?"":"<p><b>"+t("dGuest")+"</b></p>"),[{l:t("no"),f:closeModal},{l:t("dGo"),c:"p",f:()=>startD(g)}])};
 async function startD(g){chl=null;chNav=false;dfNav=false;const day=pToday();if(myD(day,g)){closeModal();return rank(g,0)}
  const m=DGM[g];party=null;trn=null;dur={l:30,c:45};mode=m;setMy(day,g,{...WORST[m],done:0,sent:0});daily={g,day,t0:0,lt:0,done:0};
  if(m==="c"){closeModal();return startC()}
@@ -1051,7 +1051,7 @@ function startDL(){clearTimeout(tmo);clearTimeout(dtm);stopM();clearInterval(tim
  (async()=>{for(const c of d.l){await wait(ld.length?600:700);if(tok!==ctok)return;sfx(A.clic);ld.push(c);rdS()}await wait(900);if(tok!==ctok)return;beginL()})()}
 $("drk").onclick=()=>{const g=daily&&daily.g;quitGame();if(g)rank(g,0)};
 const rkNo=(m,x)=>m==="c"?x.result>=9999:!x.result;
-function rkVal(m,x,open){if(dfIs(m))return x.result?"✓ "+dfUp(x.detail):x.detail?"✗ "+dfUp(x.detail):t("noAns");if(m==="l")return x.result?(open?esc(String(x.detail).toUpperCase())+" ("+x.result+")":t("lets",x.result)):t("noWord");
+function rkVal(m,x,open){if(m==="j"||dfIs(m))return x.result?(open===false?"✓":"✓ "+dfUp(x.detail)):x.detail?(open===false?"✗":"✗ "+dfUp(x.detail)):t("noAns");if(m==="l")return x.result?(open?esc(String(x.detail).toUpperCase())+" ("+x.result+")":t("lets",x.result)):t("noWord");
  if(m==="c")return x.result>=9999?t("noAns"):(open?esc(cV(x.detail))+" · ":"")+(x.result===0?t("exactS"):t("near",x.result));
  return t("words",x.result)}
 const RKN=30;
@@ -2685,9 +2685,9 @@ try{if(window.speechSynthesis){speechSynthesis.getVoices();speechSynthesis.onvoi
 document.addEventListener("pointerdown",function f(){document.removeEventListener("pointerdown",f,true);try{if(window.speechSynthesis&&window.SpeechSynthesisUtterance){const u=new SpeechSynthesisUtterance(" ");u.volume=0;speechSynthesis.speak(u)}}catch(e){}},true);
 function dfStop(){clearInterval(dft);dft=null;if(dfx){clearInterval(dfx.bzI);clearInterval(dfx.baI)}try{if(window.speechSynthesis)speechSynthesis.cancel()}catch(e){}}
 function startDf(g){clearTimeout(tmo);clearTimeout(dtm);stopM();clearInterval(timer);sfxStop();dfStop();mode=g;chArm();
- const d=mpr?MP.R.d:tbx?tbx.d:cmx?cmx.d:chl&&chl.opp?chl.opp.D:dfGen(g,dl);if(chl&&!chl.opp)chl.D=d;
+ const d=mpr?MP.R.d:tbx?tbx.d:cmx?cmx.d:daily&&!party&&DGM[daily.g]==="j"?genDaily(daily.day,daily.g):chl&&chl.opp?chl.opp.D:dfGen(g,dl);if(chl&&!chl.opp)chl.D=d;
  const dsl=!mpr&&!cmx&&!!(tbx||chl&&chl.opp)&&!!DFPRE_S[g];
- dfx={g,d,sl:dsl,p0:performance.now(),pre:dsl?DFPRE_S[g]:g==="s"&&!mpr?8000:DFPRE[g],r0:0,sent:0,end:0,ready:false,shown:0,spk:0,num:"",wd:"",ai:0,st:null,wk:0,fin:0,bzS:0};
+ dfx={dly:daily&&!party?daily:null,g,d,sl:dsl,p0:performance.now(),pre:dsl?DFPRE_S[g]:g==="s"&&!mpr?8000:DFPRE[g],r0:0,sent:0,end:0,ready:false,shown:0,spk:0,num:"",wd:"",ai:0,st:null,wk:0,fin:0,bzS:0};
  score=0;over=false;setStage();dfDraw();show("dfP");ghOn();dft=setInterval(dfTick,100);dfTick();if(dfBzM())dfSync()}
 function dfDraw(){const x=dfx,d=x.d,mp=dfBzM();msg("","","dfmsg");
  $("dfTh").textContent=x.g==="t"?t("dfTheme",dfTitle(d)):t("m"+x.g.toUpperCase());
@@ -3483,9 +3483,9 @@ Object.assign(T.fr,{pSolo:"Solo",dSolo:"partie du jour, Course des as, partie cl
  banAll:"{n} défis à jouer aujourd'hui",banN:"plus que {n} défis à jouer",ban1:"plus qu'un défi à jouer",banDone:"tout est joué · voir les classements"});
 Object.assign(T.en,{pSolo:"Solo",dSolo:"daily puzzle, classic game, quick play",dTr:"any duration, even endless",setT:"⚙️ Settings",setLg:"Game language",
  banAll:"{n} challenges to play today",banN:"{n} challenges left to play",ban1:"one challenge left to play",banDone:"all played · see the leaderboards"});
-const dLeft=()=>{const day=pToday();return DG.filter(g=>!myD(day,g)).length};
-const dStat=k=>k?t(k===DG.length?"banAll":k>1?"banN":"ban1",k):t("banDone");
-function renderBan(){const k=dLeft(),b=$("daily"),day=pToday();b.classList.toggle("done",!k);$("banS").textContent=dStat(k);{const n=DG.filter(g=>myD(day,g)).length;$("banP").innerHTML=DG.map((g,i)=>"<i"+(i<n?' class="d"':"")+"></i>").join("")}const o=serGet();$("serN").textContent=o.cur?t("serS",o.cur):"";$("serC").classList.toggle("hide",!o.cur)}
+const dLeft=()=>{const day=pToday();return dgOn(day).filter(g=>!myD(day,g)).length};
+const dStat=k=>k?t(k===dgOn(pToday()).length?"banAll":k>1?"banN":"ban1",k):t("banDone");
+function renderBan(){const k=dLeft(),b=$("daily"),day=pToday();b.classList.toggle("done",!k);$("banS").textContent=dStat(k);{const n=dgOn(day).filter(g=>myD(day,g)).length;$("banP").innerHTML=dgOn(day).map((g,i)=>"<i"+(i<n?' class="d"':"")+"></i>").join("")}const o=serGet();$("serN").textContent=o.cur?t("serS",o.cur):"";$("serC").classList.toggle("hide",!o.cur)}
 function renderSolo(){const k=dLeft(),b=$("dailyS");b.classList.toggle("p",!!k);b.classList.toggle("done",!k);
  $("dSoloS").innerHTML=esc(t("dD"))+"<br>"+(k?esc(dStat(k)):'<span class="ok2">✅ '+esc(dStat(k))+"</span>");}
 function renderSet(){renderNf()}
@@ -3869,7 +3869,7 @@ Object.assign(T.fr,{dRkAll:"Les classements",dRkAllS:"entre amis et 30 derniers 
 Object.assign(T.en,{dRkAll:"Leaderboards",dRkAllS:"among friends and the last 30 days",rkPlay:"▶ Play this round"});
 function rkPlayB(){const b=$("rkPlay");if(!b)return;const g=rkG;if(rkO||!DGM[g]||myD(pToday(),g)){b.innerHTML="";return}
  b.innerHTML='<button class="btn p mb" id="rkGo" style="margin-top:14px">'+t("rkPlay")+"</button>";
- $("rkGo").onclick=()=>modal(nameOf(g),t("dConf")+(ME?"":"<p><b>"+t("dGuest")+"</b></p>"),[{l:t("no"),f:closeModal},{l:t("dGo"),c:"p",f:()=>startD(g)}])}
+ $("rkGo").onclick=()=>modal(nameOf(g),dyConfT(g)+(ME?"":"<p><b>"+t("dGuest")+"</b></p>"),[{l:t("no"),f:closeModal},{l:t("dGo"),c:"p",f:()=>startD(g)}])}
 rank=(o=>function(){const r=o.apply(this,arguments);try{rkPlayB()}catch(e){}return r})(rank);
 const a3Ini=s=>{s=String(s||"?").trim()||"?";try{if(window.Intl&&Intl.Segmenter){const x=new Intl.Segmenter().segment(s)[Symbol.iterator]().next().value;if(x)return x.segment}}catch(e){}return Array.from(s)[0]};
 const A3C=[["#f2b134","#3d2a05"],["#0f8b8d","#fff"],["#22a861","#fff"],["#d64545","#fff"],["#6b6f7a","#fff"],["#c98a4a","#fff"]];
@@ -3912,13 +3912,14 @@ dfDraw=(o=>function(){const r=o.apply(this,arguments);try{if(kbGet()==="0")["dfA
 const GAME_URL="https://lexicalc.github.io/Lexicalc/";
 async function shareTxt(txt,okKey,title){if(navigator.share){try{await navigator.share({text:txt});return}catch(e){if(e&&e.name==="AbortError")return}}
  try{await navigator.clipboard.writeText(txt);toast(t(okKey))}catch(e){modal(title,'<textarea readonly style="width:100%;height:220px;font:inherit;font-size:15px">'+esc(txt)+"</textarea>",[{l:t("close"),c:"p",f:closeModal}])}}
-function dShareTxt(day){const FL={fr:"🇫🇷",en:"🇬🇧"},IC={l:"🔤",c:"🔢",w:"🏁"},out=["📅 Lexicalc · "+t("pD"),fmtDay(day)];let n=0;
+function dShareTxt(day){const FL={fr:"🇫🇷",en:"🇬🇧"},IC={l:"🔤",c:"🔢",w:"🏁",j:"⚡"},out=["📅 Lexicalc · "+t("pD"),fmtDay(day)];let n=0;
  DG.forEach(g=>{const o=myD(day,g);if(!o||!o.done)return;n++;const m=DGM[g],r=+o.r||0;let v;
   if(m==="l")v="🟩".repeat(Math.min(r,10))+"⬜".repeat(Math.max(0,10-r))+" "+(r?t("lets",r):t("noWord"));
   else if(m==="c")v=r>=9999?"❌ "+t("noAns"):r===0?"🎯 "+t("shrExact"):"↔️ "+t("near",r);
+  else if(m==="j")v=r?"✅ "+t("shrJok"):"❌ "+t("shrJko");
   else v="🟩".repeat(Math.min(r,8))+"⬜".repeat(Math.max(0,8-r))+" "+t("words",r);
   if(!rkNo(m,{result:r})&&o.t)v+=" · ⏱️ "+fmtT(o.t);
-  out.push("",IC[m]+" "+t("m"+m.toUpperCase())+(!ENO&&DGL[g]?" "+FL[DGL[g]]:""),v)});
+  out.push("",IC[m]+" "+t("m"+m.toUpperCase())+(m==="j"?" · "+dyName(dyType(day,g)):"")+(!ENO&&DGL[g]?" "+FL[DGL[g]]:""),v)});
  out.push("",t("shrCall"),GAME_URL);return n?out.join("\n"):""}
 function dShrUI(){const day=pToday(),e=$("dShr");if(e)e.classList.toggle("hide",!DG.some(g=>{const o=myD(day,g);return o&&o.done}))}
 function shareRes(){syncD();const txt=dShareTxt(pToday());if(!txt)return toast(t("shrNone"));shareTxt(txt,"shrCopied",t("shrT"))}
@@ -3951,7 +3952,7 @@ Object.assign(T.en,{tagl:"The daily letters and numbers game",whatB:"❓ What is
 <p>British and American spellings, plurals and verb forms all count.</p>
 <h3>💾 With an account</h3>
 <p>Your scores are kept, you can add friends, compare your results with theirs and get notified when it's your turn. You can also play without an account, as a guest.</p>`,
- rD:`<p>Every day at midnight, your time, three new challenges: Word Hunt (30 seconds), Target Number (45 seconds) and Final Sprint (2 minutes).</p><p>The draw is the same for every player and each challenge can be played only once. For Word Hunt, the draw always contains at least one 10-letter word.</p><p>Leaderboards: Word Hunt by the longest word found, Target Number by the result closest to the target, Final Sprint by the number of words found. Ties are broken by time, to the hundredth of a second (time the word was submitted, time of the best calculation, time of the last word found).</p><p>Once you have played, the draw and the solutions appear below the leaderboard. If you haven't played yet, only the leaderboard is shown. The draw and solutions of a past day are visible to everyone once that day is over around the world.</p><p>Leaderboards: you are ranked among your friends, and you can see what percentage of players you did better than that day. As a guest, you can play but your result is not ranked.</p>`});
+ rD:`<p>Every day at midnight, your time, four new challenges: Word Hunt (30 seconds), Target Number (45 seconds), a challenge (30 seconds, one answer only: Theme, Mental maths or Nested words, picked at random and never the same as the day before) and Final Sprint (2 minutes).</p><p>The draw is the same for every player and each challenge can be played only once. For Word Hunt, the draw always contains at least one 10-letter word.</p><p>Leaderboards: Word Hunt by the longest word found, Target Number by the result closest to the target, Final Sprint by the number of words found, the challenge by right answers. Ties are broken by time, to the hundredth of a second (time the word was submitted, time of the best calculation, time of the last word found).</p><p>Once you have played, the draw and the solutions appear below the leaderboard. If you haven't played yet, only the leaderboard is shown. The draw and solutions of a past day are visible to everyone once that day is over around the world.</p><p>Leaderboards: you are ranked among your friends, and you can see what percentage of players you did better than that day. As a guest, you can play but your result is not ranked.</p><p>🏅 Friends medal table: each day, the 1st, 2nd and 3rd of each challenge among your friends win a gold, silver or bronze medal (a wrong answer or a zero score earns no medal). The table ranks players by gold medals, then silver, then bronze, then 4th places and so on. A day counts once it is over everywhere in the world, so a medal is never taken back.</p>`});
 Object.assign(T.fr,{tagl:"Le jeu de lettres et de chiffres du jour",whatB:"❓ C'est quoi Lexicalc ?",whatT:"C'est quoi Lexicalc ?"});
 applyLang();
 
@@ -4082,4 +4083,75 @@ window.addEventListener("popstate",e=>{if(e.state&&e.state.nmg)return;clearTimeo
  if(bkHandle())return bkPush();
  toast(t("bkExit"));bkExitTo=setTimeout(bkPush,2500)});
 document.addEventListener("pointerdown",()=>{clearTimeout(bkExitTo);bkPush()},true);
+
+var DY0="2026-11-17",DYT=["t","k","u"],DYC={},MDL=null,mdP="w";
+DG.splice(DG.indexOf("we"),0,"de");DGM.de="j";DGL.de="en";DUR.j="s30";WORST.j={r:0,x:"",t:30000};
+Object.assign(T.fr,{mJ:"Défi",dyNt:"Thème",dyNk:"Calcul mental",dyNu:"Mots gigognes",
+ dyDt:"un thème et 10 lettres : forme deux mots du thème avec toutes les lettres.",dyDk:"un nombre puis cinq opérations, chacune appliquée au résultat précédent : donne le résultat final.",
+ dyDu:"un nom propre et un nom commun à trouver avec leurs définitions : l'un utilise les 10 lettres, l'autre se cache dedans.",
+ dyOne:"⏱ 30 secondes, une seule réponse : sois sûr de toi avant de valider !",dyConf:"Le tirage est le même pour tout le monde. Classement : les bonnes réponses, de la plus rapide à la plus lente.<br>Prêt ?",dyNone:"Pas de défi ce jour-là : le défi du jour a commencé le 17 novembre.",
+ shrJok:"bonne réponse",shrJko:"raté",
+ mdT:"🏅 Médailles entre amis",mdTs:"or, argent et bronze · semaine et 30 jours",mdH:"Tableau des médailles",mdW:"Cette semaine",mdL:"Semaine dernière",md30:"30 jours",mdPl:"Joués",
+ mdDays:"Jours comptés : {n}",mdNoDay:"Aucun jour compté pour l'instant : une journée est ajoutée quand elle est terminée partout dans le monde.",mdNone:"Aucun résultat entre amis sur cette période.",
+ mdHow:"Classement à l'or, puis à l'argent, puis au bronze, puis aux 4es places, et ainsi de suite. Une réponse fausse ou un score nul ne rapporte pas de médaille. Une journée compte quand elle est terminée partout dans le monde : une médaille n'est jamais retirée.",
+ mdGuest:"Crée un compte pour comparer tes médailles avec celles de tes amis.",mdErr:"Impossible de charger le tableau des médailles. Vérifie ta connexion.",mdPlT:"{n} épreuves jouées",mdNoMd:"Pas encore de place sur le podium sur cette période."});
+Object.assign(T.en,{mJ:"Challenge",dyNt:"Theme",dyNk:"Mental maths",dyNu:"Nested words",
+ dyDt:"a theme and 10 letters: make two words from the theme using all the letters.",dyDk:"a number then five operations, each applied to the previous result: give the final result.",
+ dyDu:"a proper noun and a common noun to find from their clues: one uses all 10 letters, the other is hidden inside it.",
+ dyOne:"⏱ 30 seconds, one answer only: be sure before you submit!",dyConf:"Same draw for everyone. Leaderboard: right answers, from fastest to slowest.<br>Ready?",dyNone:"No challenge that day: the daily challenge started on 17 November.",
+ shrJok:"right answer",shrJko:"missed",
+ mdT:"🏅 Friends medal table",mdTs:"gold, silver and bronze · week and 30 days",mdH:"Medal table",mdW:"This week",mdL:"Last week",md30:"30 days",mdPl:"Played",
+ mdDays:"Days counted: {n}",mdNoDay:"No day counted yet: a day is added once it's over everywhere in the world.",mdNone:"No results among your friends for this period.",
+ mdHow:"Ranked by gold medals, then silver, then bronze, then 4th places and so on. A wrong answer or a zero score earns no medal. A day counts once it's over everywhere in the world, so a medal is never taken back.",
+ mdGuest:"Create an account to compare medals with your friends.",mdErr:"Couldn't load the medal table. Check your connection.",mdPlT:"{n} challenges played",mdNoMd:"No podium finish yet for this period."});
+function dgOn(day){return DG.filter(g=>DGM[g]!=="j"||day>=DY0||admIs())}
+function dyOne(d,p){const r=rngOf("lxdy|"+d),F=DYT.filter(x=>x!==p);return F[Math.floor(r()*F.length)]}
+function dyType(day){day=String(day);if(DYC[day])return DYC[day];if(day<=DY0)return DYC[day]=dyOne(day,null);
+ let d=day;const st=[];while(d>DY0&&!DYC[d]){st.push(d);d=addDay(d,-1)}
+ let p=DYC[d]||(DYC[d]=dyOne(d,null));for(let i=st.length-1;i>=0;i--)p=DYC[st[i]]=dyOne(st[i],p);return p}
+const dyName=ty=>t("dyN"+ty);
+function dyGen(day,g){const ty=dyType(day),r=rngOf("dcdl|"+day+"|"+g+"|"+ty);
+ if(ty==="t")return dfGenT("en",r);
+ if(ty==="k")return dfGenK(r);
+ const i=Math.floor(r()*DFU.en.length);return{g:"u",lg:"en",i,l:scr(dfU10(DFU.en[i]),r)}}
+function dyHelp(ty){return"<p><b>"+esc(dyName(ty))+"</b> · "+esc(t("dyD"+ty))+"</p><p><b>"+t("dyOne")+"</b></p>"}
+function dyConfT(g){return DGM[g]==="j"?dyHelp(dyType(pToday()))+"<p>"+t("dyConf")+"</p>":t("dConf")}
+function dySol(day,g){if(day<DY0&&!admIs())return'<p class="dnote">'+t("dyNone")+"</p>";const d=genDaily(day,g);return'<p class="dfh"><b>'+esc(dyName(d.g))+"</b></p>"+dfSolHTML(d)}
+genDaily=(o=>function(day,g){if(DGM[g]==="j")return dyGen(day,g);return o.apply(this,arguments)})(genDaily);
+solD=(o=>function(day,g){if(DGM[g]==="j")return dySol(day,g);return o.apply(this,arguments)})(solD);
+dResult=(o=>function(){if(daily&&DGM[daily.g]==="j"){const f=dfx&&dfx.dly===daily?dfx:{},a=String(f.a||"").slice(0,20);
+ return f.ok?{r:1,x:a,t:Math.max(0,Math.min(30000,Math.round(f.t||30000)))}:{r:0,x:a,t:30000}}return o.apply(this,arguments)})(dResult);
+startD=(o=>function(g){const day=pToday();if(DGM[g]!=="j"||myD(day,g))return o.apply(this,arguments);
+ chl=null;chNav=false;dfNav=false;party=null;trn=null;dur={l:30,c:45};setMy(day,g,{...WORST.j,done:0,sent:0});daily={g,day,t0:0,lt:0,done:0};
+ const ty=dyType(day);mode=ty;dl="en";closeModal();return startDf(ty)})(startD);
+rank=(o=>function(g,off){const r=o.apply(this,arguments);try{if(DGM[g]==="j"){const day=addDay(pToday(),-(off|0));$("rkD").textContent=day>=DY0||admIs()?dyName(dyType(day)):""}}catch(e){}return r})(rank);
+
+(()=>{const st=document.createElement("style");st.textContent=".mdt{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:4px 10px;margin:6px 0 10px}.mdh,.mdr{display:grid;grid-template-columns:26px minmax(0,1fr) 34px 34px 34px 50px;align-items:center;gap:4px;padding:10px 2px}.mdh{color:var(--mut);font-size:13px;border-bottom:1px solid var(--ln)}.mdh b{text-align:center;font-size:18px}.mdh small,.mdr small{text-align:right}.mdr{border-bottom:1px solid var(--ln);cursor:pointer}.mdr:last-child{border-bottom:0}.mdr>b{color:var(--mut)}.mdr span{font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mdr i{font-style:normal;text-align:center;font-weight:900;font-size:17px}.mdr i.z{opacity:.3}.mdr small{color:var(--mut);font-weight:700}.mdr.me{background:var(--in);border-radius:10px;border-bottom-color:transparent}.mdn{text-align:center;margin:0 0 4px}.mdhow{margin-top:10px}#mdTabs{display:flex}#mdTabs .btn{flex:1}";document.head.appendChild(st)})();
+const mdMon=d=>addDay(d,-((new Date(d+"T12:00:00Z").getUTCDay()+6)%7));
+function mdRange(p){const mon=mdMon(pToday()),last=addDay(dEarly(),-1);if(p==="w")return[mon,addDay(mon,6)];if(p==="l")return[addDay(mon,-7),addDay(mon,-1)];return[addDay(last,-29),last]}
+function mdOrd(n){if(L==="fr")return(n===1?"1re":n+"e")+" place";const s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0])+" place"}
+function mdMode(on){const h=document.querySelector("#rankP h2");if(h)h.textContent=t(on?"mdH":"a3RkT");["rkNav","rkPct","rkPlay","rkSer","rkS"].forEach(id=>{const e=$(id);if(e)e.classList.toggle("hide",on)})}
+async function mdRank(){rkG="md";const tok=++rkTok;mdMode(true);show("rankP");MDL=null;
+ const[a,b]=mdRange(mdP),last=addDay(dEarly(),-1),b2=b<last?b:last;
+ $("rkT").textContent=t("mdT").replace(/^🏅\s*/,"");$("rkD").textContent=fmtDayS(a,true)+" – "+fmtDayS(b,true);
+ const tabs='<div class="seg" id="mdTabs">'+["w","l","30"].map(k=>'<button class="btn'+(k===mdP?" on":"")+'" data-md="'+k+'">'+t(k==="w"?"mdW":k==="l"?"mdL":"md30")+"</button>").join("")+"</div>",L0=$("rkL");
+ if(!ME){L0.innerHTML=tabs+'<p class="dnote">'+t("mdGuest")+'</p><button class="btn p mb" id="rkSu">'+t("signup")+"</button>";$("rkSu").onclick=()=>goAuth("signupP","rankP");return}
+ const note=b2<a?t("mdNoDay"):t("mdDays",fmtDayS(a,true)+(b2>a?" – "+fmtDayS(b2,true):""));
+ L0.innerHTML=tabs+'<p class="dnote">'+t("rkLoad")+"</p>";
+ let list=null;if(sb){try{const r=await sb.rpc("daily_medals",{p_from:a,p_to:b});if(r.error)throw r.error;list=r.data||[]}catch(e){}}
+ if(tok!==rkTok||rkG!=="md")return;
+ if(!list){L0.innerHTML=tabs+'<p class="dnote">'+t("mdErr")+"</p>";return}
+ MDL=list;const C=n=>"<i"+(n?"":' class="z"')+">"+(n|0)+"</i>";
+ let h=tabs+'<p class="dnote mdn">'+esc(note)+"</p>";
+ if(list.length)h+='<div class="mdt"><div class="mdh"><span></span><span></span><b>🥇</b><b>🥈</b><b>🥉</b><small>'+t("mdPl")+"</small></div>"+list.map((x,i)=>{const p=x.places||[];return'<div class="mdr'+(x.me?" me":"")+'" data-mi="'+i+'"><b>'+x.pos+"</b><span>"+esc(x.pseudo)+"</span>"+C(p[0])+C(p[1])+C(p[2])+"<small>"+(x.played|0)+"</small></div>"}).join("")+"</div>";
+ else if(b2>=a)h+='<p class="dnote">'+t("mdNone")+"</p>";
+ if(list.length<=1&&b2>=a)h+='<p class="dnote" style="margin-top:10px">'+t("rkFr0")+"</p>";
+ L0.innerHTML=h+'<p class="dnote mdhow">'+t("mdHow")+"</p>"}
+$("rkL").addEventListener("click",e=>{if(rkG!=="md")return;const b=e.target.closest("[data-md]");if(b){mdP=b.dataset.md;mdRank();return}
+ const r=e.target.closest("[data-mi]");if(!r||!MDL)return;const x=MDL[+r.dataset.mi];if(!x)return;const M=["🥇 ","🥈 ","🥉 "];
+ const rows=(x.places||[]).map((n,i)=>n?'<div class="res"><span>'+(M[i]||"")+mdOrd(i+1)+"</span><b>× "+n+"</b></div>":"").join("");
+ modal(x.pseudo,(rows||'<p class="dnote">'+t("mdNoMd")+"</p>")+'<p class="dnote" style="text-align:center;margin-top:10px">'+t("mdPlT",x.played|0)+"</p>",[{l:t("close"),c:"p",f:closeModal}])});
+rank=(o=>function(g){if(g==="md")return mdRank();mdMode(false);return o.apply(this,arguments)})(rank);
+{const RKP=DG.concat("md"),go=d=>{const i=RKP.indexOf(rkG);rank(RKP[(i+d+RKP.length)%RKP.length],rkO)};$("rkGP").onclick=()=>go(-1);$("rkGN").onclick=()=>go(1)}
+renderD=(o=>function(){const r=o.apply(this,arguments);try{const L=$("dList");if(L&&!L.querySelector('[data-rk="md"]'))L.insertAdjacentHTML("beforeend",'<button class="btn bl mb ic" data-rk="md"><i class="mi"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="6"/><path d="M8.5 10.2 5 3h4l3 6M15.5 10.2 19 3h-4l-2.2 4.4"/><path d="M12 12.5v5"/></svg></i><span class="mt"><span>'+esc(t("mdT").replace(/^🏅\s*/,""))+'</span><small class="sub">'+esc(t("mdTs"))+'</small></span><i class="chv"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></i></button>')}catch(e){}return r})(renderD);
 </script></body></html>
