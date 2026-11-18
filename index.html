@@ -606,6 +606,20 @@ input,.fi{color:var(--tx)}
 #rulesP .mb.ic .sub{font-size:13px;font-weight:700;color:var(--mut);opacity:1;margin-top:3px}
 #rulesP .mb.ic .chv{color:var(--mut)}
 #rwB{margin:-4px auto 0;font-size:15px;font-weight:700;color:var(--ac)}
+.dsum{background:var(--card);border-radius:16px;box-shadow:0 4px 0 var(--sh);padding:14px;margin:0 0 16px;text-align:left}
+.dsum h3{margin:0 0 12px;text-align:center}
+.dsT{display:flex;gap:10px;margin-bottom:10px}
+.dsT>div{flex:1;border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:10px;min-width:0}
+.dsT b{display:block;font-size:18px;line-height:1.15}.dsT small{display:block;font-size:12px;font-weight:700}
+.dsS{background:var(--ac);color:#fff;box-shadow:0 4px 0 var(--acD)}.dsS svg{color:var(--mu);flex:0 0 auto}
+.dsP{background:var(--bg);box-shadow:inset 0 0 0 2px var(--ln)}.dsP svg{color:var(--ac);flex:0 0 auto}.dsP small{color:var(--mut)}.dsP.off svg{color:var(--mut)}
+.dsR{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--in)}
+.dsR>span{min-width:0}.dsR b{display:block;font-size:15px}.dsR small{display:block;color:var(--mut);font-size:13px}
+.dsTl{display:flex;gap:2px;flex:0 0 auto}.dsTl i{width:10px;height:15px;border-radius:3px;background:var(--in);box-shadow:inset 0 0 0 1.5px var(--ln)}.dsTl i.on{background:var(--ac);box-shadow:0 2px 0 var(--acD)}
+.dsBd{flex:0 0 auto;background:var(--mu);color:var(--muT);font-weight:900;font-size:14px;padding:5px 10px;border-radius:9px;box-shadow:0 3px 0 var(--muD)}.dsBd.ko{background:var(--in);color:var(--mut);box-shadow:none}
+.dsPc{display:flex;align-items:center;gap:10px;padding:12px 0 2px;font-weight:800;font-size:14px}.dsPc .bar{flex:1;height:9px;border-radius:5px;background:var(--in);overflow:hidden}.dsPc .bar i{display:block;height:100%;background:var(--mu)}.dsPc em{font-style:normal;color:var(--ac)}
+.dsPv{margin-top:14px}.dsPv small{display:block;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+.dsPv pre{margin:0;background:var(--bg);border:2px dashed var(--ln);border-radius:12px;padding:10px 12px;font:inherit;font-size:14px;font-weight:700;line-height:1.5;white-space:pre-wrap;word-break:break-word}
 </style></head><body>
 <section id="vidP" class="pg hide"><video id="vid" playsinline preload="auto"></video><button class="btn" id="vskip" data-t="skip"></button></section>
 <button id="homeB" class="hide" aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></button><button id="topBk" class="hide" aria-label="Retour"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div id="toast" class="hide"></div><div id="mpWarn" class="hide" data-t="mpWarn"></div>
@@ -660,7 +674,7 @@ input,.fi{color:var(--tx)}
 <div class="mrow"><button class="btn p mb" data-p="q"><span data-t="pQ"></span><small class="sub" data-t="d5"></small></button><button class="info" data-info="Q">?</button></div>
 <button class="btn mb hide" id="resq"></button>
 <button class="btn mb" data-back data-t="back"></button></section>
-<section id="dailyP" class="pg hide"><h2 data-t="pD"></h2><p id="dInfo" class="dnote"></p><p id="serL" class="serL hide"></p><div id="dList"></div>
+<section id="dailyP" class="pg hide"><h2 data-t="pD"></h2><p id="dInfo" class="dnote"></p><p id="serL" class="serL hide"></p><div id="dList"></div><div id="dSum" class="dsum hide"></div>
 <button class="btn p mb hide" id="dShr" data-t="shrT"></button><button class="btn mb" id="dPs" style="font-size:16px;padding:12px"></button><button class="btn mb" data-back data-t="back"></button></section>
 <section id="rankP" class="pg hide"><h2 data-t="a3RkT"></h2><div class="rkg"><button class="btn" id="rkGP" aria-label="‹">‹</button><div class="rkgt"><b id="rkT"></b><small id="rkD"></small></div><button class="btn" id="rkGN" aria-label="›">›</button></div><div class="row" id="rkNav"><button class="btn rkA" id="rkPrev" aria-label="-1">‹</button><select id="rkSel"></select><button class="btn rkA" id="rkNext" aria-label="+1">›</button></div><div class="row hide" id="wkNav"><button class="btn rkA" id="wkPrev" aria-label="-1">‹</button><select id="wkSel"></select><button class="btn rkA" id="wkNext" aria-label="+1">›</button></div><div id="rkPct"></div><div id="rkL"></div><div id="rkPlay"></div><div id="rkSer"></div><div id="rkS"></div><button class="btn mb" id="rkBack" data-t="back" style="margin-top:16px"></button></section>
 <section id="freeP" class="pg hide"><h2 data-t="pF"></h2>
@@ -1012,8 +1026,15 @@ const SERK="nmSerie";
 function serPut(o){try{localStorage.setItem(SERK,JSON.stringify(o))}catch(e){}}
 function serRaw(){try{return JSON.parse(localStorage.getItem(SERK)||"null")}catch(e){return null}}
 function serInit(){const D=getD(),d0=pToday(),has=d=>!!(D[d]&&Object.keys(D[d]).length);let day=has(d0)?d0:addDay(d0,-1),n=0,last=null;while(has(day)){if(!last)last=day;n++;day=addDay(day,-1)}const o={cur:n,best:n,last:last};serPut(o);return o}
-function serGet(){const o=serRaw()||serInit(),d0=pToday();return(o.last===d0||o.last===addDay(d0,-1))?o:{cur:0,best:o.best||0,last:o.last}}
-function serBump(day){if(day!==pToday())return;const o=serRaw()||serInit();if(o.last===day)return;o.cur=o.last===addDay(day,-1)?(o.cur||0)+1:1;o.last=day;o.best=Math.max(o.best||0,o.cur);serPut(o)}
+const SHD=30;
+function dDiff(a,b){const f=x=>{const[y,m,d]=x.split("-").map(Number);return Date.UTC(y,m-1,d)};return Math.round((f(b)-f(a))/864e5)}
+function shAv(o,day){return!o.sh||dDiff(o.sh,day)>=SHD}
+function serGet(){const o=serRaw()||serInit(),d0=pToday(),y=addDay(d0,-1);if(o.last===d0||o.last===y)return o;
+ if(o.cur&&o.last===addDay(d0,-2)&&shAv(o,y))return{...o,shP:1};
+ return{cur:0,best:o.best||0,last:o.last,sh:o.sh}}
+function serBump(day){if(day!==pToday())return;const o=serRaw()||serInit();if(o.last===day)return;const y=addDay(day,-1);
+ if(o.last===y)o.cur=(o.cur||0)+1;else if(o.cur&&o.last===addDay(day,-2)&&shAv(o,y)){o.cur=(o.cur||0)+1;o.sh=y}else o.cur=1;
+ o.last=day;o.best=Math.max(o.best||0,o.cur);serPut(o)}
 
 const dEarly=()=>new Date(Date.now()-12*3600000).toISOString().slice(0,10);
 function pParts(d){return Object.fromEntries(new Intl.DateTimeFormat("en-GB",{...(ENO?{}:{timeZone:"Europe/Paris"}),year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"}).formatToParts(d).map(x=>[x.type,x.value]))}
@@ -3926,19 +3947,59 @@ dfDraw=(o=>function(){const r=o.apply(this,arguments);try{if(kbGet()==="0")["dfA
 const GAME_URL="https://lexicalc.github.io/Lexicalc/";
 async function shareTxt(txt,okKey,title){if(navigator.share){try{await navigator.share({text:txt});return}catch(e){if(e&&e.name==="AbortError")return}}
  try{await navigator.clipboard.writeText(txt);toast(t(okKey))}catch(e){modal(title,'<textarea readonly style="width:100%;height:220px;font:inherit;font-size:15px">'+esc(txt)+"</textarea>",[{l:t("close"),c:"p",f:closeModal}])}}
-function dShareTxt(day){const FL={fr:"🇫🇷",en:"🇬🇧"},IC={l:"🔤",c:"🔢",w:"🏁",j:"⚡"},out=["📅 Lexicalc · "+t("pD"),fmtDay(day)];let n=0;
- DG.forEach(g=>{const o=myD(day,g);if(!o||!o.done)return;n++;const m=DGM[g],r=+o.r||0;let v;
-  if(m==="l")v="🟩".repeat(Math.min(r,10))+"⬜".repeat(Math.max(0,10-r))+" "+(r?t("lets",r):t("noWord"));
-  else if(m==="c")v=r>=9999?"❌ "+t("noAns"):r===0?"🎯 "+t("shrExact"):"↔️ "+t("near",r);
-  else if(m==="j")v=r?"✅ "+t("shrJok"):"❌ "+t("shrJko");
-  else v="🟩".repeat(Math.min(r,8))+"⬜".repeat(Math.max(0,8-r))+" "+t("words",r);
-  if(!rkNo(m,{result:r})&&o.t)v+=" · ⏱️ "+fmtT(o.t);
-  out.push("",IC[m]+" "+t("m"+m.toUpperCase())+(m==="j"?" · "+dyName(dyType(day,g)):"")+(!ENO&&DGL[g]?" "+FL[DGL[g]]:""),v)});
- out.push("",t("shrCall"),GAME_URL);return n?out.join("\n"):""}
+const LXN0="2026-11-13";
+function lxNum(day){return Math.max(1,dDiff(LXN0,day)+1)}
+const dsSec=ms=>Math.max(1,Math.round((ms||0)/1000))+(L==="fr"?" s":"s");
+function dsMask(o){const k=wDec(o.x),r=+o.r||0;return[0,1,2,3,4,5,6,7].map(i=>k!==null?!!(k>>i&1):i<r)}
+function dsLine(g,o){const m=DGM[g],r=+o.r||0,ok=!rkNo(m,{result:r});
+ if(m==="l")return t("shrNL")+" "+"🟩".repeat(Math.min(r,10))+"⬜".repeat(Math.max(0,10-r));
+ if(m==="c")return t("shrNC")+" "+(r>=9999?"❌":r===0?"🎯 "+t("shrEx")+" · "+dsSec(o.t):"↔️ "+t("near",r));
+ if(m==="j")return t("shrNJ")+" "+(r?"✅ "+dsSec(o.t):"❌");
+ return t("shrNW")+" "+dsMask(o).map(x=>x?"🟩":"⬛").join("")+" "+r+"/8"}
+function dDone(day){return dgOn(day).filter(g=>{const o=myD(day,g);return o&&o.done})}
+function dShareTxt(day){const done=dDone(day);if(!done.length)return"";const s0=serGet(),P=DSP[day];
+ const out=["Lexicalc #"+lxNum(day)+(s0.cur>1?" 🔥"+s0.cur:"")].concat(done.map(g=>dsLine(g,myD(day,g))));
+ if(P&&P.n)out.push(t("shrBeat",P.p));out.push(GAME_URL);return out.join("\n")}
+const DSP={};
+async function dsPctLoad(day,done){if(!sb||!done.length)return;const k=day+"|"+done.join(",");if((DSP[day]&&DSP[day].k===k)||dsPctLoad.busy===k)return;dsPctLoad.busy=k;
+ const ps=[];let bad=0;
+ for(const g of done){const me=myD(day,g);if(!me)continue;
+  try{const r=await sb.rpc("daily_beat",{p_day:day,p_game:g,p_result:+me.r||0,p_time_cs:Math.max(0,Math.min(12100,Math.round((me.t||0)/10)))});if(r.error)throw r.error;
+   const d=(r.data||[])[0];if(d&&(d.players|0)>=PCTMIN)ps.push(Math.max(0,Math.min(100,d.pct|0)))}catch(e){bad++}}
+ if(dsPctLoad.busy===k)dsPctLoad.busy=null;if(bad===done.length)return;
+ DSP[day]={k,n:ps.length,p:ps.length?Math.round(ps.reduce((a,b)=>a+b,0)/ps.length):0};
+ if(day===pToday()&&!$("dailyP").classList.contains("hide"))try{dSumUI()}catch(e){}}
+const SVG_FL='<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.5 1.2-4 2.5-5 .2 2 1 3 2 3 0-3-.5-6 .5-9z"/></svg>',
+ SVG_SH='<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>';
+function dSumUI(){const e=$("dSum");if(!e)return;const day=pToday(),done=dDone(day);
+ if(!done.length){e.classList.add("hide");e.innerHTML="";return}
+ const sl=$("serL");if(sl)sl.classList.add("hide");
+ const s0=serGet(),c=s0.cur||0,y=addDay(day,-1);let sh;
+ if(s0.sh===y)sh=[t("shUsed"),t("shUsedS"),""];else if(shAv(s0,day))sh=[t("shOk"),t("shOkS"),""];else{const n=SHD-dDiff(s0.sh,day);sh=[t("shWait"),t(n===1?"shWait1":"shWaitS",n)," off"]}
+ let h="<h3>"+esc(t("dsT"))+" · #"+lxNum(day)+'</h3><div class="dsT"><div class="dsS">'+SVG_FL+"<span><b>"+esc(t(c===1?"a3D1":"a3DN",c))+"</b><small>"+esc(t("dsSer"))+'</small></span></div><div class="dsP'+sh[2]+'">'+SVG_SH+"<span><b>"+esc(sh[0])+"</b><small>"+esc(sh[1])+"</small></span></div></div>";
+ done.forEach(g=>{const o=myD(day,g),m=DGM[g],r=+o.r||0,ok=!rkNo(m,{result:r}),tm=ok&&o.t?" · "+fmtT(o.t):"";let det,rt;
+  if(m==="l"){det=(r?t("lets",r):t("noWord"))+tm;rt='<span class="dsTl">'+[0,1,2,3,4,5,6,7,8,9].map(i=>"<i"+(i<r?' class="on"':"")+"></i>").join("")+"</span>"}
+  else if(m==="w"){det=t("words",r)+tm;rt='<span class="dsTl">'+dsMask(o).map(x=>"<i"+(x?' class="on"':"")+"></i>").join("")+"</span>"}
+  else if(m==="c"){det=(r>=9999?t("noAns"):r===0?t("exactS"):t("near",r))+tm;rt='<span class="dsBd'+(r>=9999?" ko":"")+'">'+esc(r>=9999?"—":r===0?t("shrEx"):"±"+r)+"</span>"}
+  else{det=(r?t("dsOkS"):t("dsKoS"))+tm;rt='<span class="dsBd'+(r?"":" ko")+'">'+esc(r?t("dsOk"):t("dsKo"))+"</span>"}
+  h+='<div class="dsR"><span><b>'+esc(nameOf(g)+(m==="j"?" · "+dyName(dyType(day,g)):""))+"</b><small>"+esc(det)+"</small></span>"+rt+"</div>"});
+ const P=DSP[day];if(P&&P.n)h+='<div class="dsPc"><span class="bar"><i style="width:'+P.p+'%"></i></span><span>'+t("dsPct",'<em>'+P.p+(L==="fr"?" %":"%")+"</em>")+"</span></div>";
+ h+='<div class="dsPv"><small>'+esc(t("dsPv"))+"</small><pre>"+esc(dShareTxt(day))+"</pre></div>";
+ e.innerHTML=h;e.classList.remove("hide");dsPctLoad(day,done)}
+Object.assign(T.en,{shrNL:"Word Hunt",shrNC:"Target",shrNJ:"Challenge",shrNW:"Final Sprint",shrEx:"Exact",shrBeat:"Beat {n}% of players",
+ dsT:"Today's results",dsSer:"Current streak",shOk:"Shield ready",shOkS:"Saves 1 missed day",shUsed:"Shield used",shUsedS:"It saved your streak",
+ shWait:"Shield recharging",shWaitS:"Back in {n} days",shWait1:"Back tomorrow",dsOk:"Solved",dsKo:"Missed",dsOkS:"Solved",dsKoS:"Not solved",
+ dsPct:"You beat {n} of players",dsPv:"What your friends will see"});
+Object.assign(T.fr,{shrNL:"Chasse aux mots",shrNC:"Nombre cible",shrNJ:"Défi",shrNW:"Sprint final",shrEx:"Pile",shrBeat:"Mieux que {n} % des joueurs",
+ dsT:"Tes résultats du jour",dsSer:"Série en cours",shOk:"Bouclier prêt",shOkS:"Sauve 1 jour manqué",shUsed:"Bouclier utilisé",shUsedS:"Il a sauvé ta série",
+ shWait:"Bouclier en recharge",shWaitS:"De retour dans {n} jours",shWait1:"De retour demain",dsOk:"Réussi",dsKo:"Raté",dsOkS:"Réussi",dsKoS:"Pas trouvé",
+ dsPct:"Tu as fait mieux que {n} des joueurs",dsPv:"Ce que verront tes amis"});
 function dShrUI(){const day=pToday(),e=$("dShr");if(e)e.classList.toggle("hide",!DG.some(g=>{const o=myD(day,g);return o&&o.done}))}
 function shareRes(){syncD();const txt=dShareTxt(pToday());if(!txt)return toast(t("shrNone"));shareTxt(txt,"shrCopied",t("shrT"))}
 $("dShr").onclick=shareRes;$("dShr2").onclick=()=>{dFinish();shareRes()};
 renderD=(o=>function(){const r=o.apply(this,arguments);try{dShrUI()}catch(e){}return r})(renderD);
+renderD=(o=>function(){const r=o.apply(this,arguments);try{dSumUI()}catch(e){}return r})(renderD);
+dFinish=(o=>function(){const r=o.apply(this,arguments);try{setTimeout(()=>{const d=pToday();dsPctLoad(d,dDone(d))},600)}catch(e){}return r})(dFinish);
 $("discB").onclick=()=>{modal(t("discT"),"<p>"+t("discH")+"</p>"+qrSvg(GAME_URL)+'<p class="qrl">'+GAME_URL.replace(/^https:\/\//,"").replace(/\/$/,"")+"</p>"+
  '<button class="btn p mb" id="discSh" style="font-size:17px;padding:14px">'+t("discShare")+'</button><button class="btn mb" id="discCp" style="font-size:17px;padding:14px">'+t("discCopy")+"</button>",[{l:t("close"),f:closeModal}]);
  $("discSh").onclick=()=>shareTxt(t("discTxt")+"\n"+GAME_URL,"discCopied",t("discT"));
