@@ -3553,11 +3553,13 @@ Object.assign(T.en,{nfH:"🔔 Notifications",nfGuest:"Notifications are for play
  nfErr:"Notifications can't be turned on right now. Try again in a moment.",nfAskT:"🔔 Get notified?",
  nfAskH:"<p>Get a notification when it's your turn to play, when a friend challenges you or sends you a friend request.</p><p>You can change this at any time in ⚙️ Settings.</p>",
  nfLater:"Later",nfYes:"Turn on",nfInGame:"Notification received: you'll find it in the menu after your game."});
-const NFP=[["amis","nfAmis"],["defis","nfDefis"],["tours","nfTours"],["rappels","nfRap"]];
+const NFP=[["amis","nfAmis"],["defis","nfDefis"],["tours","nfTours"],["rappels","nfRap"],["serie","nfSer"]];
+Object.assign(T.fr,{nfSer:"🔥 Rappel de série",nfSerS:"le soir, si tu n'as pas encore fait La partie du jour"});
+Object.assign(T.en,{nfSer:"🔥 Streak reminder",nfSerS:"in the evening, if you haven't played today's puzzle yet"});
 let NF={uid:null,chk:false,ok:false,sub:null,pf:null,busy:false},nfSynced=null;
 var nfIn0=null;
 (()=>{try{const u=new URLSearchParams(location.search);if(!u.has("nf"))return;const k=u.get("nf")||"",m=u.get("m")||"";
- if(/^(tb|fr|da)$/.test(k))nfIn0={k,m:/^[0-9a-f-]{36}$/.test(m)?m:""};u.delete("nf");u.delete("m");const q=u.toString();history.replaceState(null,"",location.pathname+(q?"?"+q:"")+location.hash)}catch(e){}})();
+ if(/^(tb|fr|da|dj)$/.test(k))nfIn0={k,m:/^[0-9a-f-]{36}$/.test(m)?m:""};u.delete("nf");u.delete("m");const q=u.toString();history.replaceState(null,"",location.pathname+(q?"?"+q:"")+location.hash)}catch(e){}})();
 const nfSup=()=>"serviceWorker"in navigator&&"PushManager"in window&&"Notification"in window&&window.isSecureContext;
 const nfIOS=()=>/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
 const NFK="fwnfu|"+location.pathname.replace(/[^/]*$/,"");
@@ -3610,12 +3612,12 @@ function nfAsk(){if(!ME||!nfSup()||Notification.permission!=="default"||!$("moda
  try{if(localStorage.getItem("fwnfask"))return;localStorage.setItem("fwnfask","1")}catch(e){return}
  modal(t("nfAskT"),t("nfAskH"),[{l:t("nfLater"),f:closeModal},{l:t("nfYes"),c:"p",f:()=>{closeModal();nfOn()}}])}
 async function nfGo(o,n){if(!o)return;if(!sb||!SESS||!ME){if((n|0)<12)setTimeout(()=>nfGo(o,(n|0)+1),700);return}
- if(o.k==="fr")return openFr();if(o.k==="da")return openChMenu();
+ if(o.k==="fr")return openFr();if(o.k==="da")return openChMenu();if(o.k==="dj")return openDaily();
  if(o.k==="tb"){await tbLoad();if(o.m&&tbRow(o.m))return openTbM(o.m);return openTb()}}
 const nfBusyG=()=>!over||!!tbx||!!MP||!!daily||!!chl||$("intro")&&!$("intro").classList.contains("hide");
 if("serviceWorker"in navigator)navigator.serviceWorker.addEventListener("message",e=>{const d=e.data||{};
  if(d.t==="nfin"){if(ME&&sb&&SESS){tbLoad();daLoad();refreshAcc()}const x=d.d||{};if(x.t&&!(!over||tbx||MP))toast(x.t+(x.b?" · "+x.b:""))}
- else if(d.t==="nfopen"){let o=null;try{const u=new URL(d.u,location.href).searchParams,k=u.get("nf")||"",m=u.get("m")||"";if(/^(tb|fr|da)$/.test(k))o={k,m:/^[0-9a-f-]{36}$/.test(m)?m:""}}catch(e){}
+ else if(d.t==="nfopen"){let o=null;try{const u=new URL(d.u,location.href).searchParams,k=u.get("nf")||"",m=u.get("m")||"";if(/^(tb|fr|da|dj)$/.test(k))o={k,m:/^[0-9a-f-]{36}$/.test(m)?m:""}}catch(e){}
   if(!o)return;if(!ME||$("intro")&&!$("intro").classList.contains("hide")){nfIn0=o;return}if(nfBusyG())return toast(t("nfInGame"));closeModal();nfGo(o)}});
 
 
