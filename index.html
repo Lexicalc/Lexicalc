@@ -5,14 +5,14 @@
 <meta property="og:site_name" content="Lexicalc">
 <meta property="og:title" content="Lexicalc · Words &amp; numbers, a new puzzle every day">
 <meta property="og:description" content="A free daily puzzle of words and numbers. Find the longest word, hit the target number, beat your friends. New puzzle every day.">
-<meta property="og:url" content="https://lexicalc.github.io/Lexicalc/">
-<meta property="og:image" content="https://lexicalc.github.io/Lexicalc/assets/apercu.png">
+<meta property="og:url" content="https://lexicalc.github.io/">
+<meta property="og:image" content="https://lexicalc.github.io/assets/apercu.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Lexicalc: letter tiles spelling LEXICALC and number tiles reaching a target">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lexicalc.github.io/Lexicalc/assets/apercu.png">
+<meta name="twitter:image" content="https://lexicalc.github.io/assets/apercu.png">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <style>
 :root{--bg:#fbf6ee;--card:#fff;--ac:#0f8b8d;--tx:#1d2433;--mut:#6b6f7a;--ok:#22a861;--ko:#d64545;--acD:#0a6466;--mu:#f2b134;--muD:#c48a1c;--muT:#3d2a05;--in:#f1e9dc;--sh:#ddd2bf;--ln:#d8cdb9}
@@ -4008,7 +4008,7 @@ kbApply();
 
 
 dfDraw=(o=>function(){const r=o.apply(this,arguments);try{if(kbGet()==="0")["dfA0","dfA1"].forEach(id=>{const e=$(id);if(e)e.setAttribute("inputmode","none")})}catch(e){}return r})(dfDraw);
-const GAME_URL="https://lexicalc.github.io/Lexicalc/";
+const GAME_URL="https://lexicalc.github.io/";
 async function shareTxt(txt,okKey,title){if(navigator.share){try{await navigator.share({text:txt});return}catch(e){if(e&&e.name==="AbortError")return}}
  try{await navigator.clipboard.writeText(txt);toast(t(okKey))}catch(e){modal(title,'<textarea readonly style="width:100%;height:220px;font:inherit;font-size:15px">'+esc(txt)+"</textarea>",[{l:t("close"),c:"p",f:closeModal}])}}
 const LXN0="2026-11-13";
